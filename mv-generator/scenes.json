@@ -1,0 +1,103 @@
+{
+  "lyrics_file": "/root/.openclaw/workspace/music-daily/2026-02-23-歌词.txt",
+  "generated_at": "2026-02-24T14:46:56.738533",
+  "scenes": [
+    {
+      "keyword": "巷口的风",
+      "prompt": "Chinese old alleyway at night, warm yellow lanterns, misty atmosphere, traditional houses, cinematic 4k, gentle camera movement",
+      "duration": 8,
+      "lyric": "【巷口的风】"
+    },
+    {
+      "keyword": "老巷口",
+      "prompt": "Old Chinese street corner, vintage lanterns, cobblestone road, evening golden hour, nostalgic mood, cinematic wide shot",
+      "duration": 6,
+      "lyric": "老巷口的灯 昏黄又朦胧"
+    },
+    {
+      "keyword": "月亮",
+      "prompt": "Full moon in night sky, soft moonlight through window, silhouette of man with guitar, warm hopeful tone, Chinese ink painting style",
+      "duration": 8,
+      "lyric": "有人说城里的月亮 比较圆"
+    },
+    {
+      "keyword": "巷口的风",
+      "prompt": "Chinese old alleyway at night, warm yellow lanterns, misty atmosphere, traditional houses, cinematic 4k, gentle camera movement",
+      "duration": 8,
+      "lyric": "巷口的风 吹过谁家的窗"
+    },
+    {
+      "keyword": "江南",
+      "prompt": "Classic Jiangnan watertown, small bridge over river, traditional Chinese architecture, misty morning, nostalgic melody, cinematic",
+      "duration": 6,
+      "lyric": "谁在哼唱 老旧的江南样"
+    },
+    {
+      "keyword": "月亮",
+      "prompt": "Full moon in night sky, soft moonlight through window, silhouette of man with guitar, warm hopeful tone, Chinese ink painting style",
+      "duration": 8,
+      "lyric": "我用一把吉他 弹给月亮听"
+    },
+    {
+      "keyword": "吉他",
+      "prompt": "Man playing acoustic guitar in dim room, warm lamp light, emotional performance, bokeh background, intimate atmosphere, cinematic",
+      "duration": 8,
+      "lyric": "我用一把吉他 弹给月亮听"
+    },
+    {
+      "keyword": "便利店",
+      "prompt": "Modern convenience store at night, bright fluorescent lights, lonely office worker looking at phone, city night view, melancholic mood, cinematic shot",
+      "duration": 6,
+      "lyric": "便利店的灯 亮到天将明"
+    },
+    {
+      "keyword": "咖啡",
+      "prompt": "Coffee shop corner, warm brown tones, steam rising from cup, late night studying, hopeful eyes, soft lighting, intimate close-up",
+      "duration": 5,
+      "lyric": "咖啡凉了一半 文档还没关"
+    },
+    {
+      "keyword": "巷口的风",
+      "prompt": "Chinese old alleyway at night, warm yellow lanterns, misty atmosphere, traditional houses, cinematic 4k, gentle camera movement",
+      "duration": 8,
+      "lyric": "巷口的风 吹过谁家的窗"
+    },
+    {
+      "keyword": "江南",
+      "prompt": "Classic Jiangnan watertown, small bridge over river, traditional Chinese architecture, misty morning, nostalgic melody, cinematic",
+      "duration": 6,
+      "lyric": "谁在哼唱 老旧的江南样"
+    },
+    {
+      "keyword": "月亮",
+      "prompt": "Full moon in night sky, soft moonlight through window, silhouette of man with guitar, warm hopeful tone, Chinese ink painting style",
+      "duration": 8,
+      "lyric": "我用一把吉他 弹给月亮听"
+    },
+    {
+      "keyword": "吉他",
+      "prompt": "Man playing acoustic guitar in dim room, warm lamp light, emotional performance, bokeh background, intimate atmosphere, cinematic",
+      "duration": 8,
+      "lyric": "我用一把吉他 弹给月亮听"
+    },
+    {
+      "keyword": "星星",
+      "prompt": "Starry night sky over city, twinkling stars, city lights below, hopeful mood, wide cinematic shot, 4k",
+      "duration": 5,
+      "lyric": "La la la... 霓虹灯和星星"
+    },
+    {
+      "keyword": "霓虹",
+      "prompt": "Neon lights in rainy street, reflection on wet pavement, jazz club atmosphere, saxophone player silhouette, sophisticated mood",
+      "duration": 6,
+      "lyric": "La la la... 霓虹灯和星星"
+    },
+    {
+      "keyword": "巷口的风",
+      "prompt": "Chinese old alleyway at night, warm yellow lanterns, misty atmosphere, traditional houses, cinematic 4k, gentle camera movement",
+      "duration": 8,
+      "lyric": "巷口的风 轻轻吹..."
+    }
+  ],
+  "total_duration": 112
+}

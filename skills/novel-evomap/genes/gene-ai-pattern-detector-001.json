@@ -1,0 +1,236 @@
+{
+  "id": "gene-ai-pattern-detector-001",
+  "name": "AI写作模式检测与去除",
+  "category": "writing-style",
+  "author": "Humanizer Skill (ClawHub)",
+  "source_works": ["Humanizer skill"],
+  "tags": ["去AI味", "AI检测", "词汇替换", "自然写作", "Humanizer"],
+  
+  "description": {
+    "summary": "基于 ai-humanizer skill 的 AI 写作模式检测与去除技法",
+    "core_logic": "AI写作有固定的模式和词汇，识别并替换这些模式，让文本更自然"
+  },
+  
+  "ai_vocabulary_tiers": {
+    "tier1_dead_giveaways": [
+      "delve", "tapestry", "vibrant", "crucial", "comprehensive", "meticulous", 
+      "embark", "robust", "seamless", "groundbreaking", "leverage", "synergy", 
+      "transformative", "paramount", "multifaceted", "myriad", "cornerstone", 
+      "reimagine", "empower", "catalyst", "invaluable", "bustling", "nestled", "realm"
+    ],
+    "tier2_suspicious": [
+      "furthermore", "moreover", "paradigm", "holistic", "utilize", "facilitate", 
+      "nuance", "illuminate", "encompasses", "catalyze", "proactive", "ubiquitous", 
+      "quintessential"
+    ],
+    "suspicious_phrases": [
+      "In today's digital age",
+      "It is worth noting",
+      "plays a crucial role",
+      "serves as a testament",
+      "in the realm of",
+      "delve into",
+      "harness the power of",
+      "embark on a journey",
+      "without further ado"
+    ]
+  },
+  
+  "ai_patterns": [
+    {
+      "id": 1,
+      "pattern": "Significance inflation",
+      "category": "Content",
+      "ai_example": "marking a pivotal moment in the evolution of",
+      "fix": "直接说发生了什么事，不需要过度渲染"
+    },
+    {
+      "id": 2,
+      "pattern": "Vague attributions",
+      "category": "Content", 
+      "ai_example": "Experts believe, Studies show, Industry reports",
+      "fix": "具体说明是谁、在哪里、什么时候"
+    },
+    {
+      "id": 3,
+      "pattern": "Formulaic challenges",
+      "category": "Content",
+      "ai_example": "Despite challenges... continues to thrive",
+      "fix": "具体说明什么挑战，如何应对"
+    },
+    {
+      "id": 4,
+      "pattern": "Promotional language",
+      "category": "Content",
+      "ai_example": "nestled, breathtaking, stunning, renowned",
+      "fix": "用具体的细节描述，不要用夸张形容词"
+    },
+    {
+      "id": 5,
+      "pattern": "AI vocabulary - 动词",
+      "category": "Language",
+      "ai_example": "serves as, boasts, features",
+      "fix": "用简单的 is, has 替代 serves as, boasts, features"
+    },
+    {
+      "id": 6,
+      "pattern": "Negative parallelisms",
+      "category": "Language",
+      "ai_example": "It's not just X, it's Y",
+      "fix": "直接说是什么，不要用否定句式"
+    },
+    {
+      "id": 7,
+      "pattern": "Rule of three",
+      "category": "Language",
+      "ai_example": "innovation, inspiration, and insights",
+      "fix": "只说一个重点，不要堆砌排比"
+    },
+    {
+      "id": 8,
+      "pattern": "Synonym cycling",
+      "category": "Language",
+      "ai_example": "protagonist... main character... central figure",
+      "fix": "统一用同一个词，不要换来换去"
+    },
+    {
+      "id": 9,
+      "pattern": "Em dash overuse",
+      "category": "Style",
+      "ai_example": "Too many — dashes — everywhere",
+      "fix": "删除一半的破折号，用句号替代"
+    },
+    {
+      "id": 10,
+      "pattern": "Chatbot artifacts",
+      "category": "Communication",
+      "ai_example": "I hope this helps!, Let me know if...",
+      "fix": "删除所有客服腔，直接结束"
+    },
+    {
+      "id": 11,
+      "pattern": "Cutoff disclaimers",
+      "category": "Communication",
+      "ai_example": "As of my last training..., While details are limited...",
+      "fix": "直接说，不需要解释信息来源"
+    },
+    {
+      "id": 12,
+      "pattern": "Sycophantic tone",
+      "category": "Communication",
+      "ai_example": "Great question!, You're absolutely right!",
+      "fix": "删除所有讨好读者的表达"
+    },
+    {
+      "id": 13,
+      "pattern": "Filler phrases",
+      "category": "Filler",
+      "ai_example": "In order to, Due to the fact that, At this point in time",
+      "fix": "\"In order to\" → \"to\", \"Due to the fact that\" → \"because\""
+    },
+    {
+      "id": 14,
+      "pattern": "Excessive hedging",
+      "category": "Filler",
+      "ai_example": "could potentially possibly, might arguably perhaps",
+      "fix": "直接说，不要堆砌可能性词"
+    },
+    {
+      "id": 15,
+      "pattern": "Generic conclusions",
+      "category": "Filler",
+      "ai_example": "The future looks bright, Exciting times lie ahead",
+      "fix": "用具体的预测或事实结尾，不要用空话"
+    }
+  ],
+  
+  "before_after_examples": [
+    {
+      "ai_text": "Great question! Here is an overview of sustainable energy. Sustainable energy serves as an enduring testament to humanity's commitment to environmental stewardship. In today's rapidly evolving landscape, these groundbreaking technologies are reshaping how nations approach energy production. The future looks bright.",
+      "human_text": "可持续再生能源正在改变全球能源格局。中国的风电装机量已经是世界第一。十年内，传统化石燃料可能会被取代。",
+      "changes_applied": [
+        "删除 'Great question!'",
+        "删除 'serves as a testament'",
+        "删除 'In today's rapidly evolving landscape'",
+        "删除 'groundbreaking'",
+        "删除 'The future looks bright'",
+        "加入具体事实和数据"
+      ]
+    },
+    {
+      "ai_text": "In order to understand the implications, it is crucial to delve into the historical context. The research encompasses a myriad of factors. Furthermore, the findings are of paramount importance.",
+      "human_text": "要理解这件事，得先看历史。研究涵盖了很多因素。调查结果很重要。",
+      "changes_applied": [
+        "删除 'In order to'",
+        "删除 'it is crucial to'",
+        "删除 'delve into'",
+        "删除 'a myriad of'",
+        "删除 'Furthermore'",
+        "删除 'of paramount importance'"
+      ]
+    },
+    {
+      "ai_text": "The protagonist, the main character, and the central figure all face significant challenges. However, despite these challenges, the story continues to thrive.",
+      "human_text": "主角遇到了麻烦。但他没有放弃。",
+      "changes_applied": [
+        "删除同义词循环 (protagonist/main character/central figure)",
+        "删除 'However'",
+        "删除 'despite these challenges'",
+        "删除 'continues to thrive'"
+      ]
+    }
+  ],
+  
+  "quick_fix_checklist": [
+    "❌ 删除 'serves as', 'boasts', 'features' → 改为 'is', 'has'",
+    "❌ 删除 'In order to' → 改为 'to'",
+    "❌ 删除 'Due to the fact that' → 改为 'because'",
+    "❌ 删除 'It is important to note that' → 直接说内容",
+    "❌ 删除 'delve into' → 改为 '研究' 或 '看'",
+    "❌ 删除 'In today's digital age' → 删除整句",
+    "❌ 删除 'The future looks bright' → 用具体事实结尾",
+    "❌ 删除 'I hope this helps!' → 直接结束",
+    "❌ 删除 'Great question!' → 直接开始回答",
+    "❌ 删除 'However'、'Furthermore'、'Moreover' → 改为句号或逗号",
+    "❌ 删除 'crucial', 'comprehensive', 'meticulous' → 改为 '重要', '详细', '仔细'",
+    "❌ 检查破折号数量，删除一半"
+  ],
+  
+  "statistical_signals": {
+    "burstiness": {
+      "human": "高 (0.5-1.0)",
+      "ai": "低 (0.1-0.3)",
+      "fix": "人类写作有节奏变化，AI写作像节拍器一样均匀"
+    },
+    "type_token_ratio": {
+      "human": "0.5-0.7",
+      "ai": "0.3-0.5",
+      "fix": "AI重复使用词汇，人类词汇更多样"
+    },
+    "sentence_length": {
+      "human": "变化大",
+      "ai": "几乎相同",
+      "fix": "加入长句和短句交替"
+    }
+  },
+  
+  "usage": {
+    "when": [
+      "AI辅助写作后润色",
+      "检查文本是否AI味太重",
+      "修改AI生成的对话或描述"
+    ],
+    "how": [
+      "1. 扫描 24 种 AI 模式",
+      "2. 检查统计信号（burstiness、词汇多样性）",
+      "3. 替换 Tier 1/Tier 2 词汇",
+      "4. 删除连接词和填充词",
+      "5. 确保句子长度有变化",
+      "6. 加入具体细节和事实"
+    ]
+  },
+  
+  "source_skill": "ai-humanizer (ClawHub)",
+  "created_at": "2026-02-25",
+  "version": "1.0"
+}

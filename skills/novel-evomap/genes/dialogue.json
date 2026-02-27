@@ -1,0 +1,62 @@
+[
+  {
+    "id": "diag-gene-001",
+    "name": "说话+动作",
+    "type": "dialogue",
+    "description": "对话配合动作，不堆砌对话",
+    "example": "\"你就只会逃吗？\"男人不耐烦地吼道。陆沉没有回答，他一边躲闪，一边观察对方的剑路。",
+    "success_count": 8,
+    "avg_score": 8.2,
+    "tags": ["对话", "动作", "规范"]
+  },
+  {
+    "id": "diag-gene-002",
+    "name": "信息推进",
+    "type": "dialogue",
+    "description": "通过对话推进情节，透露信息",
+    "example": "\"周师兄已经离开御剑宗了。\"赵管事压低声音，\"最快四天后就能到这里。\"",
+    "success_count": 7,
+    "avg_score": 8.0,
+    "tags": ["对话", "信息", "推进"]
+  },
+  {
+    "id": "diag-gene-003",
+    "name": "性格展露",
+    "type": "dialogue",
+    "description": "用对话展露人物性格",
+    "example": "\"别说了。\"赵管事摆摆手，\"沈大小姐交代过要照顾你，我不过是尽力而为。\"",
+    "success_count": 6,
+    "avg_score": 8.1,
+    "tags": ["对话", "性格", "人物"]
+  },
+  {
+    "id": "diag-gene-004",
+    "name": "潜台词",
+    "type": "dialogue",
+    "description": "对话表面下隐藏真实意图",
+    "example": "\"你一个人在里面慢慢看。\"赵管事说着，故意把\"一个人\"三个字咬得很重。",
+    "success_count": 4,
+    "avg_score": 8.4,
+    "tags": ["对话", "潜台词", "暗示"]
+  },
+  {
+    "id": "diag-gene-005",
+    "name": "环境代入",
+    "type": "dialogue",
+    "description": "说话时代入当前环境",
+    "example": "\"这里安全，灵气又足。\"陆沉喝了口灵泉水，\"我们就留在这里修炼吧。\"",
+    "success_count": 5,
+    "avg_score": 7.9,
+    "tags": ["对话", "环境", "融入"]
+  },
+  {
+    "id": "diag-gene-006",
+    "name": "简洁有力",
+    "type": "dialogue",
+    "description": "关键时刻台词简洁有力",
+    "example": "\"走！\"陆沉只说了一个字。",
+    "success_count": 9,
+    "avg_score": 8.5,
+    "tags": ["对话", "简洁", "紧张"]
+  }
+]

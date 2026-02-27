@@ -1,0 +1,131 @@
+{
+  "id": "gene-weapon-treasure-001",
+  "name": "法宝运用技法",
+  "category": "combat-treasure",
+  "tags": ["法宝", "战斗描写", "修仙", "装备系统"],
+  
+  "description": {
+    "summary": "忘语作品中法宝从低阶到高阶的完整运用体系，包含命名规则、威能描写、战术配合",
+    "core_logic": "法宝是修士实力的延伸，通过法宝描写展现角色性格、推动剧情、制造爽点"
+  },
+  
+  "structure": {
+    "levels": [
+      {
+        "level": "入门级",
+        "names": ["飞剑", "灵刀", "法旗", "灵符"],
+        "power": "削铁如泥、飞行代步",
+        "usage": "日常战斗、交通工具",
+        "description_length": "50-100字"
+      },
+      {
+        "level": "灵宝级",
+        "names": ["青竹蜂云剑", "墨金葫芦", "紫铖阴刀"],
+        "power": "认主、威能显现、属性相克",
+        "usage": "越级战斗、保命逃遁",
+        "description_length": "100-300字"
+      },
+      {
+        "level": "通天灵宝",
+        "names": ["玄天斩灵剑", "虚天鼎", "掌天瓶"],
+        "power": "逆天改命、穿越时空",
+        "usage": "灭族之仇、最终决战",
+        "description_length": "300-500字"
+      }
+    ],
+    
+    "naming_rules": [
+      "材质+属性+器物（如：墨金葫芦、紫铖阴刀）",
+      "自然意象+器物（如：青竹蜂云剑）",
+      "功能+器物（如：虚天鼎、掌天瓶）",
+      "避讳原则：主角法宝不轻易命名，留悬念"
+    ],
+    
+    "power_display": [
+      {
+        "method": "对比衬托",
+        "example": "筑基期修士的飞剑，在元婴老怪眼中如同废铁",
+        "technique": "以弱衬强"
+      },
+      {
+        "method": "功能展示",
+        "example": "青竹蜂云剑一连斩下三名筑基修士头颅",
+        "technique": "实战表现"
+      },
+      {
+        "method": "特效描写",
+        "example": "玄天斩灵剑出鞘之际，方圆百里风云变色",
+        "technique": "天地异象"
+      },
+      {
+        "method": "代价代价",
+        "example": "动用通天灵宝会引来天劫或消耗寿命",
+        "technique": "双刃剑设定"
+      }
+    ]
+  },
+  
+  "templates": {
+    "obtain_scene": [
+      {
+        "type": "意外获得",
+        "template": "主角在[秘境/古修洞府/拍卖会]意外获得[法宝]，当时法宝处于[沉睡/破损/封印]状态"
+      },
+      {
+        "type": "血脉传承",
+        "template": "法宝与主角有血脉感应，只有[特定血脉]才能[认主/催动]"
+      },
+      {
+        "type": "交易获得",
+        "template": "主角用[稀有材料/人情]从[商会/散修]手中换取法宝"
+      }
+    ],
+    
+    "battle_usage": [
+      {
+        "scenario": "越级挑战",
+        "template": "面对[强敌]，主角祭出[法宝]，只见[威能描写]，顿时[战局逆转]"
+      },
+      {
+        "scenario": "保命逃遁",
+        "template": "[绝境]中，[法宝]突然[异动]，主角趁机[催动/逃遁]，身后[追兵反应]"
+      },
+      {
+        "scenario": "法宝对决",
+        "template": "双方同时祭出[法宝A]与[法宝B]，一时间[天地异象]，[结果描写]"
+      }
+    ]
+  },
+  
+  "usage_conditions": {
+    "frequency": "中期以前每3-5章出现一次重要法宝，中期以后控制频率",
+    "context": "配合主角境界突破、重大危机、重要敌人",
+    "balance": "法宝越强，获取代价越大，使用限制越多"
+  },
+  
+  "examples": [
+    {
+      "source_chapter": 100,
+      "content": "韩立一拍腰间灵兽袋，一道青光飞出，正是那口跟随其百余年的青竹蜂云剑...",
+      "analysis": "法宝认主、时间跨度展示、情感投射"
+    },
+    {
+      "source_chapter": 500,
+      "content": "墨金葫芦口一张，一团黑色霞光席卷而出，所过之处，筑基修士纷纷倒地不起...",
+      "analysis": "功能展示、战斗描写、群战处理"
+    }
+  ],
+  
+  "related_genes": [
+    "gene-combat-description-001",  # 战斗描写
+    "gene-world-building-001",      # 世界观设定
+    "gene-progression-001",         # 升级体系
+    "gene-character-growth-001"     # 角色成长
+  ],
+  
+  "author_style": "忘语",
+  "source_works": ["凡人修仙传"],
+  "extracted_from": "章节抽样分析",
+  "version": "1.0",
+  "created_at": "2026-02-25"
+}

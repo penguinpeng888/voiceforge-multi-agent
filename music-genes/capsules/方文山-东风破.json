@@ -1,0 +1,55 @@
+{
+  "name": "方文山-东风破",
+  "artist": "方文山",
+  "song": "东风破",
+  "analyzed_at": "2026-02-26T08:32:14.911658",
+  "lyrics_length": 133,
+  "structure": {
+    "total_lines": 10,
+    "avg_line_length": 12.0,
+    "has_chorus": false,
+    "chorus_lines": []
+  },
+  "writing_techniques": {
+    "detected": [
+      "意象丰富",
+      "历史典故",
+      "时空交错",
+      "对比手法",
+      "爱情思念",
+      "人生感悟",
+      "古风意境"
+    ],
+    "keywords": [
+      {
+        "type": "古典意象",
+        "count": 3
+      },
+      {
+        "type": "时间词汇",
+        "count": 10
+      },
+      {
+        "type": "空间词汇",
+        "count": 2
+      },
+      {
+        "type": "情感词汇",
+        "count": 2
+      }
+    ],
+    "description": "善用意象堆叠营造画面感；融入历史典故增加文化厚度；古今对照，时间感强；善于运用对比增强张力"
+  },
+  "style_tags": [
+    "中国风"
+  ],
+  "sample_lines": [
+    "你走之后酒暖回忆思念瘦",
+    "水向东流时间怎么偷",
+    "花开就一次成熟我却错过"
+  ],
+  "writing_tips": [
+    "用具体意象代替抽象情感，如用'青花瓷'代表爱情永恒",
+    "适当引用历史典故，增加歌词的文化深度"
+  ]
+}

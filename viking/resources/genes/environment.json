@@ -1,0 +1,62 @@
+[
+  {
+    "id": "env-gene-001",
+    "name": "功能性环境",
+    "type": "environment",
+    "description": "用环境快速交代背景和设定",
+    "example": "鲜血浸透干涸发黑的石板 + 铁锈与腐肉混合臭味 + 斜插的兽骨 = 古战场",
+    "success_count": 4,
+    "avg_score": 8.1,
+    "tags": ["环境", "背景", "功能"]
+  },
+  {
+    "id": "env-gene-002",
+    "name": "三原色法则",
+    "type": "environment",
+    "description": "功能性+氛围感+参与度三层环境描写",
+    "example": "功能性：交代位置（山洞）。氛围感：灵泉的荧光映照。参与度：灵泉对修炼有帮助。",
+    "success_count": 3,
+    "avg_score": 8.0,
+    "tags": ["环境", "层次", "技法"]
+  },
+  {
+    "id": "env-gene-003",
+    "name": "氛围递进",
+    "type": "environment",
+    "description": "环境从平和到紧张的递进描写",
+    "example": "清晨的阳光透过树叶洒下来 → 远处传来狼嚎 → 血腥味渐浓 → 妖狼出现",
+    "success_count": 5,
+    "avg_score": 8.2,
+    "tags": ["环境", "节奏", "紧张"]
+  },
+  {
+    "id": "env-gene-004",
+    "name": "空间锚定",
+    "type": "environment",
+    "description": "用参照物锚定空间位置",
+    "example": "断崖东侧有一棵老槐树，树下就是洞口。洞口被藤蔓遮住，只露出一个三尺宽的缝隙。",
+    "success_count": 4,
+    "avg_score": 7.9,
+    "tags": ["环境", "空间", "定位"]
+  },
+  {
+    "id": "env-gene-005",
+    "name": "环境参与叙事",
+    "type": "environment",
+    "description": "环境变化参与推动情节",
+    "example": "忽然一阵风吹过，藤蔓被吹开，露出了里面的石壁。",
+    "success_count": 6,
+    "avg_score": 8.3,
+    "tags": ["环境", "叙事", "推动"]
+  },
+  {
+    "id": "env-gene-006",
+    "name": "天象暗示",
+    "type": "environment",
+    "description": "用天象变化暗示情节发展",
+    "example": "月亮被乌云遮住，山林中更暗了。敌人即将到来。",
+    "success_count": 3,
+    "avg_score": 8.0,
+    "tags": ["环境", "暗示", "伏笔"]
+  }
+]

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>酒醒处 灯火阑珊 - MV</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      width: 1920px; height: 1080px;
+      background: #0a0a12;
+      overflow: hidden;
+      font-family: 'Noto Serif SC', serif;
+    }
+    
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* 场景切换 */
+    .scene {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .scene.active {
+      opacity: 1;
+    }
+    
+    /* 场景1：青石板月光 */
+    .scene-1 {
+      background: linear-gradient(180deg, #0a0a15 0%, #151525 100%);
+    }
+    
+    .moon-large {
+      position: absolute;
+      top: 80px;
+      right: 150px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at 30% 30%, #fff9e6 0%, #f5e6c8 50%, #d4a574 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 100px rgba(255,248,220,0.5);
+    }
+    
+    .cobblestone {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+    }
+    
+    .stone {
+      position: absolute;
+      bottom: 0;
+      background: #252535;
+      border-radius: 3px;
+    }
+    .s1 { left: 100px; width: 180px; height: 60px; }
+    .s2 { left: 300px; width: 220px; height: 70px; }
+    .s3 { left: 550px; width: 200px; height: 55px; }
+    .s4 { left: 800px; width: 250px; height: 65px; }
+    .s5 { left: 1100px; width: 180px; height: 50px; }
+    .s6 { left: 1350px; width: 200px; height: 70px; }
+    .s7 { left: 1600px; width: 220px; height: 60px; }
+    
+    /* 桃花 */
+    .peach-tree {
+      position: absolute;
+      bottom: 350px;
+      left: 100px;
+      font-size: 200px;
+      opacity: 0.9;
+    }
+    
+    .peach-blossom {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0.7;
+      animation: petalFall 6s linear infinite;
+    }
+    @keyframes petalFall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+    }
+    
+    /* 场景2：老酒馆 */
+    .scene-2 {
+      background: linear-gradient(180deg, #1a1210 0%, #2d1f1f 100%);
+    }
+    
+    .bar-interior {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: linear-gradient(180deg, #3d2a2a 0%, #2a1a1a 100%);
+      border-radius: 10px 10px 0 0;
+    }
+    
+    .bar-counter {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(180deg, #5d3a2a 0%, #4a2a1a 100%);
+      border-top: 5px solid #7d5a3a;
+    }
+    
+    .wine-bottle {
+      position: absolute;
+      font-size: 60px;
+    }
+    .wb1 { top: -30px; left: 200px; }
+    .wb2 { top: -40px; left: 350px; font-size: 50px; }
+    .wb3 { top: -25px; left: 500px; }
+    
+    .cup {
+      position: absolute;
+      bottom: 160px;
+      left: 380px;
+      font-size: 50px;
+    }
+    
+    .guitar-player {
+      position: absolute;
+      bottom: 200px;
+      left: 100px;
+      font-size: 120px;
+    }
+    
+    .bar-lamp {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      gap: 200px;
+    }
+    
+    .lamp {
+      width: 100px;
+      height: 50px;
+      background: radial-gradient(ellipse at bottom, #ffd93d 0%, #ff9500 100%);
+      border-radius: 0 0 50px 50px;
+      box-shadow: 0 0 60px rgba(255,217,61,0.5);
+      animation: lampGlow 2s ease-in-out infinite;
+    }
+    @keyframes lampGlow {
+      0%, 100% { box-shadow: 0 0 60px rgba(255,217,61,0.5); }
+      50% { box-shadow: 0 0 100px rgba(255,217,61,0.8); }
+    }
+    
+    /* 场景3：城市夜景 */
+    .scene-3 {
+      background: linear-gradient(180deg, #0a0a15 0%, #151530 50%, #1a1a35 100%);
+    }
+    
+    .city-skyline {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 600px;
+    }
+    
+    .building-tall {
+      position: absolute;
+      bottom: 0;
+      background: #0d0d1a;
+    }
+    .bt1 { left: 50px; width: 120px; height: 400px; }
+    .bt2 { left: 200px; width: 100px; height: 350px; }
+    .bt3 { left: 330px; width: 150px; height: 500px; }
+    .bt4 { left: 520px; width: 130px; height: 380px; }
+    .bt5 { left: 680px; width: 160px; height: 450px; }
+    .bt6 { left: 880px; width: 120px; height: 320px; }
+    .bt7 { left: 1040px; width: 140px; height: 420px; }
+    .bt8 { left: 1220px; width: 100px; height: 360px; }
+    .bt9 { left: 1360px; width: 170px; height: 480px; }
+    .bt10 { left: 1570px; width: 130px; height: 340px; }
+    .bt11 { left: 1740px; width: 150px; height: 400px; }
+    
+    .window-lights {
+      position: absolute;
+      width: 10px;
+      height: 15px;
+      background: #ffd93d;
+      opacity: 0.6;
+    }
+    
+    .neon-sign {
+      position: absolute;
+      bottom: 520px;
+      font-size: 36px;
+      font-weight: bold;
+    }
+    .ns1 { left: 450px; color: #ff6b9d; text-shadow: 0 0 10px #ff6b9d; }
+    .ns2 { left: 800px; bottom: 550px; font-size: 28px; color: #4ecdc4; text-shadow: 0 0 10px #4ecdc4; }
+    .ns3 { left: 1300px; bottom: 480px; color: #ffd93d; text-shadow: 0 0 10px #ffd93d; }
+    
+    /* 场景4：凌晨便利店 */
+    .scene-4 {
+      background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
+    }
+    
+    .convenience-store {
+      position: absolute;
+      bottom: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: linear-gradient(180deg, #2d3548 0%, #1a2035 100%);
+      border: 3px solid #4a5568;
+    }
+    
+    .store-window {
+      position: absolute;
+      top: 50px;
+      width: 200px;
+      height: 150px;
+      background: rgba(74, 85, 104, 0.3);
+      border: 2px solid #5a6578;
+    }
+    .sw1 { left: 50px; }
+    .sw2 { right: 50px; }
+    
+    .coffee-cup {
+      position: absolute;
+      top: 180px;
+      left: 250px;
+      font-size: 50px;
+    }
+    
+    .shelf {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: #3d4658;
+      display: flex;
+      align-items: center;
+      padding-left: 50px;
+      gap: 20px;
+    }
+    
+    .product {
+      font-size: 35px;
+    }
+    
+    .street-lamp {
+      position: absolute;
+      bottom: 450px;
+      left: 300px;
+      font-size: 80px;
+    }
+    
+    /* 歌词字幕 */
+    .lyrics-container {
+      position: absolute;
+      bottom: 100px;
+      width: 100%;
+      text-align: center;
+      z-index: 100;
+    }
+    
+    .lyric {
+      font-size: 42px;
+      color: #f5e6c8;
+      text-shadow: 0 0 20px rgba(245,230,200,0.5);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      max-width: 80%;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+    
+    .lyric.active {
+      opacity: 1;
+    }
+    
+    .lyric-2 {
+      font-size: 32px;
+      color: #8b8b9e;
+      margin-top: 15px;
+    }
+    
+    /* 时间进度条 */
+    .progress-bar {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 5px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #d4a574 0%, #f5e6c8 100%);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.5s linear;
+    }
+    
+    /* 封面文字 */
+    .title-overlay {
+      position: absolute;
+      top: 50px;
+      text-align: center;
+      z-index: 100;
+    }
+    
+    .title-main {
+      font-size: 56px;
+      background: linear-gradient(135deg, #f5e6c8 0%, #d4a574 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 15px;
+    }
+    
+    .title-sub {
+      font-size: 24px;
+      color: #6b6b7e;
+      margin-top: 15px;
+      letter-spacing: 5px;
+    }
+    
+    /* 场景指示 */
+    .scene-indicator {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      font-size: 18px;
+      color: #4a4a5e;
+      z-index: 100;
+    }
+    
+    /* 粒子效果 */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      animation: particleFloat 8s linear infinite;
+    }
+    
+    @keyframes particleFloat {
+      0% { transform: translateY(1080px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 粒子效果 -->
+    <div id="particles"></div>
+    
+    <!-- 场景1：青石板月光 -->
+    <div class="scene scene-1 active" id="scene1">
+      <div class="moon-large"></div>
+      <div class="peach-tree">🌸</div>
+      <div class="cobblestone">
+        <div class="stone s1"></div>
+        <div class="stone s2"></div>
+        <div class="stone s3"></div>
+        <div class="stone s4"></div>
+        <div class="stone s5"></div>
+        <div class="stone s6"></div>
+        <div class="stone s7"></div>
+      </div>
+      <!-- 飘落的花瓣 -->
+      <div class="peach-blossom" style="top: 250px; left: 300px; animation-delay: 0s;">🌸</div>
+      <div class="peach-blossom" style="top: 200px; left: 500px; animation-delay: 1s;">🌸</div>
+      <div class="peach-blossom" style="top: 280px; left: 700px; animation-delay: 2s;">🌸</div>
+      <div class="peach-blossom" style="top: 230px; left: 900px; animation-delay: 3s;">🌸</div>
+      <div class="peach-blossom" style="top: 270px; left: 1100px; animation-delay: 4s;">🌸</div>
+      <div class="peach-blossom" style="top: 240px; left: 1300px; animation-delay: 5s;">🌸</div>
+    </div>
+    
+    <!-- 场景2：老酒馆 -->
+    <div class="scene scene-2" id="scene2">
+      <div class="bar-interior">
+        <div class="bar-lamp">
+          <div class="lamp"></div>
+          <div class="lamp"></div>
+        </div>
+        <div class="wine-bottle wb1">🍶</div>
+        <div class="wine-bottle wb2">🍷</div>
+        <div class="wine-bottle wb3">🍾</div>
+        <div class="cup">🥃</div>
+        <div class="guitar-player">🎸</div>
+        <div class="bar-counter"></div>
+      </div>
+    </div>
+    
+    <!-- 场景3：城市夜景 -->
+    <div class="scene scene-3" id="scene3">
+      <div class="city-skyline">
+        <div class="building-tall bt1"></div>
+        <div class="building-tall bt2"></div>
+        <div class="building-tall bt3"></div>
+        <div class="building-tall bt4"></div>
+        <div class="building-tall bt5"></div>
+        <div class="building-tall bt6"></div>
+        <div class="building-tall bt7"></div>
+        <div class="building-tall bt8"></div>
+        <div class="building-tall bt9"></div>
+        <div class="building-tall bt10"></div>
+        <div class="building-tall bt11"></div>
+      </div>
+      <div class="neon-sign ns1">~深夜酒馆~</div>
+      <div class="neon-sign ns2">营业至凌晨5点</div>
+      <div class="neon-sign ns3">记得回家</div>
+    </div>
+    
+    <!-- 场景4：凌晨便利店 -->
+    <div class="scene scene-4" id="scene4">
+      <div class="street-lamp">🏮</div>
+      <div class="convenience-store">
+        <div class="store-window sw1"></div>
+        <div class="store-window sw2"></div>
+        <div class="coffee-cup">☕</div>
+        <div class="shelf">
+          <span class="product">🍜</span>
+          <span class="product">🥪</span>
+          <span class="product">🥤</span>
+          <span class="product">🍱</span>
+          <span class="product">🥡</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 标题封面 -->
+    <div class="scene scene-cover active" id="sceneCover" style="background: linear-gradient(180deg, #0a0a12 0%, #1a1a2e 50%, #16213e 100%);">
+      <div class="title-overlay">
+        <div class="title-main">酒醒处 · 灯火阑珊</div>
+        <div class="title-sub">JIU XING CHU · DENG HUO LAN SHAN</div>
+        <div style="margin-top: 60px; font-size: 28px; color: #8b8b9e;">🎵 古风爵士 · 原创民谣</div>
+        <div style="margin-top: 40px; font-size: 20px; color: #6b6b7e;">2026.02.26</div>
+      </div>
+      <div style="position: absolute; bottom: 200px; font-size: 100px;">🍶</div>
+      <div style="position: absolute; bottom: 180px; left: 200px; font-size: 80px; transform: rotate(-20deg);">🎸</div>
+    </div>
+    
+    <!-- 歌词容器 -->
+    <div class="lyrics-container">
+      <div class="lyric" id="lyric1"></div>
+      <div class="lyric lyric-2" id="lyric2"></div>
+    </div>
+    
+    <!-- 进度条 -->
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress"></div>
+    </div>
+    
+    <!-- 场景指示 -->
+    <div class="scene-indicator" id="sceneIndicator">场景 1/4</div>
+  </div>
+
+  <script>
+    // 歌词时间轴（秒）
+    const timeline = [
+      { time: 2, scene: 'cover', lyric1: '酒醒处 · 灯火阑珊', lyric2: '', duration: 3 },
+      { time: 5, scene: 'scene1', lyric1: '月光洒在青石板', lyric2: '老酒馆里有人弹着旧吉他', duration: 4 },
+      { time: 9, scene: 'scene1', lyric1: '那年春天的桃花', lyric2: '落在你肩头 落成一幅画', duration: 4 },
+      { time: 13, scene: 'scene2', lyric1: '我举起这杯浊酒', lyric2: '敬你当年转身走的潇洒', duration: 4 },
+      { time: 17, scene: 'scene3', lyric1: '街角的霓虹在闪', lyric2: '闪不过你离开的那一瞬间啊', duration: 4 },
+      { time: 21, scene: 'scene1', lyric1: '酒醒处 灯火阑珊', lyric2: '谁在唱那首我们听了无数遍的老歌', duration: 4 },
+      { time: 25, scene: 'scene2', lyric1: '你问我后来怎么样', lyric2: '我说挺好的 就是偶尔会想起', duration: 4 },
+      { time: 29, scene: 'scene3', lyric1: '酒醒处 月落乌啼', lyric2: '那个说永远的人 是否还记得当初', duration: 4 },
+      { time: 33, scene: 'scene4', lyric1: '我把这城市的风 酿成酒', lyric2: '等一个人 来把它饮尽', duration: 5 },
+      { time: 38, scene: 'scene4', lyric1: '凌晨三点的便利店', lyric2: '咖啡已经凉透 还在加班', duration: 4 },
+      { time: 42, scene: 'scene3', lyric1: '手机亮了又灭', lyric2: '朋友圈里你去了大理 换了头像', duration: 4 },
+      { time: 46, scene: 'scene2', lyric1: '酒醒处 霓虹散去', lyric2: '你以为我放下了 其实我把思念都写进沉默', duration: 5 },
+      { time: 51, scene: 'scene1', lyric1: '酒醒处 晨光初现', lyric2: '那个说没关系的人 其实很在意', duration: 4 },
+      { time: 55, scene: 'scene1', lyric1: '我把这满城的雨 煮成茶', lyric2: '等一个人 来把它喝完', duration: 5 },
+      { time: 60, scene: 'cover', lyric1: '酒醒处 又一天', lyric2: '太阳照常升起 照常落下', duration: 4 },
+      { time: 64, scene: 'scene2', lyric1: '那家酒馆还在', lyric2: '只是换了个老板 换了种酒', duration: 4 },
+      { time: 68, scene: 'scene3', lyric1: '我路过的时候', lyric2: '还是会想起你啊', duration: 3 },
+      { time: 71, scene: 'cover', lyric1: '想起那年夏天', lyric2: '你说要带我 浪迹天涯', duration: 4 },
+      { time: 75, scene: 'cover', lyric1: '', lyric2: '🎵 完 🎵', duration: 5 },
+    ];
+    
+    let currentIndex = -1;
+    let startTime = Date.now();
+    
+    function updateMV() {
+      const elapsed = (Date.now() - startTime) / 1000;
+      
+      // 更新进度条
+      const progress = Math.min((elapsed / 80) * 100, 100);
+      document.getElementById('progress').style.width = progress + '%';
+      
+      // 检查当前时间段的歌词
+      for (let i = 0; i < timeline.length; i++) {
+        if (elapsed >= timeline[i].time && elapsed < timeline[i].time + timeline[i].duration) {
+          if (currentIndex !== i) {
+            currentIndex = i;
+            showLyric(timeline[i]);
+            showScene(timeline[i].scene);
+          }
+          break;
+        }
+      }
+      
+      requestAnimationFrame(updateMV);
+    }
+    
+    function showLyric(data) {
+      const l1 = document.getElementById('lyric1');
+      const l2 = document.getElementById('lyric2');
+      
+      l1.classList.remove('active');
+      l2.classList.remove('active');
+      
+      setTimeout(() => {
+        l1.textContent = data.lyric1;
+        l2.textContent = data.lyric2;
+        l1.classList.add('active');
+        l2.classList.add('active');
+      }, 100);
+    }
+    
+    function showScene(sceneName) {
+      // 隐藏所有场景
+      document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+      
+      // 显示目标场景
+      const scene = document.getElementById(sceneName);
+      if (scene) {
+        scene.classList.add('active');
+      }
+      
+      // 更新场景指示
+      const indicator = document.getElementById('sceneIndicator');
+      const sceneNum = sceneName.replace('scene', '').replace('cover', '封');
+      indicator.textContent = '场景 ' + sceneNum;
+    }
+    
+    // 生成粒子
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 1920 + 'px';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+        container.appendChild(particle);
+      }
+    }
+    
+    // 启动MV
+    setTimeout(() => {
+      createParticles();
+      updateMV();
+    }, 1000);
+    
+    // 自动播放
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        startTime = Date.now();
+        updateMV();
+      }, 500);
+    });
+  </script>
+</body>
+</html>

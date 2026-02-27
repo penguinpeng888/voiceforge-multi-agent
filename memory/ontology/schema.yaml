@@ -1,0 +1,146 @@
+# 剑起青云 - 知识图谱 Schema
+
+types:
+  # 人物
+  Character:
+    required: [name, status]
+    properties:
+      name: string
+      status: [alive, dead, missing]
+      cultivation: string  # 修为境界
+      origin: string       # 出身
+      background: string   # 背景故事
+      personality: string  # 性格特点
+      goals: string        # 目标/执念
+      relations: []        # 关联人物列表
+
+  # 地点
+  Location:
+    required: [name]
+    properties:
+      name: string
+      type: [village, city, sect, wild, secret]
+      description: string
+      features: string     # 特点
+      significance: string # 重要性
+
+  # 组织
+  Organization:
+    required: [name, type]
+    properties:
+      name: string
+      type: [family, sect, merchant, government]
+      description: string
+      power_level: string
+      relationships: string
+
+  # 功法/技能
+  Technique:
+    required: [name, type]
+    properties:
+      name: string
+      type: [cultivation, combat, auxiliary]
+      description: string
+      level: string
+      requirements: string
+      user: string        # 使用者
+
+  # 事件
+  Event:
+    required: [title, chapter, timestamp]
+    properties:
+      title: string
+      chapter: number
+      description: string
+      participants: []    # 参与者
+      outcome: string     # 结果
+      consequences: string # 后续影响
+
+  # 章节
+  Chapter:
+    required: [number, title]
+    properties:
+      number: number
+      title: string
+      word_count: number
+      summary: string
+      key_events: []
+      characters: []
+
+  # 物品/法宝
+  Item:
+    required: [name, type]
+    properties:
+      name: string
+      type: [weapon, pill, material, treasure, key]
+      description: string
+      power: string
+      owner: string
+      location: string
+
+# 关系定义
+relations:
+  # 人物关系
+  父亲:
+    from_types: [Character]
+    to_types: [Character]
+    cardinality: many_to_one
+
+  母亲:
+    from_types: [Character]
+    to_types: [Character]
+    cardinality: many_to_one
+
+  朋友:
+    from_types: [Character]
+    to_types: [Character]
+    cardinality: many_to_many
+
+  敌人:
+    from_types: [Character]
+    to_types: [Character]
+    cardinality: many_to_many
+
+  主人:
+    from_types: [Character]
+    to_types: [Character]
+    cardinality: many_to_one
+
+  契约:
+    from_types: [Character]
+    to_types: [Character, Item]
+    cardinality: many_to_many
+
+  所属:
+    from_types: [Character]
+    to_types: [Organization]
+    cardinality: many_to_one
+
+  # 地点关联
+  位于:
+    from_types: [Character, Organization, Item]
+    to_types: [Location]
+    cardinality: many_to_one
+
+  # 事件关联
+  参与:
+    from_types: [Character]
+    to_types: [Event]
+    cardinality: many_to_many
+
+  # 技能关联
+  修炼:
+    from_types: [Character]
+    to_types: [Technique]
+    cardinality: many_to_many
+
+  使用:
+    from_types: [Character]
+    to_types: [Item]
+    cardinality: many_to_many
+
+# 约束
+constraints:
+  - "Character.relations 必须包含关联人物的ID"
+  - "Event.chapter 必须为正整数"
+  - "Technique.level 应该与修炼者境界匹配"

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "psych-gene-001",
+    "name": "冰山博弈层",
+    "type": "psychology",
+    "description": "内心有算计，面上不显露",
+    "example": "陆沉心里计算着对方破绽，面上却装作体力不支，引诱对方出手。",
+    "success_count": 6,
+    "avg_score": 8.3,
+    "tags": ["心理", "博弈", "内冷外热"]
+  },
+  {
+    "id": "psych-gene-002",
+    "name": "孤绝者独白",
+    "type": "psychology",
+    "description": "极端处境下的内心独白，执着驱动",
+    "example": "他抬头看着月亮，心里默默发誓。总有一天，他会回去的。",
+    "success_count": 7,
+    "avg_score": 8.4,
+    "tags": ["心理", "执念", "独白"]
+  },
+  {
+    "id": "psych-gene-003",
+    "name": "内冷外热反差",
+    "type": "psychology",
+    "description": "表面冷静，内心翻涌",
+    "example": "他的声音平静如水，手却在袖中握紧了剑柄。",
+    "success_count": 5,
+    "avg_score": 8.2,
+    "tags": ["心理", "反差", "矛盾"]
+  },
+  {
+    "id": "psych-gene-004",
+    "name": "执念驱动",
+    "type": "psychology",
+    "description": "单一执念推动所有行动",
+    "example": "为父报仇。这四个字的重量，压在他心头十七年。",
+    "success_count": 8,
+    "avg_score": 8.5,
+    "tags": ["心理", "执念", "动力"]
+  },
+  {
+    "id": "psych-gene-005",
+    "name": "回忆闪现",
+    "type": "psychology",
+    "description": "关键时刻插入回忆片段",
+    "example": "剑锋刺来的瞬间，他忽然想起十七年前那个火光冲天的夜晚。",
+    "success_count": 4,
+    "avg_score": 8.0,
+    "tags": ["心理", "回忆", "伏笔"]
+  },
+  {
+    "id": "psych-gene-006",
+    "name": "情绪转折",
+    "type": "psychology",
+    "description": "情绪从低谷到爆发的转折",
+    "example": "他一直忍着。但当看到那枚染血的戒指时，他终于爆发了。",
+    "success_count": 5,
+    "avg_score": 8.3,
+    "tags": ["心理", "转折", "爆发"]
+  }
+]

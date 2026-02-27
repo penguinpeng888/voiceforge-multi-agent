@@ -1,0 +1,22 @@
+{
+  "scan_time": "2026-02-25T08:33:12.385809",
+  "chapters_scanned": [
+    {
+      "chapter": 1,
+      "success": false
+    },
+    {
+      "chapter": 20,
+      "success": false
+    },
+    {
+      "chapter": 50,
+      "success": false
+    }
+  ],
+  "summary": {
+    "total_chapters": 3,
+    "success": 0,
+    "failed": 3
+  }
+}

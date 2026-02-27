@@ -1,0 +1,49 @@
+{
+  "name": "方文山-菊花台",
+  "artist": "方文山",
+  "song": "菊花台",
+  "analyzed_at": "2026-02-26T08:32:14.912338",
+  "lyrics_length": 142,
+  "structure": {
+    "total_lines": 12,
+    "avg_line_length": 10.583333333333334,
+    "has_chorus": false,
+    "chorus_lines": []
+  },
+  "writing_techniques": {
+    "detected": [
+      "意象丰富",
+      "历史典故",
+      "对比手法",
+      "人生感悟",
+      "古风意境"
+    ],
+    "keywords": [
+      {
+        "type": "古典意象",
+        "count": 8
+      },
+      {
+        "type": "时间词汇",
+        "count": 3
+      },
+      {
+        "type": "情感词汇",
+        "count": 2
+      }
+    ],
+    "description": "善用意象堆叠营造画面感；融入历史典故增加文化厚度；善于运用对比增强张力"
+  },
+  "style_tags": [
+    "中国风"
+  ],
+  "sample_lines": [
+    "惨白的月弯弯勾住过往",
+    "雨轻轻弹朱红色的窗",
+    "我一身旧梦在风中摇晃"
+  ],
+  "writing_tips": [
+    "用具体意象代替抽象情感，如用'青花瓷'代表爱情永恒",
+    "适当引用历史典故，增加歌词的文化深度"
+  ]
+}

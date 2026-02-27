@@ -1,0 +1,10 @@
+【Suno AI 歌曲提示词 - 2026年2月25日】
+
+============= 提示词 1：古风爵士主推版 =============
+Chinese folk ballad with jazz elements, female vocal, smooth jazz trumpet, traditional Chinese instruments (pipa, guzheng), urban atmosphere, nostalgic yet modern, tempo 85 BPM, key of D minor, emotional storytelling about city life and ancient dreams, melancholic but hopeful, 3:45 duration, professional studio production, Bilibili style
+
+============= 提示词 2：纯古风民谣版 =============
+Chinese folk acoustic, gentle guitar and guzheng, female vocalist with slightly hoarse voice, storytelling song about rain and stone paths, traditional Chinese poetry style lyrics, romantic and dreamy, tempo 70 BPM, key of G major, campfire acoustic vibe, 3:20 duration, emotional depth
+
+============= 提示词 3：电子融合实验版 =============
+Chinese style electronic fusion, ambient pads, trap drums under traditional melody, mix of classical Chinese singing and spoken word, futuristic yet traditional, heavy bass and ethereal strings, tempo 100 BPM, key of C minor, cyberpunk Shanghai aesthetics, 4:00 duration, innovative crossover

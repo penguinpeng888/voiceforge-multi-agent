@@ -1,0 +1,223 @@
+{
+  "name": "YouTube下载转录工作流",
+  "description": "批量下载YouTube视频并生成中文字幕和文字稿，支持Coze工作流集成",
+  "version": "1.0.0",
+  "category": "视频工具",
+  "keywords": ["youtube", "下载", "转录", "字幕", "批量处理"],
+  "inputs": {
+    "type": "object",
+    "required": ["youtube_links"],
+    "properties": {
+      "youtube_links": {
+        "type": "string",
+        "description": "YouTube链接列表（每行一个，支持完整URL或视频ID）",
+        "default": "",
+        "example": "https://www.youtube.com/watch?v=Lsg_cV5lmcV\nhttps://youtu.be/xxxxxxx\n12345678901"
+      },
+      "output_dir": {
+        "type": "string",
+        "description": "输出目录路径",
+        "default": "youtube-downloads"
+      },
+      "model_size": {
+        "type": "string",
+        "description": "Whisper模型大小：tiny/base/small/medium/large",
+        "enum": ["tiny", "base", "small", "medium", "large"],
+        "default": "medium"
+      },
+      "language": {
+        "type": "string",
+        "description": "语音识别语言",
+        "default": "Chinese"
+      },
+      "download_quality": {
+        "type": "string",
+        "description": "视频下载画质",
+        "default": "best[height<=1080]"
+      }
+    }
+  },
+  "outputs": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "description": "处理状态：completed/partially_completed/failed"
+      },
+      "total_count": {
+        "type": "integer",
+        "description": "总共处理数量"
+      },
+      "success_count": {
+        "type": "integer",
+        "description": "成功数量"
+      },
+      "fail_count": {
+        "type": "integer",
+        "description": "失败数量"
+      },
+      "processed_videos": {
+        "type": "array",
+        "description": "已处理的视频列表"
+      },
+      "failed_videos": {
+        "type": "array",
+        "description": "失败的视频列表及原因"
+      }
+    }
+  },
+  "workflow": {
+    "starting_node": "parse_links",
+    "nodes": [
+      {
+        "id": "parse_links",
+        "name": "解析链接",
+        "type": "code",
+        "description": "将输入的链接字符串解析为标准URL数组",
+        "position": {"x": 100, "y": 100},
+        "config": {
+          "code_language": "python",
+          "code": "import re\n\ndef parse_youtube_links(text):\n    \"\"\"解析YouTube链接，支持多种格式\"\"\"\n    links = []\n    for line in text.strip().split('\\n'):\n        line = line.strip()\n        if not line or line.startswith('#'):\n            continue\n        \n        # 完整URL格式\n        if 'youtube.com' in line or 'youtu.be' in line:\n            links.append(line)\n        # 纯视频ID格式（11位字符）
+        elif re.match(r'^[a-zA-Z0-9_-]{11}$', line):\n            links.append(f\"https://www.youtube.com/watch?v={line}\")\n        else:\n            links.append(line)\n    \n    return {\"links\": links, \"count\": len(links)}\n\nresult = parse_youtube_links(input.get('youtube_links', ''))\nprint(f\"解析完成: {result['count']} 个链接\")\nresult"
+        }
+      },
+      {
+        "id": "validate_links",
+        "name": "验证链接",
+        "type": "condition",
+        "description": "检查是否有有效链接",
+        "position": {"x": 300, "y": 100},
+        "config": {
+          "conditions": [
+            {"expression": "${parse_links.count} > 0", "next_node": "process_video"},
+            {"expression": "true", "next_node": "generate_error"}
+          ]
+        }
+      },
+      {
+        "id": "generate_error",
+        "name": "错误处理",
+        "type": "code",
+        "description": "生成错误信息",
+        "position": {"x": 500, "y": 100},
+        "config": {
+          "code_language": "python",
+          "code": "{\n    \"error\": \"未找到有效的YouTube链接\",\n    \"status\": \"failed\",\n    \"total_count\": 0,\n    \"success_count\": 0,\n    \"fail_count\": 0\n}"
+        }
+      },
+      {
+        "id": "process_video",
+        "name": "处理视频",
+        "type": "llm",
+        "description": "使用yt-dlp下载视频、ffmpeg提取音频、whisper转文字",
+        "position": {"x": 300, "y": 250},
+        "config": {
+          "model": "gpt-4",
+          "prompt_strategy": "xml",
+          "prompt": "请执行以下YouTube视频处理流程：\n\n## 视频信息\n- 链接: {{url}}\n- 输出目录: {{output_dir}}\n- 模型大小: {{model_size}}\n- 语言: {{language}}\n\n## 处理步骤\n\n### 1. 下载视频\n```bash\ncd /root/.openclaw/workspace\nmkdir -p {{output_dir}}\nyt-dlp -o '{{output_dir}}/{{video_id}}.mp4' \\n    --format '{{download_quality}}' \\n    --merge-output-format mp4 \\n    --no-playlist \\n    '{{url}}'\n```\n\n### 2. 提取音频\n```bash\nffmpeg -i '{{output_dir}}/{{video_id}}.mp4' \\n    -vn -acodec libmp3lame -ab 128k \\n    -y '{{output_dir}}/{{video_id}}.mp3' 2>/dev/null\n```\n\n### 3. 语音转文字（生成字幕和文字稿）\n```bash\nwhisper '{{output_dir}}/{{video_id}}.mp3' \\n    --model {{model_size}} \\n    --output_format srt \\n    --output_dir {{output_dir}} \\n    --language {{language}}\n```\n\n### 4. 清理并返回结果\n```bash\n# 删除音频文件节省空间\nrm -f '{{output_dir}}/{{video_id}}.mp3'\n\n# 返回结果\ncat << EOF\nSUCCESS\n{{video_id}}\n{{output_dir}}/{{video_id}}.mp4\n{{output_dir}}/{{video_id}}.srt\n{{output_dir}}/{{video_id}}.txt\nEOF\n```\n\n请依次执行以上步骤，并返回处理结果。\n如果下载失败，请说明具体原因。\n\n注意：\n- video_id 从URL中提取，例如 https://www.youtube.com/watch?v=Lsg_cV5lmcV 的 video_id 是 Lsg_cV5lmcV\n- 确保每个步骤都成功执行\n- 如果某一步失败，返回 FAILED 开头并说明原因"
+        },
+        "inputs": ["parse_links.links", "output_dir", "model_size", "language", "download_quality"],
+        "outputs": ["video_result"]
+      },
+      {
+        "id": "aggregate_results",
+        "name": "聚合结果",
+        "type": "code",
+        "description": "汇总所有视频的处理结果",
+        "position": {"x": 500, "y": 250},
+        "config": {
+          "code_language": "python",
+          "code": "def aggregate_results(process_results):\n    \"\"\"聚合多个视频的处理结果\"\"\"\n    if not isinstance(process_results, list):\n        process_results = [process_results]\n    \n    success_count = 0\n    fail_count = 0\n    processed = []\n    failed = []\n    \n    for result in process_results:\n        if isinstance(result, dict):\n            if result.get('status') == 'success':\n                success_count += 1\n                processed.append({\n                    'video_id': result.get('video_id'),\n                    'files': result.get('files', {})\n                })\n            else:\n                fail_count += 1\n                failed.append({\n                    'video_id': result.get('video_id', 'unknown'),\n                    'reason': result.get('error', '未知错误')\n                })\n        elif isinstance(result, str) and result.startswith('FAILED'):\n            fail_count += 1\n            failed.append({'reason': result})\n    \n    total = success_count + fail_count\n    \n    return {\n        'status': 'completed' if fail_count == 0 else 'partially_completed' if success_count > 0 else 'failed',\n        'total_count': total,\n        'success_count': success_count,\n        'fail_count': fail_count,\n        'processed_videos': processed,\n        'failed_videos': failed\n    }\n\nresult = aggregate_results(input.get('process_results', []))\nprint(f\"处理完成: {result['success_count']}/{result['total_count']} 成功\")\nresult"
+        }
+      },
+      {
+        "id": "final_output",
+        "name": "输出结果",
+        "type": "code",
+        "description": "生成最终输出",
+        "position": {"x": 700, "y": 250},
+        "config": {
+          "code_language": "python",
+          "code": "import json\n\n# 聚合所有结果\ntotal = input.get('success_count', 0) + input.get('fail_count', 0)\n\noutput = {\n    'status': input.get('status', 'completed'),\n    'total_count': total,\n    'success_count': input.get('success_count', 0),\n    'fail_count': input.get('fail_count', 0),\n    'processed_videos': input.get('processed_videos', []),\n    'failed_videos': input.get('failed_videos', [])\n}\n\nprint(json.dumps(output, ensure_ascii=False, indent=2))\noutput"
+        }
+      }
+    ],
+    "edges": [
+      {"source": "parse_links", "target": "validate_links"},
+      {"source": "validate_links", "target": "process_video", "condition": "${parse_links.count} > 0"},
+      {"source": "validate_links", "target": "generate_error", "condition": "${parse_links.count} == 0"},
+      {"source": "process_video", "target": "aggregate_results"},
+      {"source": "aggregate_results", "target": "final_output"}
+    ]
+  },
+  "examples": [
+    {
+      "name": "单视频处理",
+      "input": {
+        "youtube_links": "https://www.youtube.com/watch?v=Lsg_cV5lmcV",
+        "output_dir": "youtube-downloads",
+        "model_size": "medium"
+      },
+      "expected_output": {
+        "status": "completed",
+        "total_count": 1,
+        "success_count": 1,
+        "fail_count": 0,
+        "processed_videos": [
+          {
+            "video_id": "Lsg_cV5lmcV",
+            "files": {
+              "video": "youtube-downloads/video_Lsg_cV5lmcV.mp4",
+              "subtitle": "youtube-downloads/video_Lsg_cV5lmcV.srt",
+              "transcript": "youtube-downloads/video_Lsg_cV5lmcV.txt"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "批量处理",
+      "input": {
+        "youtube_links": "https://www.youtube.com/watch?v=Lsg_cV5lmcV\nhttps://youtu.be/xxxxxxx\nyyyyyyy",
+        "output_dir": "my-videos",
+        "model_size": "small"
+      },
+      "expected_output": {
+        "status": "partially_completed",
+        "total_count": 3,
+        "success_count": 2,
+        "fail_count": 1,
+        "processed_videos": [...],
+        "failed_videos": [{"video_id": "yyyyyyy", "reason": "..."}]
+      }
+    }
+  ],
+  "requirements": {
+    "dependencies": ["yt-dlp", "ffmpeg", "openai-whisper"],
+    "system": "Linux/Windows/macOS",
+    "python_version": ">=3.8",
+    "hardware": {
+      "tiny": {"memory": "2GB"},
+      "base": {"memory": "2GB"},
+      "small": {"memory": "4GB"},
+      "medium": {"memory": "8GB"},
+      "large": {"memory": "16GB"}
+    }
+  },
+  "limitations": [
+    "Coze云端可能无法直接访问YouTube，建议在本地服务器运行",
+    "Whisper模型越大处理越慢但准确度越高",
+    "部分视频可能有地区限制或需要登录"
+  ],
+  "notes": [
+    "首次运行会自动下载Whisper模型文件",
+    "建议使用YouTube cookies提高下载成功率",
+    "处理大文件时请确保有足够的磁盘空间"
+  ],
+  "changelog": [
+    {"version": "1.0.0", "date": "2026-02-23", "changes": "初始版本发布"}
+  ],
+  "author": "Peng Penguinpeng",
+  "created": "2026-02-23",
+  "license": "MIT"
+}

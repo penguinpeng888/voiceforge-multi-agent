@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>烟雨江南 · MV概念预览</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #0d1117;
+            min-height: 100vh;
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 40px;
+        }
+        .mv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            color: #f0e6d3;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .header p {
+            color: rgba(240,230,211,0.6);
+            font-size: 20px;
+        }
+        /* MV分镜预览区 */
+        .scenes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .scene {
+            background: linear-gradient(135deg, #1a2332 0%, #2d3a4a 100%);
+            border-radius: 16px;
+            padding: 20px;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+        .scene-num {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(240,230,211,0.9);
+            color: #1a2332;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .scene-desc {
+            color: #f0e6d3;
+            font-size: 14px;
+            line-height: 1.6;
+            z-index: 2;
+        }
+        /* 分镜描述 */
+        .storyboard {
+            background: #161b22;
+            border-radius: 16px;
+            padding: 30px;
+            color: #c9d1d9;
+        }
+        .storyboard h2 {
+            color: #f0e6d3;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .scene-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .scene-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            padding: 15px;
+            background: rgba(240,230,211,0.05);
+            border-radius: 10px;
+        }
+        .time {
+            color: #8b949e;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .desc {
+            line-height: 1.8;
+        }
+        .visual-tag {
+            display: inline-block;
+            background: rgba(240,230,211,0.1);
+            color: #f0e6d3;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mv-container">
+        <div class="header">
+            <h1>🎬 烟雨江南 · MV概念</h1>
+            <p>古风爵士 | 城市与古韵的穿越叙事</p>
+        </div>
+        
+        <!-- 分镜预览 -->
+        <div class="scenes">
+            <div class="scene" style="background: linear-gradient(180deg, #3a4a5a 0%, #1a2332 100%);">
+                <div class="scene-num">1</div>
+                <div class="scene-desc">上海老城区<br>雨夜青石巷</div>
+            </div>
+            <div class="scene" style="background: linear-gradient(180deg, #2d3a4a 0%, #1a1a2e 100%);">
+                <div class="scene-num">2</div>
+                <div class="scene-desc">咖啡馆内景<br>爵士乐与茶</div>
+            </div>
+            <div class="scene" style="background: linear-gradient(180deg, #1a2332 0%, #0d1117 100%);">
+                <div class="scene-num">3</div>
+                <div class="scene-desc">时间交错<br>古今融合</div>
+            </div>
+        </div>
+        
+        <!-- 详细分镜 -->
+        <div class="storyboard">
+            <h2>📽️ 完整分镜脚本</h2>
+            <div class="scene-list">
+                <div class="scene-item">
+                    <div class="time">0:00 - 0:20</div>
+                    <div class="desc">
+                        <strong>开场：雨夜青石巷</strong><br>
+                        镜头从现代上海夜景缓缓后拉，穿过霓虹灯，进入老城区石库门。雨丝飘落，油纸伞女子背影前行。
+                        <br><span class="visual-tag">视觉：水墨晕染效果</span>
+                        <span class="visual-tag">色调：冷蓝+暖黄</span>
+                    </div>
+                </div>
+                <div class="scene-item">
+                    <div class="time">0:20 - 0:45</div>
+                    <div class="desc">
+                        <strong>第一 Verse：城市节奏</strong><br>
+                        快切蒙太奇：写字楼、地铁、咖啡馆。女子在城市中穿行，手机屏幕与古诗重叠。
+                        <br><span class="visual-tag">视觉：分屏叙事</span>
+                        <span class="visual-tag">转场：粒子飘散</span>
+                    </div>
+                </div>
+                <div class="scene-item">
+                    <div class="time">0:45 - 1:15</div>
+                    <div class="desc">
+                        <strong>Pre-Chorus：时空裂缝</strong><br>
+                        镜头开始出现重影，古今场景交替。爵士乐引入，琵琶声渐入。
+                        <br><span class="visual-tag">视觉：双重曝光</span>
+                        <span class="visual-tag">色调：怀旧泛黄</span>
+                    </div>
+                </div>
+                <div class="scene-item">
+                    <div class="time">1:15 - 1:50</div>
+                    <div class="desc">
+                        <strong>Chorus：江南梦境</strong><br>
+                        主体场景：乌篷船在霓虹倒影中穿行。女子回眸，镜头360度旋转。
+                        <br><span class="visual-tag">视觉：水面倒影</span>
+                        <span class="visual-tag">特效：星光粒子</span>
+                    </div>
+                </div>
+                <div class="scene-item">
+                    <div class="time">1:50 - 2:30</div>
+                    <div class="desc">
+                        <strong>第二 Verse：情感深化</strong><br>
+                        特写镜头：茶杯、琵琶弦、萨克斯。歌词字幕以书法形式飘过。
+                        <br><span class="visual-tag">视觉：微距特写</span>
+                        <span class="visual-tag">字体：水墨笔触</span>
+                    </div>
+                </div>
+                <div class="scene-item">
+                    <div class="time">2:30 - 2:55</div>
+                    <div class="desc">
+                        <strong>Bridge：古今对话</strong><br>
+                        最高潮：古代与现代乐器的合奏画面交织，最后融合成一体。
+                        <br><span class="visual-tag">视觉：光影叠加</span>
+                        <span class="visual-tag">色调：金色光芒</span>
+                    </div>
+                </div>
+                <div class="scene-item">
+                    <div class="time">2:55 - 3:45</div>
+                    <div class="desc">
+                        <strong>Outro：余韵</strong><br>
+                        镜头从咖啡馆窗户看向雨夜，女子离去背影渐隐。留白字幕："古今多少事，都付笑谈中"。
+                        <br><span class="visual-tag">视觉：缓慢淡出</span>
+                        <span class="visual-tag">结尾：水墨落款</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 30px;">🎵 音乐编排配合</h2>
+            <p style="line-height: 2;">
+                • 前奏：钢琴独奏+雨声采样<br>
+                • 主歌：轻爵士鼓点+琵琶点缀<br>
+                • 副歌：弦乐铺底+萨克斯solo<br>
+                • 桥段：全乐器融合，古筝与电子合成器对话<br>
+                • 结尾：人声渐弱，保留雨声与爵士余音
+            </p>
+            
+            <h2 style="margin-top: 30px;">🛠️ 推荐制作工具</h2>
+            <p style="line-height: 2;">
+                • 剪辑：DaVinci Resolve / Final Cut Pro<br>
+                • 调色：达芬奇 Color Grading<br>
+                • 特效：After Effects 水墨粒子插件<br>
+                • AI辅助：Runway Gen-2 / Pika Labs 生成部分镜头
+            </p>
+        </div>
+    </div>
+</body>
+</html>

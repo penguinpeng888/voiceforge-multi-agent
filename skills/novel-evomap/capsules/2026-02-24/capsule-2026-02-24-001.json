@@ -1,0 +1,31 @@
+{
+  "id": "capsule-2026-02-24-001",
+  "chapter": "测试章节-自我验证",
+  "created_at": "2026-02-24T22:54:36.699152",
+  "tags": [
+    "测试",
+    "战斗"
+  ],
+  "score": 8.2,
+  "success_rate": 0.82,
+  "environment": {},
+  "content": {
+    "key_scenes": [
+      "测试场景1",
+      "测试场景2"
+    ],
+    "techniques_used": [
+      "感官轰炸",
+      "镜头切换"
+    ],
+    "innovations": [],
+    "word_count": 20,
+    "summary": "这是一段测试内容，用于验证胶囊构建功能。"
+  },
+  "metrics": {
+    "logic_score": 8.2,
+    "writing_score": 8.2
+  },
+  "genes_extracted": [],
+  "evolved_at": "2026-02-24T22:54:36.699159"
+}

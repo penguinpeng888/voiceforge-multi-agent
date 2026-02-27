@@ -1,0 +1,38 @@
+{
+  "id": "gene-ergen-sacrifice-001",
+  "name": "牺牲与救赎描写",
+  "author": "耳根",
+  "work": "仙逆",
+  "tags": [
+    "牺牲",
+    "救赎",
+    "悲壮"
+  ],
+  "description": {
+    "summary": "耳根笔下的牺牲场景：无私却虐心",
+    "core_logic": "为了所爱，可以牺牲一切"
+  },
+  "structure": {
+    "sacrifice_types": [
+      {
+        "type": "替死",
+        "template": "[她/他]为救王林挡下致命一击，临死前[微笑]：[好好活下去...]"
+      },
+      {
+        "type": "献祭",
+        "template": "[她/他]以[灵魂/生命]为代价，换取王林[一线生机]"
+      },
+      {
+        "type": "等待",
+        "template": "[她/他]为等王林苦守[百年]，红颜变白骨"
+      }
+    ]
+  },
+  "extracted_from": [
+    "仙逆章节抽样分析"
+  ],
+  "version": [
+    "1.0"
+  ],
+  "created_at": "2026-02-25"
+}
