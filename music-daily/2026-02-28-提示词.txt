@@ -1,0 +1,48 @@
+# 2026-02-28 歌曲提示词
+
+## 歌曲信息
+- 歌曲名：逆风飞翔
+- 风格：古风仙侠流行
+- BPM：90
+- 调式：C小调
+
+## 封面设计提示词
+A young warrior in ancient Chinese robes standing on a mountain peak at night, looking at the stars. The scene shows three parallel storylines: 
+1. A lone figure (陆沉) in a dark forest (万妖岭) practicing swordsmanship
+2. An old servant (老苟) in a dim room holding a jade pendant, waiting
+3. A young woman (沈红菱) in elegant robes on a mountain temple practicing sword
+
+Three strands of starlight connect them across the different scenes. The overall mood is mysterious, determined, and hopeful. Chinese ink painting style with subtle blue and gold colors. High detail, dramatic lighting.
+
+## MV场景提示词
+
+### 场景1：万妖岭（陆沉）
+- 深夜的万妖岭，少年在练剑
+- 灵气流动的光芒效果
+- 噬灵诀运转时的特效
+
+### 场景2：御剑宗杂役处（老苟）
+- 昏暗的房间，老人坐在窗前
+- 手中的玉佩发出微光
+- 窗外是月光
+
+### 场景3：御剑宗主峰（沈红菱）
+- 月光下的庭院，少女在练剑
+- 三十六式落云剑法的舞动
+- 坚定的眼神
+
+### 场景4：三条线交汇
+- 同一片星空下
+- 三个人的剪影
+- 命运的丝线发光
+
+### 场景5：结尾
+- 逆风飞翔的主题
+- 希望的曙光
+- 三人终将相遇
+
+## 歌词情绪
+- 坚定、热血、略带忧伤
+- 表达修炼之路的孤独与坚持
+- 最后的希望与团聚的期待
+
