@@ -67,6 +67,7 @@ cat /root/.openclaw/workspace/skills/novel-evomap/GENES_INDEX.md
 
 **恢复记忆条件**：
 - 陆沉需达到**筑基期**
+- 需要配合**完整的噬灵**（完整的噬灵诀）
 - 只有筑基期的神识，才能进入猪的识海帮助恢复记忆
 
 ### 老苟（重要人物）
