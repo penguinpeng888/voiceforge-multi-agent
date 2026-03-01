@@ -1,2 +1,8 @@
-封面提示词：
-深夜咖啡馆内景，暖黄色灯光营造温馨氛围。窗外雨丝模糊，城市霓虹倒映在玻璃上。穿着驼色大衣的女子背影，长发微卷，坐姿优雅。对面是半杯卡布奇诺，杯沿有口红印。画面风格：日系治愈系插画，柔和光线，电影感构图，8K画质。
+提示词1（主风格：古风民谣）：
+A mellow Chinese folk song with traditional instruments - guzheng, pipa, and erhu melody over acoustic guitar. Soft female vocals singing about misty Jiangnan. Tempo 75 BPM, key of D major. Warm nostalgic atmosphere with subtle jazz influences. Cinematic arrangement with gentle percussion.
+
+提示词2（爵士+古风融合）：
+Jazz-infused Chinese pop-folk fusion. Smooth saxophone solo intertwined with traditional Chinese flute. Urban coffee shop vibe meets ancient water town romance. Acoustic guitar rhythm with light brush drums. Dreamy synth pads underneath. Lyrical male vocal, emotional and soulful. 4/4 time, tempo 85 BPM.
+
+提示词3（现代古风电子元素）：
+Modern Chinese indie folk with electronic ambient textures. Ethereal guzheng plucks over lo-fi hip hop beat. Rain sounds and field recordings from water towns. Nostalgic melodies that feel like old memories. Atmospheric and cinematic. Soft female vocal with reverb. Tempo 90 BPM, emotional and touching.
