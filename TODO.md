@@ -1,19 +1,31 @@
-# TODO.md - 待办事项
+# TODO - 待完成任务
 
-## 长期任务
-- [ ] 完善小说创作系统
-- [ ] 建立AI大咖监控自动化
-- [ ] 开发痛点挖掘工具
+## 技能安装（12个）
+### 已完成（5个）
+- [x] skill-vetter
+- [x] security-scanner
+- [x] receiving-code-review
+- [x] agent-browser
+- [x] fal-ai
 
-## 短期任务
-- [ ] 第27章创作
-- [ ] 安装 obsidian-skills
-- [ ] 安装 ClawFeed
+### 待安装（7个）
+- [ ] elevenlabs
+- [ ] ffmpeg-video-editor
+- [ ] humanize-ai-text
+- [ ] humanizer-zh
+- [ ] diagram-generator
+- [ ] ralph-loop
+- [ ] exa-web-search（确认正确名称）
 
-## 每日任务
-- [ ] 每日歌曲生成
-- [ ] 小说进度更新
+## 基因胶囊创建（2个）
+- [ ] gene-法宝描写-001.json
+- [ ] gene-诗词应用-001.json
 
----
+## 凡人修仙传扫描
+- [ ] 重新运行PageIndex扫描（之前都是Error）
 
-*最后更新: 2026-03-01*
+## 爬虫脚本
+- [ ] 完善遮天小说爬取脚本
+
+## 记忆保存
+- [ ] 写入 memory/2026-03-07.md

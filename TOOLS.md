@@ -54,3 +54,7 @@ Commands:
 Workflows are self-advancing via per-agent cron jobs. No manual orchestration needed.
 <!-- /antfarm:workflows -->
 
+## 文件发送方法
+### Telegram 发送文件
+message(action="send", target="chat_id", media="/文件路径")
+

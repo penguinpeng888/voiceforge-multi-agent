@@ -68,6 +68,22 @@
     "ai-humanizer": {
       "version": "2.1.0",
       "installedAt": 1771996760206
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1772839893485
+    },
+    "security-scanner": {
+      "version": "1.0.0",
+      "installedAt": 1772839938730
+    },
+    "receiving-code-review": {
+      "version": "0.1.0",
+      "installedAt": 1772840297086
+    },
+    "fal-ai": {
+      "version": "0.1.0",
+      "installedAt": 1772841140273
     }
   }
 }
