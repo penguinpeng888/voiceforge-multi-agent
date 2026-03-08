@@ -84,6 +84,14 @@
     "fal-ai": {
       "version": "0.1.0",
       "installedAt": 1772841140273
+    },
+    "file-summary": {
+      "version": "1.0.0",
+      "installedAt": 1772925207859
+    },
+    "truth-search": {
+      "version": "1.0.4",
+      "installedAt": 1772925529246
     }
   }
 }
