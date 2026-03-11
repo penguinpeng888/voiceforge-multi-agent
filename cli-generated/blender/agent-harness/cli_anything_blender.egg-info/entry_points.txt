@@ -1,0 +1,2 @@
+[console_scripts]
+cli-anything-blender = cli_anything.blender.blender_cli:main

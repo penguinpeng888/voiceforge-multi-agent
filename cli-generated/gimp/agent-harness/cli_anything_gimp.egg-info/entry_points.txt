@@ -1,0 +1,2 @@
+[console_scripts]
+cli-anything-gimp = cli_anything.gimp.gimp_cli:main
