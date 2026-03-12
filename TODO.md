@@ -14,3 +14,6 @@
 
 ## 凡人修仙传扫描
 - [ ] 重新运行PageIndex扫描
+
+## 待搭建
+- [ ] TianyiDataScience/openclaw-control-center: OpenClaw控制中心
