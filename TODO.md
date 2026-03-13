@@ -17,3 +17,4 @@
 
 ## 待搭建
 - [ ] TianyiDataScience/openclaw-control-center: OpenClaw控制中心
+- [ ] 666ghj/MiroFish: 鱼鱼工具箱（待调研）
