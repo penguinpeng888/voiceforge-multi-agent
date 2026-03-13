@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .git
 .claude/antigravity-temp
 antfarm
@@ -5,3 +6,48 @@ clawfeed
 novel-editor-agent
 node_modules
 
+=======
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+flutter_*.png
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+*.apk
+*.ap_
+
+# iOS
+ios/Pods/
+ios/build/
+*.ipa
+*.xcuserstate
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+
+# Env
+.env
+.env.local
+>>>>>>> a4a0128b3fe65afd5adcfb3b774ea6995d4412fd
