@@ -1,0 +1,5 @@
+{
+	"dependencies": {
+		"@actalk/inkos": "^0.3.6"
+	}
+}
