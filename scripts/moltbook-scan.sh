@@ -19,6 +19,8 @@ cd $W
 python3 -c "
 import json
 import requests
+from datetime import datetime
+date = datetime.now().strftime('%Y-%m-%d')
 
 API_KEY = 'moltbook_sk_08XG958K34eDivv96FDs9G5CyhXSru1b'
 HEADERS = {'Authorization': f'Bearer {API_KEY}'}
