@@ -1,4 +1,88 @@
-[Verse]
-城市边缘的咖啡馆，温暖的午后阳光
+# Suno 音乐提示词
+
+## 完整提示词 (英文)
+
+**Style & Mood:**
+Melancholic electronic pop with cinematic atmosphere. Emotional, introspective, late-night vibes. A blend of synthwave and alternative pop, with a dreamy and reflective mood. The song should feel like driving alone through a rainy city at 3am.
+
+**Instrumentation:**
+- Primary: Synthesizers with warm pads
+- Rhythm: Soft electronic drums with subtle bass
+- Melody: Piano chords layered with synth leads
+- Texture: Ambient atmospheric sounds, gentle rain samples
+- Guitar: Clean electric guitar with reverb for emotional moments
+
+**Structure:**
+- Intro: Atmospheric synth pad with soft piano (8 bars)
+- Verse: Mellow rhythm, building emotion (16 bars)
+- Pre-chorus: Slight build-up, increasing intensity (8 bars)
+- Chorus: Full synth drop, emotionally powerful (16 bars)
+- Verse 2: Return to mellow, adding depth (16 bars)
+- Pre-chorus: Build again (8 bars)
+- Chorus: Full chorus repeat with variations (16 bars)
+- Bridge: Stripped down, piano and vocals only (8 bars)
+- Outro: Fading synths, dreamy conclusion (8 bars)
+
+**Tempo:** 85-95 BPM (mid-tempo, reflective)
+**Key:** Minor key (Am or Em) for melancholic feel
+**Vocal Style:** Soft, breathy, emotional delivery. Male or female voice with intimate, confessional tone.
+
 ---
-Style: Acoustic folk, 4:30
+
+## 简化提示词 (中文)
+
+**风格:** 忧郁电子流行，赛博朋克氛围，深夜独白风格
+
+**情绪:** 孤独、反思、怀旧、雨夜都市感
+
+**乐器:**
+- 主旋律: 温暖合成器PAD + 钢琴
+- 节奏: 轻柔电子鼓 + 低音贝斯
+- 氛围: 环境音+雨声采样
+- 吉他: 清爽电吉他带混响
+
+**结构:** 前奏(8拍) → 主歌(16拍) → 副歌(16拍) → 间奏 → 副歌(16拍) → 桥段(8拍) → 尾奏(8拍)
+
+**速度:** 85-95 BPM
+**调式:** 小调 (Am或Em)
+**人声:** 轻柔、气声、情感充沛
+
+---
+
+## 完整Suno提示词 (可直接使用)
+
+```
+[Verse]
+Soft synth pads with gentle piano chords establish a late-night atmosphere. Electronic drums enter subtly. Melancholic melody with emotional depth.
+
+[Pre-Chorus]
+Building intensity. Synth layers increase. Bass deepens. Anticipation builds toward the chorus.
+
+[Chorus]
+Full synth drop with powerful emotional release. Warm pads, driving drums, and melodic hooks. Cinematic and anthemic yet intimate.
+
+[Verse 2]
+Return to the mellow verse texture. Adding subtle layers. Deepening the emotional narrative.
+
+[Bridge]
+Stripped down. Piano and vocal only. The most intimate moment of the song.
+
+[Outro]
+Fading synths. Rain samples. Dreamy conclusion. The sound of a city at 3am.
+
+Style: Synthwave, Alternative Pop, Electronic, Cinematic Pop
+Mood: Melancholic, Dreamy, Emotional, Late Night, Rainy City
+Tempo: 90 BPM
+Key: A Minor
+Vocals: Soft, Breathy, Intimate, Emotional
+Instruments: Synthesizers, Piano, Electronic Drums, Bass, Ambient Textures
+```
+
+---
+
+## 使用建议
+
+1. **首选英文提示词** - Suno对英文支持更好
+2. **可调整速度** - 想要更舒缓用85 BPM，想要更有力用95 BPM
+3. **人声选择** - 选择"male vocal, soft, emotional"或"female vocal, breathy, dreamy"
+4. **参考曲目:** The Midnight - 《Sunset》、FM-84 - 《Running in the Night》、Gunship - 《Tech Noir》

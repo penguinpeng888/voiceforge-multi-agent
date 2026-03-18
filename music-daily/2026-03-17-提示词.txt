@@ -1,1 +1,34 @@
-A cozy cafe, warm afternoon sunlight, vintage record player
+# 封面/MV 提示词
+
+## 英文提示词 (用于AI生图)
+
+**Main Prompt:**
+A lonely figure stands on a rooftop at night, looking at a city filled with neon lights. Rain falls gently, creating reflections on the wet surfaces. The figure wears a trench coat, silhouette backlit by cyan and pink neon signs. Moody, cinematic atmosphere, cyberpunk aesthetic, volumetric lighting, rain droplets, neon reflections on puddles, high detail, 8k resolution, film grain.
+
+**Style:** Cinematic cyberpunk, blade runner vibes, moody lighting
+**Colors:** Cyan, pink, deep blue, black
+**Mood:** Melancholic, hopeful, lonely but determined
+**Composition:** Heroic perspective, figure centered against vast cityscape
+
+---
+
+## 中文提示词 (更适合中文AI)
+
+**画面描述:**
+雨夜中的都市天台，一个孤独的身影俯瞰着霓虹闪烁的城市。雨水从天而降，在地面上形成绚丽的倒影。人物穿着风衣，逆光站立剪影。周围是赛博朋克风格的霓虹灯牌，青色和粉色的光线交织。电影感画面，体积光，雨滴效果，水洼中的霓虹倒影，高细节，电影胶片质感。
+
+**风格:** 赛博朋克、赛博都市、雨夜氛围
+**色调:** 青色、粉色、深蓝、黑色
+**情绪:** 忧郁中带着希望、孤独但不屈
+**构图:** 英雄式视角，人物置于画面中心，背景是广阔的城市全景
+
+---
+
+## MV 动画提示词
+
+**动态场景描述:**
+镜头缓缓推进至雨夜天台，霓虹灯光在雨滴中折射出彩色光晕。主人公的风衣在微风中轻轻摆动。城市灯光如星河般延展。雨水打在镜头上产生模糊效果。整体色调从暗蓝逐渐转向温暖的粉色。缓慢的推镜结合旋转，营造出梦幻而忧郁的氛围。
+
+**参考风格:** 《赛博朋克2077》过场动画、《银翼杀手》雨夜场景
+**帧率:** 24fps 电影感
+**色调:** 冷暖对比，霓虹渐变
