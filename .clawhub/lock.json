@@ -96,6 +96,18 @@
     "proactive-agent": {
       "version": "3.1.0",
       "installedAt": 1773010210746
+    },
+    "self-improving-agent-cn": {
+      "version": "1.0.0",
+      "installedAt": 1774306800801
+    },
+    "evolver": {
+      "version": "1.38.0",
+      "installedAt": 1774307232775
+    },
+    "auto-skill-evolver": {
+      "version": "1.5.1",
+      "installedAt": 1774307718874
     }
   }
 }

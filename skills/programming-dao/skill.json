@@ -1,0 +1,9 @@
+{
+  "name": "编程之道",
+  "description": "从Claude学习高质量代码编程实践，基于Claude vs 国产LLM对比分析",
+  "version": "1.0.0",
+  "tags": ["programming", "coding", "best-practices", "claude", "code-quality"],
+  "triggers": ["编程之道", "代码规范", "写代码", "code quality"],
+  "author": "小爪",
+  "homepage": ""
+}

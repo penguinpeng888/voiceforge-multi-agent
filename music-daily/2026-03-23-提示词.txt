@@ -1,1 +1,33 @@
-A cozy cafe, warm afternoon sunlight, vintage record player
+# 封面/MV 提示词
+
+**2026-03-23 每日歌曲**
+
+---
+
+## 封面提示词（用于AI生成图片）
+
+```
+A lonely young man walking alone on a rainy city street at 3 AM, surrounded by neon lights reflecting on wet pavement. Dark blue and purple color palette, cinematic lighting, melancholic atmosphere. The neon signs create colorful reflections on the ground. The man wears a suit, looking tired but determined. Urban night cityscape background with tall buildings. Japanese anime style, detailed, 8K, movie poster aesthetic.
+```
+
+**备选提示词**：
+```
+一个年轻人独自走在凌晨的街道上，城市霓虹灯倒映在雨水地面上，深蓝色和紫色调的电影质感画面，孤独而温暖的氛围，写实油画风格
+```
+
+---
+
+## MV动态提示词（用于AI生成视频）
+
+```
+Cinematic shot, a young man walks alone on a rainy city street at night, neon lights reflecting on wet pavement, camera follows him slowly, dark blue and purple tones, melancholic atmosphere, raindrops falling, neon signs glowing, slow motion, dark cinematic lighting, 4K, film grain, emotional mood
+```
+
+---
+
+## 创作参考
+
+- **风格**：都市情感、深夜独白
+- **色调**：深蓝、紫色、霓虹粉
+- **氛围**：孤独但有希望
+- **用途**：单曲封面、社交媒体配图、MV素材

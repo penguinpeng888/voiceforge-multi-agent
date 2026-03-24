@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "meitu-skills": {
+      "source": "meitu/meitu-skills",
+      "sourceType": "github",
+      "computedHash": "6d168a32fcb74121c9efa080a84711691c8769b3fb43676172b35cea020f17a2"
+    }
+  }
+}

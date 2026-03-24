@@ -1,4 +1,55 @@
-[Verse]
-城市边缘的咖啡馆，温暖的午后阳光
+# Suno 音乐提示词
+
+**2026-03-23 每日歌曲**
+
 ---
-Style: Indie pop with gentle piano, 4:30
+
+## 英文提示词（用于Suno AI生成）
+
+```
+Melancholic piano ballad with soft electronic elements, minor key, BPM 75, emotional and introspective atmosphere. Piano melody carries the main emotion, supported by subtle synth pads and gentle bass. The song builds slowly with strings entering at the chorus. Lyrics about urban loneliness, late nights working, and finding hope. Vocal style: soft male voice, slightly hoarse, emotionally vulnerable. Mixed in a warm, intimate production style with reverb on vocals. Cinematic ending with fade out.
+```
+
+---
+
+## 中文提示词（描述参考）
+
+```
+钢琴为主的抒情 ballad，节奏舒缓（BPM 75左右），小调。
+前奏：轻柔的钢琴独奏，带有一点点电子合成器的铺垫。
+Verse：钢琴为主，加上低音贝斯的轻柔和弦。
+Pre-Chorus：逐渐加入弦乐，制造情绪堆积。
+Chorus：完整编曲，钢琴+弦乐+电子 pad，主歌的情绪升华。
+Bridge：简化编曲，只用钢琴和人声，最后两句逐渐恢复完整编曲。
+结尾：渐隐，弱高音延留。
+
+人声：温柔的男声，稍微有点沙哑的质感，声音有故事感。
+风格参考：林宥嘉《成全》、陈奕迅《单车》、毛不易《消愁》
+```
+
+---
+
+## 歌曲结构
+
+| 段落 | 时长 | 说明 |
+|------|------|------|
+| Intro | 8s | 钢琴+电子氛围音 |
+| Verse 1 | 24s | 钢琴+人声，歌词"凌晨三点的写字楼" |
+| Pre-Chorus | 8s | 弦乐渐入 |
+| Chorus | 24s | 完整编曲，"这座城市那么大" |
+| Verse 2 | 24s | 同Verse 1，歌词换 |
+| Pre-Chorus | 8s | 弦乐 |
+| Chorus | 24s | 重复+变化 |
+| Bridge | 16s | 钢琴+人声简化编曲 |
+| Final Chorus | 24s | 完整编曲，更高情绪 |
+| Outro | 8s | 渐隐 |
+
+---
+
+## 关键要素
+
+- **核心乐器**：钢琴（主旋律）、弦乐（情绪推动）、电子合成器（氛围）
+- **节奏**：舒缓，75 BPM左右
+- **调性**：小调，但最后有希望感
+- **人声**：温柔、带点沙哑、有故事感
+- **情感弧线**：孤独→压抑→希望→释然
