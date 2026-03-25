@@ -1,4 +1,58 @@
-[Verse]
-城市边缘的咖啡馆，温暖的午后阳光
+# Suno 音乐提示词
+
+**2026-03-24 每日歌曲**
+
 ---
-Style: Acoustic folk, 4:30
+
+## 英文提示词
+
+```
+Soft indie folk song with warm acoustic guitar, minor key turning to major at bridge, BPM 85, gentle and intimate atmosphere. The song tells a story of finding connection in unexpected moments. Piano enters at chorus with gentle strings. Male vocal, soft and warm, slightly nasally like a storyteller. Lyrics about late night subway, strangers, and small moments of kindness. Emotional build from quiet verse to hopeful chorus. Recorded with warm analog sound, intimate vocal presence, fade out ending.
+```
+
+---
+
+## 中文提示词
+
+```
+温暖民谣风格，节奏舒缓（BPM 85），小调转大调。
+前奏：原声吉他轻弹，带一点点温暖的感觉。
+Verse：吉他+人声，歌词"凌晨的地铁 最后一班车"
+Pre-Chorus：加入钢琴，制造情绪堆积。
+Chorus：完整编曲，吉他+钢琴+弦乐，"最后一班地铁 载着漂泊的人"
+Verse 2：同Verse 1
+Pre-Chorus + Chorus：重复+变化
+Bridge：简化编曲，转大调，"也许明天 房租会到期" - 这里情绪转折
+Final Chorus：更完整编曲，更高情绪
+Outro：吉他轻弹，渐隐
+
+人声：温暖的男声，像讲故事一样，有邻家大哥哥的感觉
+风格参考：好妹妹乐队《你曾是少年》、鹿先森乐队《春风十里》、陈粒《奇妙能力歌》
+```
+
+---
+
+## 歌曲结构
+
+| 段落 | 时长 | 说明 |
+|------|------|------|
+| Intro | 8s | 原声吉他 |
+| Verse 1 | 24s | 吉他+人声 |
+| Pre-Chorus | 8s | 钢琴渐入 |
+| Chorus | 24s | 完整编曲 |
+| Verse 2 | 24s | 同Verse 1 |
+| Pre-Chorus | 8s | 弦乐 |
+| Chorus | 24s | 重复 |
+| Bridge | 16s | 转大调，情感转折 |
+| Final Chorus | 24s | 完整编曲，更高情绪 |
+| Outro | 8s | 吉他渐隐 |
+
+---
+
+## 关键要素
+
+- **核心乐器**：原声吉他（主旋律）、钢琴（情绪推动）、弦乐（温暖感）
+- **节奏**：舒缓，85 BPM
+- **调性**：小调主歌→大调桥段，象征希望
+- **人声**：温暖、讲述感、邻家大哥哥
+- **情感弧线**：孤独→相遇→温暖→希望

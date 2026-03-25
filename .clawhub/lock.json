@@ -108,6 +108,34 @@
     "auto-skill-evolver": {
       "version": "1.5.1",
       "installedAt": 1774307718874
+    },
+    "auto-updater-skill": {
+      "version": "1.2.0",
+      "installedAt": 1774395301747
+    },
+    "MoltGuard": {
+      "version": "6.8.16",
+      "installedAt": 1774395323813
+    },
+    "xiucheng-memory-manager": {
+      "version": "1.0.0",
+      "installedAt": 1774395374581
+    },
+    "us-stock-analysis": {
+      "version": "0.1.1",
+      "installedAt": 1774395434925
+    },
+    "deep-research-pro-litiao": {
+      "version": "1.0.0",
+      "installedAt": 1774395457069
+    },
+    "fundamental-stock-analysis": {
+      "version": "1.0.5",
+      "installedAt": 1774395484754
+    },
+    "china-stock-analysis": {
+      "version": "1.0.0",
+      "installedAt": 1774395676174
     }
   }
 }

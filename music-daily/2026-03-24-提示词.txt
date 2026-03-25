@@ -1,1 +1,33 @@
-A cozy cafe, warm afternoon sunlight, vintage record player
+# 封面/MV 提示词
+
+**2026-03-24 每日歌曲**
+
+---
+
+## 封面提示词
+
+```
+A young person sitting alone in a late-night subway train, looking out the window at dark tunnel lights passing by. Warm orange glow from overhead lights, melancholic yet peaceful atmosphere. Empty seats visible, the person wears casual clothes with a backpack. Chinese urban transit aesthetic, cinematic lighting, slightly desaturated colors with warm highlights. Anime style illustration, detailed, 8K quality.
+```
+
+**中文备选**：
+```
+深夜末班地铁车厢内，一个年轻人独自坐在座位上望着窗外，车窗上映出隧道灯光的倒影，暖橙色灯光营造出温馨而孤独的氛围，写实油画风格
+```
+
+---
+
+## MV动态提示词
+
+```
+Cinematic shot, empty late-night subway train moving through dark tunnel, warm orange overhead lights, camera pans slowly alongside the lone passenger, passing lights create streaks of light, melancholic and peaceful mood, 4K, film grain, emotional atmosphere
+```
+
+---
+
+## 创作参考
+
+- **风格**：都市温情、深夜独白
+- **色调**：暖橙、深蓝对比
+- **氛围**：孤独但有温暖
+- **用途**：单曲封面、社交媒体配图
