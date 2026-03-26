@@ -1,0 +1,83 @@
+{
+  "fusion": {
+    "name": "Skill融合引擎",
+    "version": "1.0.0",
+    "description": "统一入口的Skill融合器，支持动态规则加载和语义匹配"
+  },
+  "skills": {
+    "weather": {
+      "enabled": true,
+      "keywords": ["天气", "温度", "下雨", "晴", "下雪", "风", "湿度", "PM2.5"],
+      "patterns": [
+        ".*天气.*",
+        ".*气温.*",
+        ".*温度.*",
+        ".*下雨.*",
+        ".*晴天.*"
+      ],
+      "handler": "weather_handler",
+      "config_required": ["api_key", "location"],
+      "description": "天气查询"
+    },
+    "stock": {
+      "enabled": true,
+      "keywords": ["股票", "股价", "大盘", "指数", "涨停", "跌停", "持仓"],
+      "patterns": [
+        ".*股票.*",
+        ".*股价.*",
+        ".*大盘.*"
+      ],
+      "handler": "stock_handler",
+      "config_required": ["api_key"],
+      "description": "股票查询"
+    },
+    "news": {
+      "enabled": true,
+      "keywords": ["新闻", "热点", "发生了什么", "最近"],
+      "patterns": [
+        ".*新闻.*",
+        ".*热点.*"
+      ],
+      "handler": "news_handler",
+      "config_required": ["api_key"],
+      "description": "新闻查询"
+    },
+    "music": {
+      "enabled": true,
+      "keywords": ["音乐", "歌曲", "播放", "听歌", "唱歌"],
+      "patterns": [
+        ".*音乐.*",
+        ".*歌曲.*",
+        ".*播放.*"
+      ],
+      "handler": "music_handler",
+      "config_required": ["api_key"],
+      "description": "音乐播放"
+    }
+  },
+  "handlers": {
+    "weather_handler": {
+      "type": "api",
+      "endpoint": "https://api.weather.example.com/v1",
+      "method": "GET"
+    },
+    "stock_handler": {
+      "type": "api", 
+      "endpoint": "https://api.stock.example.com/v1",
+      "method": "GET"
+    },
+    "news_handler": {
+      "type": "mcp",
+      "service": "news-skill"
+    },
+    "music_handler": {
+      "type": "mcp",
+      "service": "suno-cn-music"
+    }
+  },
+  "semantic": {
+    "model": "minimaxai/minimax-m2.5",
+    "threshold": 0.7,
+    "fallback_skill": "general"
+  }
+}

@@ -1,0 +1,35 @@
+# Suno音乐提示词
+
+## 完整提示词
+```
+[Verse]
+Soft acoustic guitar melody, gentle piano chords, female vocalist with warm, emotional tone, tender lyrics about late-night solitude, subtle rain sound effects in background
+
+[Pre-Chorus]
+Build-up with soft drum pattern, strings slowly entering, emotional tension rising, heartbeat-like percussion
+
+[Chorus]
+Full acoustic arrangement, warm electric piano, emotional melodic hook, lyrics about finding comfort in unexpected places, build to emotional release with soft strings
+
+[Verse 2]
+Return to intimate acoustic feel, vocal closer to microphone, subtle reverb, continuation of emotional narrative
+
+[Bridge]
+Stripped down to voice and gentle guitar, emotional vulnerability, building toward resolution
+
+[Outro]
+Gradual fade with ambient sounds of rain and distant city, peaceful resolution
+```
+
+## 简版提示词
+```
+Late night city pop ballad, female vocal, acoustic guitar and piano, melancholic but warm mood, 68 BPM, chord progression Am - F - C - G, emotional lyrics about solitude and comfort, rain sound effects, cinematic film score quality
+```
+
+## 风格参考
+- **风格**：都市抒情 / 城市民谣
+- **情绪**：治愈中带孤独，温暖但感伤
+- **Tempo**：68 BPM
+- **调式**：A小调
+- **女声**：温暖、沙哑、情感丰富
+- **乐器配置**：木吉他、钢琴、弦乐、柔和小鼓

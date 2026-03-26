@@ -1,0 +1,39 @@
+# 封面/MV提示词
+
+## 封面图提示词
+```
+A cozy late-night convenience store with warm orange glow, illuminated interior, rain outside the glass windows, a lone girl eating instant noodles at a corner table, melancholy atmosphere, cinematic lighting, neon signs reflected on wet street, photorealistic, 4k, moody blue and orange color palette
+```
+
+## MV分镜提示词
+
+### 分镜1：街角夜景
+```
+Wide shot of a quiet city street at 2am, rain falling under streetlights, a convenience store glowing like a warm beacon in the darkness, orange neon light reflection on wet pavement, cinematic moody atmosphere
+```
+
+### 分镜2：店内女孩
+```
+Inside a convenience store, close-up of a young woman sitting alone at a table, staring at a cup of instant noodles, tears subtly visible in her eyes but she tries to hold them back, warm orange interior lighting, melancholic mood
+```
+
+### 分镜3：店员视角
+```
+Shot from behind the cashier counter, tired staff member yawning while arranging shelves, perspective showing the empty store with only the girl in frame, late night atmosphere
+```
+
+### 分镜4：雨夜橱窗
+```
+Rain drops streaming down the glass window of the convenience store, blurred city lights outside, coffee machine in foreground, cozy interior contrasting with cold outside, peaceful melancholy
+```
+
+### 分镜5：温暖收尾
+```
+The girl looks up, sees the warm light, a subtle smile appears on her face, the cashier gives a small nod, convenience store sign glowing "24 Hours", fade to white
+```
+
+---
+
+**风格**：都市文艺片、情感电影质感
+**色调**：蓝橙对比（冷蓝外景 / 暖橙内景）
+**构图**：电影宽银幕比例 2.39:1
