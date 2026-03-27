@@ -27,7 +27,12 @@ cat /root/.openclaw/workspace/skills/novel-evomap/GENES_INDEX.md
 ### 已完成章节
 | 章节 | 标题 | 评分 | 字数 | 时间 |
 |------|------|------|------|------|
-| 16 | 正面交锋 | 8.5/10 A- | ~6100 | 2026-02-24 |
+| 55 | 突破 | 8.6/10 B+ | ~5500 | 2026-03-27 |
+| 54 | 任务 | - | ~14000 | 2026-03-27 |
+| 53 | 令牌 | 8.5/10 | ~8000 | 2026-03-24 |
+| 52 | 考核 | 9.0/10 | ~8000 | 2026-03-24 |
+| 51 | 考核前夜 | 8.5/10 | ~7500 | 2026-03-24 |
+| 50 | 旧愿 | - | ~8000 | 2026-03-21 |
 | 17 | 万妖岭 | 7.7/10 B+ | ~8000 | 2026-02-24 |
 | 18 | 磨砺（一） | 已修改 | ~8000 | 2026-02-25 |
 | 19 | 磨砺（二）积累 | 已修改 | ~14000 | 2026-02-25 |
@@ -676,3 +681,33 @@ curl "https://816f5f6b759e7.bqg567.xyz/api/chapter?id=717&chapterid=1"
 
 ### 4. 变现闭环
 小说(IP) → 漫画版权 → MV衍生 → 全平台分发 → 软件/课程变现
+
+---
+
+## 今日重要记忆（2026-03-27）
+
+### 1. 学习Anthropic Harness设计
+- 两篇核心文章：
+  - 《Effective harnesses for long-running agents》- 跨session状态传递
+  - 《Harness Design for Long-Running Application Development》- GAN风格多Agent
+- 融合后的架构：Master(调度) + Planner + Generator + Evaluator
+- 关键：Generator-Evaluator分离解决自评偏高问题
+
+### 2. learn-claude-code项目
+- GitHub: shareAI-lab/learn-claude-code
+- 核心观点："The model is the agent. The code is the harness"
+- 12个Session：s01(loop) → s04(subagent) → s07(task) → s09-s12(teams)
+
+### 3. 多Agent任务调度器（今日编程题）
+- 5个LLM写同一题：Claude, MiniMax, glm5, DeepSeek, 千问
+- 核心架构：Master + Worker + PriorityQueue
+- 最佳版本：Claude（完整）+ glm5（简洁）
+
+### 4. AI配音项目多Agent测试
+- 项目名：VoiceForge AI
+- 已完成功能：F001(上传音频) ✅, F002(音色克隆) 测试中
+- 技术栈：MiniMax(情感) + ElevenLabs(语音) - MVP阶段
+
+### 5. 今日编程题总结
+- 知识点：多线程、队列、同步、事件驱动
+- 推荐学习路径：千问版(80行) → DeepSeek版(120行) → Claude版(200行)

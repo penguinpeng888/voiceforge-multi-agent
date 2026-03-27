@@ -1,0 +1,11 @@
+[
+  {
+    "id": "voice_1774622693193_efnost623",
+    "name": "测试1分钟克隆音色",
+    "description": "用于测试F002功能的1分钟参考音频",
+    "audioFile": "voice-1774622693187-256902976.mp3",
+    "audioPath": "/root/.openclaw/workspace/ai-voice-system/uploads/voice-1774622693187-256902976.mp3",
+    "createdAt": "2026-03-27T14:44:53.694Z",
+    "isCloned": true
+  }
+]

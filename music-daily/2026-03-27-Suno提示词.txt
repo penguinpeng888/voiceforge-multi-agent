@@ -1,0 +1,9 @@
+## Suno 音乐提示词
+
+风格: Lo-fi / 情感流行 / 午夜氛围
+情绪: 忧郁、思念、孤独
+乐器: 钢琴 + 电子合成器 + 轻柔鼓点
+节奏: 70-80 BPM
+人声: 轻柔耳语式男声/女声
+
+提示词: Lo-fi hip hop beat, melancholy piano melody, late night city atmosphere, soft synth pads, gentle 808 drums, 75 BPM, wistful mood, dreamy reverb texture, emotional pop vocals
