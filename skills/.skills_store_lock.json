@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "scrapling": {
+      "name": "Scrapling",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=scrapling",
+      "source": "skillhub",
+      "version": "1.0.8"
+    }
+  }
+}

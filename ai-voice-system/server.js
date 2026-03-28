@@ -218,6 +218,71 @@ app.delete('/api/uploads/:filename', (req, res) => {
   }
 });
 
+// API路由：文本转语音（F004功能）& 语音参数调整（F005功能）
+app.post('/api/synthesize', async (req, res) => {
+  try {
+    const { text, voice_id, speed, pitch, stability } = req.body;
+    
+    // F005: 记录语音参数到日志
+    console.log('========== F005 语音参数 ==========');
+    console.log('语速 (speed):', speed !== undefined ? speed : '1.0 (默认)');
+    console.log('音调 (pitch):', pitch !== undefined ? pitch : '0.0 (默认)');
+    console.log('稳定性 (stability):', stability !== undefined ? stability : '0.5 (默认)');
+    console.log('====================================');
+    
+    if (!text || text.trim().length === 0) {
+      return res.status(400).json({ success: false, message: '请输入要转换的文本' });
+    }
+    
+    if (!voice_id) {
+      return res.status(400).json({ success: false, message: '请选择音色' });
+    }
+    
+    // 获取音色信息
+    const voices = JSON.parse(fs.readFileSync(voicesFile, 'utf-8'));
+    const selectedVoice = voices.find(v => v.id === voice_id);
+    
+    if (!selectedVoice) {
+      return res.status(404).json({ success: false, message: '音色不存在' });
+    }
+    
+    // MVP阶段：生成模拟音频数据（模拟base64音频）
+    // 实际ElevenLabs API调用将在后续阶段实现
+    
+    // 模拟处理延迟（根据文本长度，模拟处理时间）
+    const textLength = text.length;
+    const processingTime = Math.min(Math.max(textLength * 10, 500), 5000); // 100字约1秒，最多5秒
+    await new Promise(resolve => setTimeout(resolve, processingTime));
+    
+    // 生成模拟的音频数据（一个简短的白噪声模拟）
+    // 实际应返回真实的音频base64或URL
+    const mockAudioBase64 = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+    
+    res.json({
+      success: true,
+      message: '语音合成成功',
+      data: {
+        audio: mockAudioBase64,
+        text: text,
+        voice_id: voice_id,
+        voice_name: selectedVoice.name,
+        duration: Math.ceil(textLength / 3), // 估算时长（秒）
+        char_count: textLength,
+        // F005: 返回当前使用的参数
+        params: {
+          speed: speed !== undefined ? speed : 1.0,
+          pitch: pitch !== undefined ? pitch : 0.0,
+          stability: stability !== undefined ? stability : 0.5
+        }
+      }
+    });
+    
+  } catch (error) {
+    console.error('语音合成失败:', error);
+    res.status(500).json({ success: false, message: '语音合成失败：' + error.message });
+  }
+});
+
 // 错误处理中间件
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {

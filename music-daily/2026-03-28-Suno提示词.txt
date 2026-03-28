@@ -1,0 +1,9 @@
+## Suno 音乐提示词
+
+**风格**: Ambient / Synthwave / 情感电子
+**情绪**: 忧郁、孤独、深夜思考
+**乐器**: 合成器垫底，钢琴旋律，电子鼓点
+**节奏**: 65-75 BPM，慢速
+**人声**: 轻柔女声，低声吟唱，英文
+
+提示词: Atmospheric synthwave, melancholic piano melody, dreamy synth pads, soft electronic drums at 70 BPM, late night urban mood, reverb-heavy, emotional and introspective

@@ -193,62 +193,6 @@
     .btn-delete { background: rgba(255, 59, 48, 0.2); color: #ff3b30; }
     .btn-delete:hover { background: rgba(255, 59, 48, 0.3); }
 
-/* F005: 滑块样式 */
-.slider {
-  width: 100%;
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  outline: none;
-  -webkit-appearance: none;
-  margin: 15px 0;
-}
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, #00d4ff, #7c3aed);
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 212, 255, 0.4);
-}
-.slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, #00d4ff, #7c3aed);
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 6px rgba(0, 212, 255, 0.4);
-}
-.slider-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: #666;
-  margin-top: -10px;
-  margin-bottom: 20px;
-}
-.param-value {
-  color: #00d4ff;
-  font-weight: 500;
-}
-.param-preview-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-.param-preview-label {
-  color: #888;
-}
-.param-preview-value {
-  color: #00d4ff;
-  font-weight: 500;
-}
-
     /* 克隆表单 */
     .form-group { margin-bottom: 20px; }
     .form-label {
@@ -352,10 +296,7 @@
     <div class="nav">
       <button class="nav-tab active" data-page="upload">📤 音频上传</button>
       <button class="nav-tab" data-page="clone">🎭 音色克隆</button>
-          <button class="nav-tab" data-page="voices">🎵 音色库</button>
-    </button>
-    <button class="nav-tab" data-page="synthesize">🎤 文本转语音</button>
-    <button class="nav-tab" data-page="settings">⚙️ 参数调整</button>
+      <button class="nav-tab" data-page="voices">🎵 音色库</button>
     </div>
 
     <!-- 上传页面 -->
@@ -470,156 +411,6 @@
     </div>
   </div>
 
-<!-- 参数调整页面 F005 -->
-<!-- 文本转语音页面 F004 + 参数调整 F005 -->
-<div class="page" id="page-synthesize">
-  <div class="card">
-    <div class="card-title">🎤 文本转语音</div>
-    
-    <!-- 音色选择 -->
-    <div class="form-group">
-      <label class="form-label">选择音色 *</label>
-      <select class="form-input" id="synthVoiceSelect" style="padding: 12px;">
-        <option value="">请先在音色库创建音色</option>
-      </select>
-    </div>
-    
-    <!-- 文本输入 -->
-    <div class="form-group">
-      <label class="form-label">输入文本 *</label>
-      <textarea class="form-input" id="synthText" rows="5" placeholder="请输入要转换为语音的文本..." style="resize: vertical; min-height: 100px;"></textarea>
-      <p class="form-hint">建议输入清晰、流畅的文本以获得更好的合成效果</p>
-    </div>
-    
-    <!-- 快速参数调整（可覆盖默认设置） -->
-    <div class="form-group" style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-      <label class="form-label" style="margin-bottom: 15px; display: block;">⚡ 本次合成参数（可选）</label>
-      
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
-        <div>
-          <label style="font-size: 12px; color: #888;">语速</label>
-          <input type="range" id="synthSpeed" class="slider" min="0.5" max="2" step="0.1" value="1" style="margin: 5px 0;">
-          <span id="synthSpeedVal" style="font-size: 12px; color: #00d4ff;">1.0x</span>
-        </div>
-        <div>
-          <label style="font-size: 12px; color: #888;">音调</label>
-          <input type="range" id="synthPitch" class="slider" min="-1" max="1" step="0.1" value="0" style="margin: 5px 0;">
-          <span id="synthPitchVal" style="font-size: 12px; color: #00d4ff;">0.0</span>
-        </div>
-        <div>
-          <label style="font-size: 12px; color: #888;">稳定性</label>
-          <input type="range" id="synthStability" class="slider" min="0" max="1" step="0.1" value="0.5" style="margin: 5px 0;">
-          <span id="synthStabilityVal" style="font-size: 12px; color: #00d4ff;">0.5</span>
-        </div>
-      </div>
-      
-      <label style="display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: #888;">
-        <input type="checkbox" id="useSavedParams" checked>
-        使用"参数调整"页面保存的默认值
-      </label>
-    </div>
-    
-    <!-- 合成按钮 -->
-    <button type="button" class="btn btn-primary" id="synthesizeBtn" style="width: 100%; padding: 14px; font-size: 16px;">
-      开始合成
-    </button>
-    
-    <!-- 合成进度 -->
-    <div class="progress-container" id="synthProgressContainer" style="margin-top: 20px;">
-      <div class="progress-text">
-        <span id="synthProgressText">正在合成...</span>
-        <span id="synthProgressPercent">0%</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="synthProgressFill"></div>
-      </div>
-    </div>
-    
-    <!-- 合成结果 -->
-    <div class="result" id="synthResult" style="margin-top: 20px;">
-      <div class="result-title" id="synthResultTitle"></div>
-      <div class="result-details" id="synthResultDetails"></div>
-    </div>
-  </div>
-</div>
-
-<div class="page" id="page-settings">
-  <div class="card">
-    <div class="card-title">⚙️ 语音参数调整</div>
-    <p style="color: #888; margin-bottom: 20px; font-size: 14px;">调整语速、音调和稳定性参数，保存后将成为默认设置</p>
-    
-    <!-- 语速滑块 -->
-    <div class="form-group">
-      <label class="form-label">
-        语速 (Speed): <span id="speedValue" class="param-value">1.0x</span>
-      </label>
-      <input type="range" id="speedSlider" class="slider" min="0.5" max="2" step="0.1" value="1">
-      <div class="slider-labels">
-        <span>0.5x (慢)</span>
-        <span>1.0x (正常)</span>
-        <span>2.0x (快)</span>
-      </div>
-    </div>
-    
-    <!-- 音调滑块 -->
-    <div class="form-group">
-      <label class="form-label">
-        音调 (Pitch): <span id="pitchValue" class="param-value">0.0</span>
-      </label>
-      <input type="range" id="pitchSlider" class="slider" min="-1" max="1" step="0.1" value="0">
-      <div class="slider-labels">
-        <span>-1 (低沉)</span>
-        <span>0 (正常)</span>
-        <span>+1 (尖锐)</span>
-      </div>
-    </div>
-    
-    <!-- 稳定性滑块 -->
-    <div class="form-group">
-      <label class="form-label">
-        稳定性 (Stability): <span id="stabilityValue" class="param-value">0.5</span>
-      </label>
-      <input type="range" id="stabilitySlider" class="slider" min="0" max="1" step="0.1" value="0.5">
-      <div class="slider-labels">
-        <span>0 (多变)</span>
-        <span>0.5 (平衡)</span>
-        <span>1 (稳定)</span>
-      </div>
-    </div>
-    
-    <!-- 保存按钮 -->
-    <button type="button" class="btn btn-primary" id="saveSettingsBtn" style="width: 100%; padding: 14px; font-size: 16px; margin-top: 20px;">
-      保存为默认设置
-    </button>
-    
-    <!-- 保存结果提示 -->
-    <div class="result" id="settingsResult" style="margin-top: 20px;">
-      <div class="result-title" id="settingsResultTitle"></div>
-      <div class="result-details" id="settingsResultDetails"></div>
-    </div>
-  </div>
-  
-  <!-- 当前参数预览 -->
-  <div class="card">
-    <div class="card-title">📋 当前参数预览</div>
-    <div id="currentParamsPreview">
-      <div class="param-preview-item">
-        <span class="param-preview-label">语速:</span>
-        <span class="param-preview-value" id="previewSpeed">1.0x</span>
-      </div>
-      <div class="param-preview-item">
-        <span class="param-preview-label">音调:</span>
-        <span class="param-preview-value" id="previewPitch">0.0</span>
-      </div>
-      <div class="param-preview-item">
-        <span class="param-preview-label">稳定性:</span>
-        <span class="param-preview-value" id="previewStability">0.5</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-
   <script>
     // ============ 导航切换 ============
     const navTabs = document.querySelectorAll('.nav-tab');
@@ -640,7 +431,6 @@
         // 加载对应数据
         if (pageId === 'upload') loadFileList();
         if (pageId === 'voices') loadVoiceList();
-    if (pageId === 'synthesize') loadSynthVoices();
       });
     });
 
@@ -941,101 +731,39 @@
     });
 
     // ============ 音色库功能 ============
-// ============ 音色库功能 ============
-// 当前播放的音频实例
-let currentPlayingAudio = null;
-let currentPlayingBtn = null;
+    function loadVoiceList() {
+      fetch('/api/voices')
+        .then(res => res.json())
+        .then(data => {
+          const voiceListContent = document.getElementById('voiceListContent');
+          if (data.success && data.data.length > 0) {
+            voiceListContent.innerHTML = `
+              <div class="voice-grid">
+                ${data.data.map(voice => `
+                  <div class="voice-card">
+                    <span class="voice-tag">🎭 克隆音色</span>
+                    <div class="voice-name">${voice.name}</div>
+                    <div class="voice-desc">${voice.description || '无描述'}</div>
+                    <div class="voice-meta">创建于: ${new Date(voice.createdAt).toLocaleString('zh-CN')}</div>
+                    <div class="voice-actions">
+                      <button class="btn btn-delete" onclick="deleteVoice('${voice.id}')">删除</button>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            `;
+          } else {
+            voiceListContent.innerHTML = `
+              <div class="empty-state">
+                <div class="empty-state-icon">🎭</div>
+                <p>暂无克隆音色</p>
+                <p style="margin-top: 10px;">前往"音色克隆"页面创建你的第一个音色</p>
+              </div>
+            `;
+          }
+        });
+    }
 
-function loadVoiceList() {
-	fetch('/api/voices')
-		.then(res => res.json())
-		.then(data => {
-			const voiceListContent = document.getElementById('voiceListContent');
-			if (data.success && data.data.length > 0) {
-				voiceListContent.innerHTML = `
-				<div class="voice-grid">
-					${data.data.map(voice => `
-						<div class="voice-card">
-							<span class="voice-tag">🎭 克隆音色</span>
-							<div class="voice-name">${voice.name}</div>
-							<div class="voice-desc">${voice.description || '无描述'}</div>
-							<div class="voice-meta">创建于: ${new Date(voice.createdAt).toLocaleString('zh-CN')}</div>
-							<div class="voice-actions">
-								<button class="btn btn-primary" onclick="playVoice(this, '${voice.audioFile || ''}')" ${!voice.audioFile ? 'disabled title="无参考音频"' : ''}>▶ 播放</button>
-								<button class="btn btn-delete" onclick="deleteVoice('${voice.id}')">删除</button>
-							</div>
-						</div>
-					`).join('')}
-				</div>
-				`;
-			} else {
-				voiceListContent.innerHTML = `
-					<div class="empty-state">
-						<div class="empty-state-icon">🎭</div>
-						<p>暂无克隆音色</p>
-						<p style="margin-top: 10px;">前往"音色克隆"页面创建你的第一个音色</p>
-					</div>
-				`;
-			}
-		});
-}
-
-// 播放/停止音色预览
-function playVoice(btn, audioFile) {
-	if (!audioFile) {
-		alert('该音色没有参考音频文件');
-		return;
-	}
-	
-	const audioPath = '/uploads/' + audioFile;
-	
-	// 如果当前有音频在播放
-	if (currentPlayingAudio) {
-		// 如果点击的是同一个按钮，则停止播放
-		if (currentPlayingBtn === btn) {
-			currentPlayingAudio.pause();
-			currentPlayingAudio = null;
-			currentPlayingBtn = null;
-			btn.textContent = '▶ 播放';
-			return;
-		}
-		// 否则停止之前的播放
-		currentPlayingAudio.pause();
-		currentPlayingAudio = null;
-		if (currentPlayingBtn) {
-			currentPlayingBtn.textContent = '▶ 播放';
-		}
-	}
-	
-	// 创建新的音频实例
-	const audio = new Audio(audioPath);
-	
-	audio.addEventListener('play', () => {
-		btn.textContent = '⏸ 暂停';
-		currentPlayingBtn = btn;
-	});
-	
-	audio.addEventListener('ended', () => {
-		btn.textContent = '▶ 播放';
-		currentPlayingAudio = null;
-		currentPlayingBtn = null;
-	});
-	
-	audio.addEventListener('error', () => {
-		btn.textContent = '▶ 播放';
-		currentPlayingAudio = null;
-		currentPlayingBtn = null;
-		alert('音频加载失败');
-	});
-	
-	currentPlayingAudio = audio;
-	audio.play().catch(err => {
-		console.error('播放失败:', err);
-		btn.textContent = '▶ 播放';
-		currentPlayingAudio = null;
-		currentPlayingBtn = null;
-	});
-}
     function deleteVoice(voiceId) {
       if (!confirm('确定要删除这个音色吗？')) return;
       fetch(`/api/voices/${voiceId}`, { method: 'DELETE' })

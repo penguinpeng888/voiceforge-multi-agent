@@ -136,6 +136,10 @@
     "china-stock-analysis": {
       "version": "1.0.0",
       "installedAt": 1774395676174
+    },
+    "scrapling": {
+      "version": "1.0.8",
+      "installedAt": 1774652161423
     }
   }
 }
