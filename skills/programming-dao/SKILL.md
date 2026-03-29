@@ -496,3 +496,97 @@ class Main:        # 入口层
 规划能力本质上是一种**思维能力**，可以通过**刻意练习**提升。
 
 *新增日期：2026-03-25*
+
+---
+
+## 十一、2026-03-29 更新：多AI协作编程模式
+
+### 11.1 协作角色分工
+
+| 角色 | AI类型 | 职责 | 产出 |
+|------|--------|------|------|
+| 出题 | Kimi, Claude | 设计测试用例 | 测试用例代码 |
+| 实现 | 千问 | 根据测试编程 | 可运行代码 |
+| 验证 | 通义, GLM, MiniMax, DeepSeek | 测试其他AI代码 | 测试结果 |
+
+### 11.2 统一约束条件
+所有参与AI必须遵守相同的代码规范：
+```
+- 编程语言：Python 3.10+
+- 文件结构：单文件.py
+- 依赖：仅标准库
+- 输入：函数参数，禁止input()
+- 输出：return返回值，禁止print()
+- 测试：纯断言，不用pytest
+- 函数命名：solve_开头
+```
+
+### 11.3 技巧提炼
+
+#### 技巧1：测试用例设计（来自Kimi、通义）
+```python
+def test_01_basic():
+    """测试基础功能"""
+    input_data = ...
+    expected = ...
+    result = solve_xxx(input_data)
+    assert result == expected, f"期望{expected}，实际{result}"
+```
+- 每个测试函数独立
+- 覆盖三种场景：正常 + 边界 + 异常
+- 至少5个测试用例
+
+#### 技巧2：统一测试入口（来自通义）
+```python
+def solve_xxx(test_scenario: str, **kwargs):
+    if test_scenario == "basic":
+        return handle_basic(kwargs)
+    elif test_scenario == "edge":
+        return handle_edge(kwargs)
+```
+
+#### 技巧3：多线程调度架构（来自千问）
+```python
+class Worker(threading.Thread):
+    def __init__(self, worker_id, task_queue, results):
+        super().__init__()
+        self.daemon = True
+    
+    def run(self):
+        while True:
+            task = self.task_queue.get()
+            if task is None: break
+            task.result = "done"
+            self.results[task.id] = task
+```
+
+#### 技巧4：前端交互设计（来自Claude）
+- 深色主题 (#020617)
+- 标签页切换
+- 加载状态spinner
+- 一键复制按钮
+
+#### 技巧5：代码简洁化（来自MiniMax、DeepSeek）
+- 不需要框架，纯Python + assert
+- 一个文件解决一个问题
+
+### 11.4 各AI最强项
+
+| AI | 最强项 | 可学习点 |
+|----|--------|----------|
+| Kimi | 测试覆盖 | 12个场景覆盖5种操作 |
+| Claude | 前端交互 | 协作机制设计 |
+| 千问 | 系统实现 | 多线程架构 |
+| 通义 | 场景入口 | 统一的solve_入口 |
+| MiniMax | 简洁实用 | 代码直接可运行 |
+
+### 11.5 最佳实践组合
+
+| 场景 | 推荐技巧 |
+|------|----------|
+| 出题/测试 | 技巧1 + 技巧2 |
+| 实现系统 | 技巧3 |
+| 做前端 | 技巧4 |
+| 快速验证 | 技巧5 |
+
+*新增日期：2026-03-29*
