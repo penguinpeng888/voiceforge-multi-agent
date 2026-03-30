@@ -341,7 +341,99 @@
       margin-right: 10px;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
-  </style>
+  
+/* F007 情感标注样式 */
+.emotion-segments { display: flex; flex-direction: column; gap: 10px; }
+.emotion-segment { 
+  padding: 12px 15px; 
+  border-radius: 8px; 
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid #666;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.emotion-segment.happy { border-left-color: #4CAF50; background: rgba(76,175,80,0.1); }
+.emotion-segment.sad { border-left-color: #2196F3; background: rgba(33,150,243,0.1); }
+.emotion-segment.angry { border-left-color: #f44336; background: rgba(244,67,54,0.1); }
+.emotion-segment.fear { border-left-color: #9C27B0; background: rgba(156,39,176,0.1); }
+.emotion-segment.surprise { border-left-color: #FF9800; background: rgba(255,152,0,0.1); }
+.emotion-segment.calm { border-left-color: #607D8B; background: rgba(96,125,139,0.1); }
+.emotion-segment-text { flex: 1; font-size: 14px; line-height: 1.5; }
+.emotion-segment-tag { 
+  padding: 4px 10px; 
+  border-radius: 12px; 
+  font-size: 12px; 
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.recommendation-item { 
+  padding: 15px; 
+  background: rgba(255,255,255,0.05); 
+  border-radius: 10px; 
+  margin-bottom: 10px;
+  border: 1px solid rgba(0,212,255,0.2);
+}
+.recommendation-item:hover { border-color: #00d4ff; }
+.recommendation-rank { 
+  display: inline-block; 
+  width: 24px; 
+  height: 24px; 
+  line-height: 24px; 
+  text-align: center; 
+  background: linear-gradient(90deg, #00d4ff, #7c3aed); 
+  border-radius: 50%; 
+  font-size: 12px;
+  margin-right: 10px;
+}
+.recommendation-name { font-weight: 500; font-size: 15px; }
+.recommendation-voice { color: #888; font-size: 13px; margin-top: 5px; }
+.recommendation-reason { color: #00d4ff; font-size: 12px; margin-top: 5px; }
+.recommendation-score { float: right; color: #4CAF50; font-weight: 500; }
+
+.scene-tag { 
+  display: inline-block; 
+  padding: 6px 14px; 
+  border-radius: 20px; 
+  font-size: 13px;
+  margin: 5px;
+}
+.scene-tag.battle { background: rgba(244,67,54,0.2); color: #f44336; }
+.scene-tag.warm { background: rgba(255,152,0,0.2); color: #ff9800; }
+.scene-tag.mystery { background: rgba(156,39,176,0.2); color: #9c27b0; }
+.scene-tag.romance { background: rgba(233,30,99,0.2); color: #e91e63; }
+.scene-tag.sad { background: rgba(33,150,243,0.2); color: #2196f3; }
+
+.bgm-item { 
+  display: flex; 
+  align-items: center; 
+  padding: 12px; 
+  background: rgba(255,255,255,0.05); 
+  border-radius: 8px; 
+  margin-bottom: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.bgm-item:hover { border-color: #00d4ff; }
+.bgm-info { flex: 1; }
+.bgm-name { font-weight: 500; }
+.bgm-meta { font-size: 12px; color: #888; margin-top: 3px; }
+.bgm-play { 
+  width: 36px; 
+  height: 36px; 
+  border-radius: 50%; 
+  background: linear-gradient(90deg, #00d4ff, #7c3aed); 
+  border: none; 
+  color: white; 
+  cursor: pointer;
+}
+
+.preset-card { padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.1); }
+.preset-card:hover { border-color: #00d4ff; }
+.preset-name { font-weight: 500; font-size: 16px; }
+.preset-desc { color: #888; font-size: 13px; margin-top: 5px; }
+.preset-meta { font-size: 12px; color: #00d4ff; margin-top: 8px; }
+</style>
 </head>
 <body>
   <div class="container">
@@ -355,7 +447,12 @@
           <button class="nav-tab" data-page="voices">🎵 音色库</button>
     </button>
     <button class="nav-tab" data-page="synthesize">🎤 文本转语音</button>
+<button class="nav-tab" data-page="emotion">💭 情感识别</button>
+<button class="nav-tab" data-page="roles">👤 角色管理</button>
+<button class="nav-tab" data-page="projects">📁 项目管理</button>
     <button class="nav-tab" data-page="settings">⚙️ 参数调整</button>
+<button class="nav-tab" data-page="export">📤 导出</button>
+<button class="nav-tab" data-page="presets">🎤 预设音色</button>
     </div>
 
     <!-- 上传页面 -->
@@ -543,7 +640,182 @@
   </div>
 </div>
 
+
+<!-- 情感识别页面 F006 -->
+<div class="page" id="page-emotion">
+  <div class="card">
+    <div class="card-title">💭 情感识别</div>
+    <p style="color: #888; margin-bottom: 20px; font-size: 14px;">使用AI分析文本情感，识别喜、怒、哀、惊、惧、平静等情绪</p>
+    
+    <div class="form-group">
+      <label class="form-label">输入要分析的文本 *</label>
+      <textarea class="form-input" id="emotionText" rows="6" placeholder="请输入一段文本，AI将分析其中的情感..." style="resize: vertical; min-height: 120px;"></textarea>
+    </div>
+    
+    <button type="button" class="btn btn-primary" id="analyzeEmotionBtn" style="width: 100%; padding: 14px; font-size: 16px; margin-bottom: 15px;">
+      🔍 分析情感
+    </button>
+    
+    <div class="progress-container" id="emotionProgressContainer">
+      <div class="progress-text">
+        <span id="emotionProgressText">正在分析...</span>
+        <span id="emotionProgressPercent">0%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="emotionProgressFill"></div>
+      </div>
+    </div>
+    
+    <div class="result" id="emotionResult">
+      <div class="result-title" id="emotionResultTitle"></div>
+      <div class="result-details" id="emotionResultDetails"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 角色管理页面 F008 -->
+<div class="page" id="page-roles">
+  <div class="card">
+    <div class="card-title">👤 角色管理</div>
+    <p style="color: #888; margin-bottom: 20px; font-size: 14px;">创建和管理配音角色，为每个角色分配音色</p>
+    
+    <!-- 创建角色表单 -->
+    <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+      <h3 style="font-size: 16px; margin-bottom: 15px;">➕ 创建新角色</h3>
+      
+      <div class="form-group">
+        <label class="form-label">角色名称 *</label>
+        <input type="text" class="form-input" id="roleName" placeholder="例如：主角张三">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">分配音色 *</label>
+        <select class="form-input" id="roleVoiceSelect" style="padding: 12px;">
+          <option value="">请先创建音色</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">角色描述（可选）</label>
+        <input type="text" class="form-input" id="roleDesc" placeholder="例如：25岁男性，主角">
+      </div>
+      
+      <button type="button" class="btn btn-primary" id="createRoleBtn" style="width: 100%; padding: 12px;">
+        ➕ 创建角色
+      </button>
+      
+      <!-- 创建结果提示 -->
+      <div class="result" id="createRoleResult" style="margin-top: 15px;">
+        <div class="result-title" id="createRoleResultTitle"></div>
+      </div>
+    </div>
+    
+    <!-- 角色列表 -->
+    <div class="card-title" style="margin-top: 20px;">📋 我的角色</div>
+    <div id="rolesListContent">
+      <div class="empty-state">
+        <div class="empty-state-icon">👤</div>
+        <p>暂无角色</p>
+        <p style="margin-top: 10px; color: #888;">在上方创建你的第一个角色</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 项目管理页面 F010 -->
+<div class="page" id="page-projects">
+  <div class="card">
+    <div class="card-title">📁 项目管理</div>
+    <p style="color: #888; margin-bottom: 20px; font-size: 14px;">创建和管理配音项目，包含剧本和角色配置</p>
+    
+    <!-- 创建项目表单 -->
+    <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+      <h3 style="font-size: 16px; margin-bottom: 15px;">➕ 创建新项目</h3>
+      
+      <div class="form-group">
+        <label class="form-label">项目名称 *</label>
+        <input type="text" class="form-input" id="projectName" placeholder="例如：第一章配音">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">剧本内容</label>
+        <textarea class="form-input" id="projectScript" rows="4" placeholder="输入或粘贴剧本内容..." style="resize: vertical;"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">项目描述（可选）</label>
+        <input type="text" class="form-input" id="projectDesc" placeholder="例如：第一集开场">
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <input type="text" class="form-input" id="projectSearch" placeholder="搜索项目名称..." style="flex: 1;">
+        <select class="form-input" id="projectSort" style="width: 120px; padding: 10px;">
+          <option value="createdAt">按时间</option>
+          <option value="name">按名称</option>
+        </select>
+      </div>
+
+      <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+      </div>
+      
+      <button type="button" class="btn btn-primary" id="createProjectBtn" style="width: 100%; padding: 12px;">
+        ➕ 创建项目
+      </button>
+      
+      <div class="result" id="createProjectResult" style="margin-top: 15px;">
+        <div class="result-title" id="createProjectResultTitle"></div>
+      </div>
+    </div>
+    
+    <!-- 项目列表 -->
+    <div class="card-title" style="margin-top: 20px;">📋 我的项目</div>
+    <div id="projectsListContent">
+      <div class="empty-state">
+        <div class="empty-state-icon">📁</div>
+        <p>暂无项目</p>
+        <p style="margin-top: 10px; color: #888;">在上方创建你的第一个项目</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="page" id="page-settings">
+    <!-- F007: 情感标注可视化 -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-title">📝 情感标注可视化</div>
+      <p style="color: #888; margin-bottom: 15px; font-size: 14px;">分段显示文本各句子的情感标签</p>
+      
+      <button type="button" class="btn btn-primary" id="annotateEmotionBtn" style="width: 100%; padding: 12px; margin-bottom: 15px;">
+        🎨 生成分段标注
+      </button>
+      
+      <!-- 标注结果展示 -->
+      <div id="emotionAnnotationResult" style="display: none;">
+        <div class="emotion-segments" id="emotionSegments"></div>
+      </div>
+    </div>
+
+    <!-- F009: 角色推荐 -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-title">🎭 根据情感推荐角色</div>
+      <p style="color: #888; margin-bottom: 15px; font-size: 14px;">基于文本情感智能推荐配音角色</p>
+      
+      <button type="button" class="btn btn-primary" id="recommendRoleBtn" style="width: 100%; padding: 12px; margin-bottom: 15px;">
+        🤖 智能推荐角色
+      </button>
+      
+      <!-- 推荐结果 -->
+      <div id="roleRecommendationResult" style="display: none;">
+        <div id="recommendationList"></div>
+        <button type="button" class="btn" id="applyRecommendBtn" style="width: 100%; margin-top: 10px; background: rgba(0,212,255,0.2); color: #00d4ff;">
+          ✅ 采用推荐
+        </button>
+      </div>
+    </div>
+
+
   <div class="card">
     <div class="card-title">⚙️ 语音参数调整</div>
     <p style="color: #888; margin-bottom: 20px; font-size: 14px;">调整语速、音调和稳定性参数，保存后将成为默认设置</p>
@@ -641,6 +913,12 @@
         if (pageId === 'upload') loadFileList();
         if (pageId === 'voices') loadVoiceList();
     if (pageId === 'synthesize') loadSynthVoices();
+        if (pageId === 'emotion') console.log('情感识别页面已加载');
+        if (pageId === 'roles') loadRoles();
+        if (pageId === 'projects') loadProjects();
+        if (pageId === 'settings') loadSettings();
+        if (pageId === 'export') loadExport();
+        if (pageId === 'presets') loadPresets();
       });
     });
 
@@ -1058,6 +1336,824 @@ function playVoice(btn, audioFile) {
 
     // 初始加载
     loadFileList();
-  </script>
+  
+// ============ 情感识别功能 F006 ============
+const analyzeEmotionBtn = document.getElementById('analyzeEmotionBtn');
+const emotionText = document.getElementById('emotionText');
+const emotionProgressContainer = document.getElementById('emotionProgressContainer');
+const emotionProgressFill = document.getElementById('emotionProgressFill');
+const emotionProgressText = document.getElementById('emotionProgressText');
+const emotionProgressPercent = document.getElementById('emotionProgressPercent');
+const emotionResult = document.getElementById('emotionResult');
+const emotionResultTitle = document.getElementById('emotionResultTitle');
+const emotionResultDetails = document.getElementById('emotionResultDetails');
+
+const emotionEmojis = {
+    'happy': '😊',
+    'sad': '😢',
+    'angry': '😠',
+    'fear': '😨',
+    'surprise': '😲',
+    'calm': '😌'
+};
+
+const emotionLabels = {
+    'happy': '喜悦',
+    'sad': '悲伤',
+    'angry': '愤怒',
+    'fear': '恐惧',
+    'surprise': '惊讶',
+    'calm': '平静'
+};
+
+analyzeEmotionBtn.addEventListener('click', async () => {
+    const text = emotionText.value.trim();
+    if (!text) {
+        alert('请输入要分析的文本');
+        return;
+    }
+    
+    // 显示进度
+    emotionProgressContainer.classList.add('active');
+    emotionResult.classList.remove('active');
+    emotionProgressFill.style.width = '0%';
+    emotionProgressText.textContent = '正在分析情感...';
+    emotionProgressPercent.textContent = '0%';
+    
+    // 模拟进度
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+        progress += Math.random() * 20;
+        if (progress > 90) progress = 90;
+        emotionProgressFill.style.width = progress + '%';
+        emotionProgressPercent.textContent = Math.round(progress) + '%';
+    }, 150);
+    
+    try {
+        const response = await fetch('/api/analyze-emotion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+        const data = await response.json();
+        
+        clearInterval(progressInterval);
+        emotionProgressFill.style.width = '100%';
+        emotionProgressPercent.textContent = '100%';
+        
+        if (data.success) {
+            const emotion = data.data.emotion;
+            const confidence = data.data.confidence;
+            const allEmotions = data.data.emotions || [];
+            
+            const emoji = emotionEmojis[emotion] || '😐';
+            const label = emotionLabels[emotion] || emotion;
+            
+            let emotionsHtml = allEmotions.slice(0, 3).map(e => {
+                const eEmoji = emotionEmojis[e.emotion] || '😐';
+                const eLabel = emotionLabels[e.emotion] || e.emotion;
+                return `<span style="display: inline-block; margin: 5px; padding: 8px 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                    ${eEmoji} ${eLabel} ${(e.confidence * 100).toFixed(0)}%
+                </span>`;
+            }).join('');
+            
+            emotionResult.classList.add('active', 'success');
+            emotionResult.classList.remove('error');
+            emotionResultTitle.innerHTML = `✅ 分析完成！主要情感：${emoji} ${label}`;
+            emotionResultDetails.innerHTML = `
+                <p style="margin-bottom: 15px;">置信度: <strong style="color: #00d4ff;">${(confidence * 100).toFixed(1)}%</strong></p>
+                <p style="color: #888; margin-bottom: 10px;">情感分布：</p>
+                <div style="margin-top: 10px;">${emotionsHtml}</div>
+            `;
+        } else {
+            throw new Error(data.message || '分析失败');
+        }
+    } catch (error) {
+        clearInterval(progressInterval);
+        emotionResult.classList.add('active', 'error');
+        emotionResult.classList.remove('success');
+        emotionResultTitle.innerHTML = '❌ 分析失败：' + error.message;
+        emotionResultDetails.innerHTML = '';
+    }
+    
+    setTimeout(() => {
+        emotionProgressContainer.classList.remove('active');
+    }, 1000);
+});
+
+
+// ============ F007 情感标注功能 ============
+const annotateEmotionBtn = document.getElementById('annotateEmotionBtn');
+const emotionAnnotationResult = document.getElementById('emotionAnnotationResult');
+const emotionSegments = document.getElementById('emotionSegments');
+
+const annotationEmojis = {
+    'happy': '😊',
+    'sad': '😢',
+    'angry': '😠',
+    'fear': '😨',
+    'surprise': '😲',
+    'calm': '😌'
+};
+
+const annotationLabels = {
+    'happy': '喜悦',
+    'sad': '悲伤',
+    'angry': '愤怒',
+    'fear': '恐惧',
+    'surprise': '惊讶',
+    'calm': '平静'
+};
+
+annotateEmotionBtn.addEventListener('click', async () => {
+    const text = emotionText.value.trim();
+    if (!text) {
+        alert('请先在上方输入要分析的文本');
+        return;
+    }
+    
+    annotateEmotionBtn.disabled = true;
+    annotateEmotionBtn.textContent = '正在分析...';
+    
+    try {
+        const response = await fetch('/api/analyze-emotion-segments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+        const data = await response.json();
+        
+        if (data.success && data.data.segments) {
+            const segments = data.data.segments;
+            
+            if (segments.length === 0) {
+                alert('未检测到有效文本段落');
+                return;
+            }
+            
+            emotionSegments.innerHTML = segments.map(seg => {
+                const emoji = annotationEmojis[seg.emotion] || '😐';
+                const label = annotationLabels[seg.emotion] || seg.emotion;
+                const conf = (seg.confidence * 100).toFixed(0);
+                
+                return `<div class="emotion-segment ${seg.emotion}">
+                    <span class="emotion-segment-tag">${emoji} ${label} ${conf}%</span>
+                    <span class="emotion-segment-text">${seg.text}</span>
+                </div>`;
+            }).join('');
+            
+            emotionAnnotationResult.style.display = 'block';
+        } else {
+            throw new Error(data.message || '分析失败');
+        }
+    } catch (error) {
+        alert('分析失败: ' + error.message);
+    }
+    
+    annotateEmotionBtn.disabled = false;
+    annotateEmotionBtn.textContent = '🎨 生成分段标注';
+});
+
+
+// ============ F008 角色管理功能 ============
+const roleVoiceSelect = document.getElementById('roleVoiceSelect');
+const rolesListContent = document.getElementById('rolesListContent');
+const createRoleBtn = document.getElementById('createRoleBtn');
+const createRoleResult = document.getElementById('createRoleResult');
+const createRoleResultTitle = document.getElementById('createRoleResultTitle');
+
+// 加载角色列表
+function loadRoles() {
+  fetch('/api/roles')
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.data.length > 0) {
+        rolesListContent.innerHTML = '<div class="voice-grid">' + 
+          data.data.map(role => `
+            <div class="voice-card">
+              <span class="voice-tag">👤 角色</span>
+              <div class="voice-name">${role.name}</div>
+              <div class="voice-desc">${role.description || '无描述'}</div>
+              <div class="voice-meta">音色: ${role.voice_name || '未设置'}</div>
+              <div class="voice-actions">
+                <button class="btn btn-primary" onclick="editRole('${role.id}')">编辑</button>
+                <button class="btn btn-delete" onclick="deleteRole('${role.id}')">删除</button>
+              </div>
+            </div>
+          `).join('') + '</div>';
+      } else {
+        rolesListContent.innerHTML = \`
+          <div class="empty-state">
+            <div class="empty-state-icon">👤</div>
+            <p>暂无角色</p>
+            <p style="margin-top: 10px; color: #888;">在上方创建你的第一个角色</p>
+          </div>\`;
+      }
+    });
+  
+  // 同时加载音色列表到下拉框
+  loadVoicesForRoleSelect();
+}
+
+// 加载音色列表到角色创建下拉框
+function loadVoicesForRoleSelect() {
+  fetch('/api/voices')
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.data.length > 0) {
+        roleVoiceSelect.innerHTML = '<option value="">选择一个音色</option>' +
+          data.data.map(v => \`<option value="\${v.id}">\${v.name}</option>\`).join('');
+      } else {
+        roleVoiceSelect.innerHTML = '<option value="">请先创建音色</option>';
+      }
+    });
+}
+
+// 创建角色
+createRoleBtn.addEventListener('click', async () => {
+  const name = document.getElementById('roleName').value.trim();
+  const voice_id = roleVoiceSelect.value;
+  const description = document.getElementById('roleDesc').value.trim();
+  
+  if (!name) {
+    showCreateRoleResult(false, '请输入角色名称');
+    return;
+  }
+  if (!voice_id) {
+    showCreateRoleResult(false, '请选择音色');
+    return;
+  }
+  
+  createRoleBtn.disabled = true;
+  createRoleBtn.textContent = '创建中...';
+  
+  try {
+    const response = await fetch('/api/roles', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, voice_id, description })
+    });
+    const data = await response.json();
+    
+    if (data.success) {
+      showCreateRoleResult(true, '角色创建成功！');
+      document.getElementById('roleName').value = '';
+      document.getElementById('roleDesc').value = '';
+      loadRoles();
+    } else {
+      showCreateRoleResult(false, data.message || '创建失败');
+    }
+  } catch (error) {
+    showCreateRoleResult(false, '网络错误');
+  }
+  
+  createRoleBtn.disabled = false;
+  createRoleBtn.textContent = '➕ 创建角色';
+});
+
+function showCreateRoleResult(success, message) {
+  createRoleResult.classList.add('active');
+  createRoleResult.classList.remove('success', 'error');
+  createRoleResult.classList.add(success ? 'success' : 'error');
+  createRoleResultTitle.innerHTML = success ? '✅ ' + message : '❌ ' + message;
+  setTimeout(() => createRoleResult.classList.remove('active'), 3000);
+}
+
+function editRole(roleId) {
+  alert('编辑功能开发中...');
+}
+
+function deleteRole(roleId) {
+  if (!confirm('确定要删除这个角色吗？')) return;
+  fetch('/api/roles/' + roleId, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) loadRoles();
+      else alert(data.message || '删除失败');
+    });
+}
+
+
+// ============ F009 角色推荐功能 ============
+const recommendRoleBtn = document.getElementById('recommendRoleBtn');
+const roleRecommendationResult = document.getElementById('roleRecommendationResult');
+const recommendationList = document.getElementById('recommendationList');
+const applyRecommendBtn = document.getElementById('applyRecommendBtn');
+
+let selectedRecommendation = null;
+
+const emotionEmojisForRec = {
+    'happy': '😊', 'sad': '😢', 'angry': '😠', 
+    'fear': '😨', 'surprise': '😲', 'calm': '😌'
+};
+
+recommendRoleBtn.addEventListener('click', async () => {
+    const text = emotionText.value.trim();
+    if (!text) {
+        alert('请先输入要分析的文本');
+        return;
+    }
+    
+    recommendRoleBtn.disabled = true;
+    recommendRoleBtn.textContent = '正在推荐...';
+    
+    try {
+        const response = await fetch('/api/recommend-roles', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+        const data = await response.json();
+        
+        if (data.success && data.data.recommendations) {
+            const recs = data.data.recommendations;
+            const emoji = emotionEmojisForRec[data.data.emotion] || '🎭';
+            
+            if (recs.length === 0) {
+                recommendationList.innerHTML = '<p style="text-align: center; color: #888;">暂无角色，请先创建角色</p>';
+            } else {
+                recommendationList.innerHTML = recs.map((r, i) => `
+                    <div class="recommendation-item" onclick="selectRecommendation('${r.role_id}', this)" style="cursor: pointer;">
+                        <span class="recommendation-rank">${i + 1}</span>
+                        <span class="recommendation-name">${r.role_name}</span>
+                        <span class="recommendation-score">${r.score}分</span>
+                        <div class="recommendation-voice">🎤 音色: ${r.voice_name}</div>
+                        <div class="recommendation-reason">${emoji} ${r.reason}</div>
+                    </div>
+                `).join('');
+            }
+            
+            roleRecommendationResult.style.display = 'block';
+        } else {
+            throw new Error(data.message || '推荐失败');
+        }
+    } catch (error) {
+        alert('推荐失败: ' + error.message);
+    }
+    
+    recommendRoleBtn.disabled = false;
+    recommendRoleBtn.textContent = '🤖 智能推荐角色';
+});
+
+function selectRecommendation(roleId, element) {
+    document.querySelectorAll('.recommendation-item').forEach(el => {
+        el.style.borderColor = 'rgba(0,212,255,0.2)';
+    });
+    element.style.borderColor = '#00d4ff';
+    selectedRecommendation = roleId;
+}
+
+applyRecommendBtn.addEventListener('click', () => {
+    if (!selectedRecommendation) {
+        alert('请先选择一个推荐角色');
+        return;
+    }
+    alert('已选择角色ID: ' + selectedRecommendation + '\n（实际应用中会自动填充到文本转语音页面）');
+    // TODO: 跳转到文本转语音页面并自动选择该角色
+});
+
+
+
+// F011 搜索和排序
+const projectSearchInput = document.getElementById('projectSearch');
+const projectSortSelect = document.getElementById('projectSort');
+
+if (projectSearchInput) {
+  projectSearchInput.addEventListener('input', debounce(() => {
+    currentProjectSearch = projectSearchInput.value;
+    loadProjects();
+  }, 300));
+}
+
+if (projectSortSelect) {
+  projectSortSelect.addEventListener('change', () => {
+    currentProjectSort = projectSortSelect.value;
+    loadProjects();
+  });
+}
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// ============ F010 项目管理功能 =========###
+const projectNameInput = document.getElementById('projectName');
+const projectScriptInput = document.getElementById('projectScript');
+const projectDescInput = document.getElementById('projectDesc');
+const createProjectBtn = document.getElementById('createProjectBtn');
+const createProjectResult = document.getElementById('createProjectResult');
+const createProjectResultTitle = document.getElementById('createProjectResultTitle');
+const projectsListContent = document.getElementById('projectsListContent');
+
+let currentProjectSearch = '';
+let currentProjectSort = 'createdAt';
+
+function loadProjects() {
+  const search = currentProjectSearch ? '&search=' + encodeURIComponent(currentProjectSearch) : '';
+  const sort = '&sort=' + currentProjectSort;
+  fetch('/api/projects?' + search.slice(1) + sort)
+    .then(res => res.json())
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.data.length > 0) {
+        projectsListContent.innerHTML = '<div class="voice-grid">' + 
+          data.data.map(p => `
+            <div class="voice-card" onclick="openProject('${p.id}')" style="cursor: pointer;">
+              <span class="voice-tag">📁 ${p.status === 'draft' ? '草稿' : '已完成'}</span>
+              <div class="voice-name">${p.name}</div>
+              <div class="voice-desc">${p.description || '无描述'}</div>
+              <div class="voice-meta">
+                角色: ${p.roles ? p.roles.length : 0}个 | 
+                字数: ${p.script ? p.script.length : 0}字
+              </div>
+              <div class="voice-actions" onclick="event.stopPropagation()">
+                <button class="btn btn-primary" onclick="editProject('${p.id}')">编辑</button>
+                <button class="btn btn-delete" onclick="deleteProject('${p.id}')">删除</button>
+              </div>
+            </div>
+          `).join('') + '</div>';
+      } else {
+        projectsListContent.innerHTML = \`
+          <div class="empty-state">
+            <div class="empty-state-icon">📁</div>
+            <p>暂无项目</p>
+            <p style="margin-top: 10px; color: #888;">在上方创建你的第一个项目</p>
+          </div>\`;
+      }
+    });
+}
+
+createProjectBtn.addEventListener('click', async () => {
+  const name = projectNameInput.value.trim();
+  const script = projectScriptInput.value;
+  const description = projectDescInput.value.trim();
+  
+  if (!name) {
+    showProjectResult(false, '请输入项目名称');
+    return;
+  }
+  
+  createProjectBtn.disabled = true;
+  createProjectBtn.textContent = '创建中...';
+  
+  try {
+    const response = await fetch('/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, script, description })
+    });
+    const data = await response.json();
+    
+    if (data.success) {
+      showProjectResult(true, '项目创建成功！');
+      projectNameInput.value = '';
+      projectScriptInput.value = '';
+      projectDescInput.value = '';
+      loadProjects();
+    } else {
+      showProjectResult(false, data.message || '创建失败');
+    }
+  } catch (error) {
+    showProjectResult(false, '网络错误');
+  }
+  
+  createProjectBtn.disabled = false;
+  createProjectBtn.textContent = '➕ 创建项目';
+});
+
+function showProjectResult(success, message) {
+  createProjectResult.classList.add('active');
+  createProjectResult.classList.remove('success', 'error');
+  createProjectResult.classList.add(success ? 'success' : 'error');
+  createProjectResultTitle.innerHTML = success ? '✅ ' + message : '❌ ' + message;
+  setTimeout(() => createProjectResult.classList.remove('active'), 3000);
+}
+
+function openProject(projectId) {
+  alert('项目详情页开发中...\n项目ID: ' + projectId);
+}
+
+// F012 项目编辑 - 模态框
+const projectModal = document.createElement('div');
+projectModal.id = 'projectModal';
+projectModal.style.cssText = 'display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; overflow-y: auto;';
+projectModal.innerHTML = \`
+  <div style="max-width: 600px; margin: 50px auto; background: #1a1a2e; border-radius: 16px; padding: 30px; margin: 50px 20px;">
+    <h2 style="margin-bottom: 20px;">✏️ 编辑项目</h2>
+    <input type="hidden" id="editProjectId">
+    <div class="form-group">
+      <label class="form-label">项目名称 *</label>
+      <input type="text" class="form-input" id="editProjectName">
+    </div>
+    <div class="form-group">
+      <label class="form-label">剧本内容</label>
+      <textarea class="form-input" id="editProjectScript" rows="8" style="resize: vertical;"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">项目描述</label>
+      <input type="text" class="form-input" id="editProjectDesc">
+    </div>
+    <div class="form-group">
+      <label class="form-label">状态</label>
+      <select class="form-input" id="editProjectStatus" style="padding: 10px;">
+        <option value="draft">草稿</option>
+        <option value="completed">已完成</option>
+      </select>
+    </div>
+    <div style="display: flex; gap: 10px; margin-top: 20px;">
+      <button class="btn btn-primary" id="saveProjectBtn" style="flex: 1; padding: 12px;">💾 保存</button>
+      <button class="btn" onclick="closeProjectModal()" style="padding: 12px; background: rgba(255,255,255,0.1);">取消</button>
+    </div>
+  </div>
+\`;
+document.body.appendChild(projectModal);
+
+function editProject(projectId) {
+  fetch('/api/projects/' + projectId)
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && data.data) {
+        const p = data.data;
+        document.getElementById('editProjectId').value = p.id;
+        document.getElementById('editProjectName').value = p.name;
+        document.getElementById('editProjectScript').value = p.script || '';
+        document.getElementById('editProjectDesc').value = p.description || '';
+        document.getElementById('editProjectStatus').value = p.status || 'draft';
+        projectModal.style.display = 'block';
+      }
+    });
+}
+
+function closeProjectModal() {
+  projectModal.style.display = 'none';
+}
+
+document.getElementById('saveProjectBtn').addEventListener('click', async () => {
+  const id = document.getElementById('editProjectId').value;
+  const name = document.getElementById('editProjectName').value.trim();
+  const script = document.getElementById('editProjectScript').value;
+  const description = document.getElementById('editProjectDesc').value.trim();
+  const status = document.getElementById('editProjectStatus').value;
+  
+  if (!name) {
+    alert('请输入项目名称');
+    return;
+  }
+  
+  try {
+    const response = await fetch('/api/projects/' + id, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, script, description, status })
+    });
+    const data = await response.json();
+    
+    if (data.success) {
+      alert('项目更新成功！');
+      closeProjectModal();
+      loadProjects();
+    } else {
+      alert(data.message || '更新失败');
+    }
+  } catch (error) {
+    alert('网络错误');
+  }
+});
+
+// 点击背景关闭
+projectModal.addEventListener('click', (e) => {
+  if (e.target === projectModal) closeProjectModal();
+});
+
+function deleteProject(projectId) {
+  if (!confirm('确定要删除这个项目吗？')) return;
+  fetch('/api/projects/' + projectId, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) loadProjects();
+      else alert(data.message || '删除失败');
+    });
+}
+
+
+// ============ F013 场景分类功能 ============
+const classifySceneBtn = document.getElementById('classifySceneBtn');
+const sceneClassificationResult = document.getElementById('sceneClassificationResult');
+const sceneResultContent = document.getElementById('sceneResultContent');
+
+const sceneEmojis = { '战斗': '⚔️', '温馨': '🏠', '悬疑': '🔍', '浪漫': '💕', '悲伤': '😢' };
+const sceneClasses = { '战斗': 'battle', '温馨': 'warm', '悬疑': 'mystery', '浪漫': 'romance', '悲伤': 'sad' };
+
+classifySceneBtn.addEventListener('click', async () => {
+    const text = emotionText.value.trim();
+    if (!text) {
+        alert('请先输入要分析的文本');
+        return;
+    }
+    
+    classifySceneBtn.disabled = true;
+    classifySceneBtn.textContent = '正在识别...';
+    
+    try {
+        const response = await fetch('/api/classify-scene', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text })
+        });
+        const data = await response.json();
+        
+        if (data.success && data.data) {
+            const scene = data.data.scene;
+            const conf = (data.data.confidence * 100).toFixed(0);
+            const emoji = sceneEmojis[scene] || '🎬';
+            const cls = sceneClasses[scene] || 'warm';
+            
+            let allScenesHtml = data.data.allScenes.map(s => 
+                `<span class="scene-tag ${sceneClasses[s.scene] || ''}">${sceneEmojis[s.scene] || ''} ${s.scene} (${s.count})</span>`
+            ).join('');
+            
+            sceneResultContent.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 32px; margin-bottom: 10px;">${emoji}</div>
+                    <div style="font-size: 20px; font-weight: bold; margin-bottom: 5px;">${scene}</div>
+                    <div style="color: #00d4ff; margin-bottom: 15px;">置信度: ${conf}%</div>
+                    <div>${allScenesHtml}</div>
+                </div>
+            `;
+            sceneClassificationResult.style.display = 'block';
+        } else {
+            throw new Error(data.message || '分类失败');
+        }
+    } catch (error) {
+        alert('分类失败: ' + error.message);
+    }
+    
+    classifySceneBtn.disabled = false;
+    classifySceneBtn.textContent = '🎯 识别场景';
+});
+
+
+// ============ F014 BGM推荐功能 ============
+const bgmRecommendationResult = document.getElementById('bgmRecommendationResult');
+const bgmListContent = document.getElementById('bgmListContent');
+
+async function recommendBgm(scene) {
+  bgmListContent.innerHTML = '<p style="text-align: center; color: #888;">加载中...</p>';
+  bgmRecommendationResult.style.display = 'block';
+  
+  try {
+    const response = await fetch('/api/recommend-bgm', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ scene })
+    });
+    const data = await response.json();
+    
+    if (data.success && data.data.bgmList) {
+      const sceneEmoji = { '战斗': '⚔️', '温馨': '🏠', '悬疑': '🔍', '浪漫': '💕', '悲伤': '😢' };
+      
+      bgmListContent.innerHTML = '<h4 style="margin-bottom: 15px;">' + (sceneEmoji[scene] || '🎵') + ' ' + scene + ' 场景BGM</h4>' +
+        data.data.bgmList.map(bgm => \`
+          <div class="bgm-item">
+            <div class="bgm-info">
+              <div class="bgm-name">\${bgm.name}</div>
+              <div class="bgm-meta">\${bgm.style} | \${bgm.duration} | \${bgm.mood}</div>
+            </div>
+            <button class="bgm-play" onclick="previewBgm(this)" title="预览">▶</button>
+          </div>
+        \`).join('');
+    } else {
+      throw new Error(data.message || '推荐失败');
+    }
+  } catch (error) {
+    bgmListContent.innerHTML = '<p style="color: #f44336;">推荐失败: ' + error.message + '</p>';
+  }
+}
+
+function previewBgm(btn) {
+  const isPlaying = btn.textContent === '⏸';
+  if (isPlaying) {
+    btn.textContent = '▶';
+  } else {
+    document.querySelectorAll('.bgm-play').forEach(b => b.textContent = '▶');
+    btn.textContent = '⏸';
+    // TODO: 实际播放BGM
+    setTimeout(() => btn.textContent = '▶', 3000);
+  }
+}
+
+
+// ============ F020-F021 系统设置 ============
+function loadSettings() {
+  fetch('/api/settings')
+    .then(r => r.json())
+    .then(d => {
+      if (d.success && d.data) {
+        if (d.data.minimax_api_key) document.getElementById('minimaxKey').placeholder = d.data.minimax_api_key;
+        if (d.data.minimax_group_id) document.getElementById('minimaxGroup').placeholder = d.data.minimax_group_id;
+        document.getElementById('defaultSpeed').value = d.data.default_speed || 1;
+        document.getElementById('defaultSpeedVal').textContent = (d.data.default_speed || 1) + 'x';
+        document.getElementById('defaultPitch').value = d.data.default_pitch || 0;
+        document.getElementById('defaultPitchVal').textContent = d.data.default_pitch || 0;
+        document.getElementById('defaultStability').value = d.data.default_stability || 0.5;
+        document.getElementById('defaultStabilityVal').textContent = d.data.default_stability || 0.5;
+      }
+    });
+}
+
+document.getElementById('defaultSpeed').addEventListener('input', e => {
+  document.getElementById('defaultSpeedVal').textContent = e.target.value + 'x';
+});
+document.getElementById('defaultPitch').addEventListener('input', e => {
+  document.getElementById('defaultPitchVal').textContent = e.target.value;
+});
+document.getElementById('defaultStability').addEventListener('input', e => {
+  document.getElementById('defaultStabilityVal').textContent = e.target.value;
+});
+
+document.getElementById('saveSettingsBtn').addEventListener('click', async () => {
+  const minimax_api_key = document.getElementById('minimaxKey').value;
+  const minimax_group_id = document.getElementById('minimaxGroup').value;
+  const elevenlabs_api_key = document.getElementById('elevenlabsKey').value;
+  const default_speed = parseFloat(document.getElementById('defaultSpeed').value);
+  const default_pitch = parseFloat(document.getElementById('defaultPitch').value);
+  const default_stability = parseFloat(document.getElementById('defaultStability').value);
+  
+  const r = await fetch('/api/settings', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({minimax_api_key, minimax_group_id, elevenlabs_api_key, default_speed, default_pitch, default_stability})
+  });
+  const d = await r.json();
+  const res = document.getElementById('settingsSaveResult');
+  res.classList.add('active', d.success ? 'success' : 'error');
+  document.getElementById('settingsSaveTitle').innerHTML = d.success ? '✅ 设置已保存' : '❌ 保存失败';
+});
+
+// ============ F016-F017 导出功能 ============
+function loadExport() {
+  fetch('/api/projects')
+    .then(r => r.json())
+    .then(d => {
+      if (d.success) {
+        document.getElementById('exportProjectSelect').innerHTML = '<option value="">请选择项目</option>' +
+          d.data.map(p => '<option value="' + p.id + '">' + p.name + '</option>').join('');
+      }
+    });
+}
+
+document.getElementById('exportBtn').addEventListener('click', async () => {
+  const project_id = document.getElementById('exportProjectSelect').value;
+  if (!project_id) return alert('请选择项目');
+  
+  const format = document.getElementById('exportFormat').value;
+  const include_bgm = document.getElementById('exportBgm').checked;
+  const include_effects = document.getElementById('exportEffects').checked;
+  
+  const r = await fetch('/api/export-audio', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({project_id, format, include_bgm, include_effects})
+  });
+  const d = await r.json();
+  
+  const res = document.getElementById('exportResult');
+  res.classList.add('active', d.success ? 'success' : 'error');
+  document.getElementById('exportResultTitle').innerHTML = d.success 
+    ? '✅ 导出准备完成！<br><small>文件: ' + d.data.download_url + '</small>' 
+    : '❌ ' + (d.message || '导出失败');
+});
+
+// ============ F024 预设音色 ============
+function loadPresets() {
+  fetch('/api/preset-voices')
+    .then(r => r.json())
+    .then(d => {
+      if (d.success && d.data) {
+        document.getElementById('presetsList').innerHTML = d.data.map(p => \`
+          <div class="preset-card">
+            <div class="preset-name">\${p.name}</div>
+            <div class="preset-desc">\${p.description}</div>
+            <div class="preset-meta">\${p.gender} | \${p.age}</div>
+            <button class="btn btn-primary" style="margin-top: 10px; width: 100%;" onclick="usePreset('\${p.id}')">使用此音色</button>
+          </div>
+        \`).join('');
+      }
+    });
+}
+
+function usePreset(presetId) {
+  alert('预设音色已选择！\nID: ' + presetId + '\n\n（在实际应用中会自动添加到音色库）');
+}
+
+</script>
 </body>
 </html>
