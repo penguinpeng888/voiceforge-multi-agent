@@ -1,0 +1,294 @@
+/**
+ * VoiceForge TTS增强模块
+ * 方向B：TTS后端增强
+ */
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+const TTS_PORT = 3200;
+
+app.use(cors());
+app.use(bodyParser.json());
+
+// ============ 预设音色库 ============
+
+const PRESET_VOICES = {
+  // 男声
+  'male_baijing': {
+    name: '白衣卿相',
+    description: '温润公子音',
+    style: '温柔、优雅',
+    params: { speed: 1.0, pitch: 0, vol: 1.0 }
+  },
+  'male_xuhan': {
+    name: '徐寒',
+    description: '冷峻剑客音',
+    style: '冷酷、果断',
+    params: { speed: 1.1, pitch: -1, vol: 1.0 }
+  },
+  'male_cangyao': {
+    name: '苍遥',
+    description: '豪放侠客音',
+    style: '豪爽、气场',
+    params: { speed: 0.95, pitch: 1, vol: 1.1 }
+  },
+  'male_shanyin': {
+    name: '山隐',
+    description: '沉稳老者音',
+    style: '沧桑、睿智',
+    params: { speed: 0.9, pitch: -2, vol: 0.95 }
+  },
+  'male_xuanqing': {
+    name: '玄青',
+    description: '清冷仙长音',
+    style: '淡漠、超然',
+    params: { speed: 1.0, pitch: -1, vol: 0.9 }
+  },
+  
+  // 女声
+  'female_biyun': {
+    name: '碧云',
+    description: '灵动少女音',
+    style: '活泼甜美',
+    params: { speed: 1.1, pitch: 2, vol: 1.0 }
+  },
+  'female_xueman': {
+    name: '雪曼',
+    description: '冰山美人音',
+    style: '冷艳、高贵',
+    params: { speed: 1.0, pitch: 1, vol: 0.95 }
+  },
+  'female_changming': {
+    name: '长鸣',
+    description: '温柔邻家音',
+    style: '亲切、柔和',
+    params: { speed: 1.0, pitch: 1, vol: 1.0 }
+  },
+  'female_guiyuan': {
+    name: '归原',
+    description: '沧桑女子音',
+    style: '悲伤、成熟',
+    params: { speed: 0.95, pitch: 0, vol: 0.9 }
+  },
+  'female_xiannv': {
+    name: '仙女',
+    description: '空灵仙音',
+    style: '飘渺、梦幻',
+    params: { speed: 0.9, pitch: 3, vol: 0.85 }
+  },
+  
+  // 特殊
+  'elder_man': {
+    name: '老者',
+    description: '老年男声',
+    style: '沧桑、虚弱',
+    params: { speed: 0.85, pitch: -3, vol: 0.9 }
+  },
+  'child_girl': {
+    name: '女童',
+    description: '小女孩',
+    style: '稚嫩、可爱',
+    params: { speed: 1.2, pitch: 4, vol: 1.0 }
+  },
+  'child_boy': {
+    name: '男童',
+    description: '小男孩',
+    style: '活泼、俏皮',
+    params: { speed: 1.15, pitch: 3, vol: 1.0 }
+  },
+  'demon_lord': {
+    name: '魔主',
+    description: '低沉威严',
+    style: '霸道、邪魅',
+    params: { speed: 0.85, pitch: -4, vol: 1.2 }
+  },
+  'god_voice': {
+    name: '天神',
+    description: '神圣空灵',
+    style: '庄严、慈悲',
+    params: { speed: 0.9, pitch: 0, vol: 1.0 }
+  }
+};
+
+// ============ MiniMax TTS ============
+
+const MINIMAX_CONFIG = {
+  apiKey: process.env.MINIMAX_API_KEY || '',
+  groupId: process.env.MINIMAX_GROUP_ID || ''
+};
+
+async function callMiniMaxTTS(text, voiceId, options = {}) {
+  if (!MINIMAX_CONFIG.apiKey || !MINIMAX_CONFIG.groupId) {
+    return { error: 'MiniMax API未配置' };
+  }
+
+  const url = `https://api.minimax.chat/v1/t2a_v2?GroupId=${MINIMAX_CONFIG.groupId}`;
+  
+  const body = {
+    text,
+    model: 'speech-01-turbo',
+    voice_setting: {
+      voice_id: voiceId,
+      speed: options.speed || 1.0,
+      vol: options.vol || 1.0,
+      pitch: options.pitch || 0,
+      bitrate: 128000,
+      sample_rate: 32000,
+      format: 'mp3'
+    }
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${MINIMAX_CONFIG.apiKey}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await response.json();
+  
+  if (data.base_resp?.status_code === 0) {
+    return {
+      success: true,
+      audio: data.data?.audio,
+      format: 'mp3'
+    };
+  }
+  
+  return { error: data.base_resp?.status_msg || 'TTS调用失败' };
+}
+
+// ============ 音频处理 ============
+
+// 音频后处理选项
+const AUDIO_EFFECTS = {
+  'normal': { reverb: 0, echo: 0, fade_in: 0, fade_out: 0 },
+  'cave': { reverb: 0.5, echo: 0.3, fade_in: 0, fade_out: 0 },
+  'hall': { reverb: 0.7, echo: 0.1, fade_in: 0, fade_out: 0 },
+  'soft': { reverb: 0.2, echo: 0, fade_in: 0.5, fade_out: 0.5 },
+  'cinematic': { reverb: 0.6, echo: 0.2, fade_in: 1, fade_out: 1 }
+};
+
+// ============ API Routes ============
+
+app.get('/', (req, res) => {
+  res.json({
+    name: "VoiceForge TTS Enhancement",
+    version: "1.0.0",
+    presets: Object.keys(PRESET_VOICES).length,
+    effects: Object.keys(AUDIO_EFFECTS)
+  });
+});
+
+// 获取所有预设音色
+app.get('/api/voices', (req, res) => {
+  const voices = Object.entries(PRESET_VOICES).map(([id, v]) => ({
+    id,
+    ...v
+  }));
+  res.json({ voices });
+});
+
+// 获取单个音色详情
+app.get('/api/voices/:id', (req, res) => {
+  const voice = PRESET_VOICES[req.params.id];
+  if (!voice) {
+    return res.status(404).json({ error: '音色不存在' });
+  }
+  res.json({ id: req.params.id, ...voice });
+});
+
+// 合成语音 (使用预设音色)
+app.post('/api/synthesize', async (req, res) => {
+  const { text, voice_id, effect = 'normal', options = {} } = req.body;
+  
+  if (!text) {
+    return res.status(400).json({ error: '请输入文本' });
+  }
+  
+  // 获取音色参数
+  const voice = PRESET_VOICES[voice_id] || PRESET_VOICES['male_xuhan'];
+  const voiceParams = { ...voice.params, ...options };
+  
+  // 调用TTS
+  const result = await callMiniMaxTTS(text, voice_id, voiceParams);
+  
+  res.json({
+    voice_id,
+    voice_name: voice.name,
+    effect,
+    text: text.substring(0, 50) + '...',
+    ...result
+  });
+});
+
+// 获取可用音效
+app.get('/api/effects', (req, res) => {
+  res.json({ effects: AUDIO_EFFECTS });
+});
+
+// 配置API
+app.post('/api/config', (req, res) => {
+  const { apiKey, groupId } = req.body;
+  
+  if (apiKey) MINIMAX_CONFIG.apiKey = apiKey;
+  if (groupId) MINIMAX_CONFIG.groupId = groupId;
+  
+  res.json({ 
+    success: true, 
+    configured: !!(MINIMAX_CONFIG.apiKey && MINIMAX_CONFIG.groupId) 
+  });
+});
+
+// XTTS预留接口
+app.post('/api/xtts/clone', (req, res) => {
+  res.json({
+    status: 'not_available',
+    message: 'XTTS-v2需要GPU环境，当前不可用',
+    requirements: {
+      gpu: '6GB+ VRAM',
+      ram: '8GB+'
+    }
+  });
+});
+
+// 语音合成(支持参数)
+app.post('/api/tts', async (req, res) => {
+  const { text, voice, speed = 1.0, pitch = 0, vol = 1.0, format = 'mp3' } = req.body;
+  
+  if (!text) {
+    return res.status(400).json({ error: '请输入文本' });
+  }
+  
+  // 使用自定义参数或预设
+  const result = await callMiniMaxTTS(text, voice || 'male-qn-qingse', {
+    speed, pitch, vol, format
+  });
+  
+  res.json({
+    text,
+    voice,
+    params: { speed, pitch, vol },
+    ...result
+  });
+});
+
+// 启动服务器
+app.listen(TTS_PORT, '0.0.0.0', () => {
+  console.log(`VoiceForge TTS Enhancement running on http://0.0.0.0:${TTS_PORT}`);
+  console.log(`预设音色: ${Object.keys(PRESET_VOICES).length}个`);
+  console.log(`MiniMax配置: ${!!(MINIMAX_CONFIG.apiKey && MINIMAX_CONFIG.groupId)}`);
+});
+
+export default app;
