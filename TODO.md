@@ -1,20 +1,69 @@
-# TODO - 待完成任务
+# VoiceForge AI 开发TODO
 
-## 技能安装
-- [ ] mh-wacli (Rate Limit)
-- [ ] byterover  
-- [ ] atxp-cli
+> 最后更新: 2026-04-01
 
-## 基因胶囊创建
-- [ ] gene-法宝描写-001.json
+## 一已完成功能
 
-## RAG知识库构建
-- [ ] 数据导出
-- [ ] 向量数据库搭建
+| # | 功能 | 端口 | 状态 | 验证 |
+|---|------|------|------|------|
+| 1 | 音频混音 | 3400 | ✅ 完成 | ✅ |
+| 2 | 批量生成 | 3500 | ✅ 完成 | ✅ |
+| 3 | 实时预览 | 3600 | ✅ 完成 | ✅ |
+| 4 | 字幕导出 | 3700 | ✅ 完成 | ✅ |
+| 5 | 音频裁剪 | 3800 | ✅ 完成 | ✅ |
+| 6 | 视频对轨 | 3900 | ✅ 完成 | ✅ |
+| 7 | 历史版本 | 4000 | ✅ 完成 | ✅ |
+| 8 | API开放平台 | 4100 | ✅ 完成 | ✅ |
+| 9 | 真实语音克隆 | 4200 | ✅ 代码 | ⏳ 等GPU |
 
-## 凡人修仙传扫描
-- [ ] 重新运行PageIndex扫描
+## 二服务端口汇总
 
-## 待搭建
-- [ ] TianyiDataScience/openclaw-control-center: OpenClaw控制中心
-- [ ] 666ghj/MiroFish: 鱼鱼工具箱（待调研）
+| 端口 | 服务 |
+|------|------|
+| 3000 | VoiceForge UI + 移动端 |
+| 3100 | 多Agent系统 |
+| 3200 | TTS增强（15种预设音色） |
+| 3300 | 小说工作流 |
+| 3400 | 音频混音 |
+| 3500 | 批量生成 |
+| 3600 | 实时预览 |
+| 3700 | 字幕导出 |
+| 3800 | 音频裁剪 |
+| 3900 | 视频对轨 |
+| 4000 | 历史版本 |
+| 4100 | API开放平台 |
+| 4200 | 真实语音克隆 |
+| 4310 | OpenClaw控制中心 |
+
+## 三待完成
+
+### 高优先级
+- [ ] 配置MiniMax API Key让TTS真正可用
+- [ ] 配置多Agent系统LLM
+- [ ] 测试移动端完整功能
+
+### 中优先级
+- [ ] 真实语音克隆测试（需GPU）
+- [ ] 增加更多BGM素材
+- [ ] 增加更多音效素材
+
+### 低优先级
+- [ ] 视频导出功能增强
+- [ ] Web界面优化
+
+## 四语音克隆部署
+
+```bash
+# 有GPU后执行
+pip install TTS
+export XTTS_GPU=true
+# 重启服务
+```
+
+访问检查: http://43.153.175.239:4200/api/clone/status
+
+## 五代码位置
+
+- 主系统: /root/.openclaw/workspace/ai-voice-system/
+- 多Agent: /root/.openclaw/workspace/voiceforge-multi-agent/
+- Claude借鉴: /root/.openclaw/workspace/claude-inspired/

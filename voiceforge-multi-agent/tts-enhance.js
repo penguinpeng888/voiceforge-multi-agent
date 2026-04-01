@@ -191,11 +191,31 @@ app.get('/', (req, res) => {
   });
 });
 
+// 预设音色的示例文本
+const VOICE_SAMPLES = {
+  'male_baijing': '各位听众朋友们，大家好，欢迎收听今天的节目。',
+  'male_xuhan': '既然你已经决定了，那我便不再多说，好自为之。',
+  'male_cangyao': '哈哈哈痛快！今日能与各位英雄豪杰一决高下，实乃人生一大快事！',
+  'male_shanyin': '孩子，你要记住，做人要有担当，不可投机取巧。',
+  'male_xuanqing': '大道五十，天衍四十九，缺一不可。',
+  'female_biyun': '哎呀，你就别取笑人家了羞死人了',
+  'female_xueman': '哼既然你这么说，那便按你说的去做吧。',
+  'female_changming': '你先别急，慢慢说到底发生什么事了？',
+  'female_guiyuan': '都过去了还有什么好说的呢？',
+  'female_xiannv': '凡人终究是凡人又岂能明白天道的奥秘。',
+  'elder_man': '咳年纪大了不中用了你们这些年轻人哪',
+  'child_girl': '叔叔叔叔你快看那边有蝴蝶呀',
+  'child_boy': '我以后也要像父亲一样成为大侠！',
+  'demon_lord': '既然你们自寻死路那就别怪本座心狠手辣了！',
+  'god_voice': '一切皆有定数，一切皆因缘而生，罢了罢了。'
+};
+
 // 获取所有预设音色
 app.get('/api/voices', (req, res) => {
   const voices = Object.entries(PRESET_VOICES).map(([id, v]) => ({
     id,
-    ...v
+    ...v,
+    sampleText: VOICE_SAMPLES[id] || '你好，欢迎使用语音合成系统。'
   }));
   res.json({ voices });
 });
@@ -260,6 +280,28 @@ app.post('/api/xtts/clone', (req, res) => {
       gpu: '6GB+ VRAM',
       ram: '8GB+'
     }
+  });
+});
+
+// 生成音色示例音频
+app.post('/api/voices/:id/sample', async (req, res) => {
+  const voiceId = req.params.id;
+  const voice = PRESET_VOICES[voiceId];
+  
+  if (!voice) {
+    return res.status(404).json({ error: '音色不存在' });
+  }
+  
+  const sampleText = VOICE_SAMPLES[voiceId] || '你好，欢迎使用语音合成系统。';
+  
+  // 调用TTS生成示例
+  const result = await callMiniMaxTTS(sampleText, voiceId, voice.params);
+  
+  res.json({
+    voiceId,
+    voiceName: voice.name,
+    sampleText,
+    ...result
   });
 });
 

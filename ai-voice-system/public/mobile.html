@@ -195,6 +195,21 @@
 
     .voice-item .name { font-weight: 600; font-size: 14px; }
     .voice-item .desc { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    
+    .voice-item .play-btn {
+      margin-top: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      background: var(--primary);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .voice-item .play-btn:disabled {
+      opacity: 0.6;
+    }
 
     /* Bottom nav */
     .bottom-nav {
@@ -339,6 +354,10 @@
             <span class="icon">🎵</span>
             <span class="label">语音合成</span>
           </button>
+          <button class="action-btn" onclick="showPage('clone')">
+            <span class="icon">🎤</span>
+            <span class="label">音色克隆</span>
+          </button>
           <button class="action-btn" onclick="showPage('novel')">
             <span class="icon">📖</span>
             <span class="label">小说导入</span>
@@ -450,6 +469,49 @@
         </div>
       </div>
     </div>
+
+    <!-- Clone Page -->
+    <div id="page-clone" class="page">
+      <div class="card">
+        <div class="card-title"><span class="icon">🎤</span> 音色克隆</div>
+        <p style="color:var(--gray);font-size:14px;margin-bottom:16px">
+          上传参考音频（5分钟以上），提取声纹特征，生成专属音色
+        </p>
+        
+        <div class="input-group">
+          <label>选择参考音频</label>
+          <input type="file" id="clone-audio" accept="audio/*" style="display:none" onchange="showAudioName(this)">
+          <button class="btn" style="background:rgba(255,255,255,0.1)" onclick="document.getElementById('clone-audio').click()">
+            📁 选择音频文件
+          </button>
+          <p id="audio-name" style="font-size:12px;color:var(--gray);margin-top:8px"></p>
+        </div>
+
+        <div class="input-group">
+          <label>音色名称</label>
+          <input type="text" id="clone-name" placeholder="给音色起个名字">
+        </div>
+
+        <button class="btn btn-primary" onclick="cloneVoice()">开始克隆</button>
+        
+        <div class="loading" id="clone-loading">
+          <div class="spinner"></div>
+          <p>克隆中，请稍候...</p>
+        </div>
+
+        <div class="result" id="clone-result" style="display:none">
+          <p style="margin:0;color:var(--success)">✅ 克隆成功！</p>
+          <div id="clone-info" style="margin-top:12px;font-size:14px"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="icon">📋</span> 我的克隆音色</div>
+        <div id="cloned-voices">
+          <p style="color:var(--gray);text-align:center;padding:20px">暂无克隆音色</p>
+        </div>
+      </div>
+    </div>
   </main>
 
   <!-- Bottom Nav -->
@@ -470,6 +532,10 @@
       <span class="icon">📁</span>
       <span class="label">项目</span>
     </a>
+    <a class="nav-item" href="#" onclick="showPage('clone');return false">
+      <span class="icon">🎤</span>
+      <span class="label">克隆</span>
+    </a>
   </nav>
 
   <!-- Toast -->
@@ -483,25 +549,30 @@
       novel: API_BASE + ':3300'
     };
 
-    // Preset voices
+    // Preset voices (fallback)
     const voices = [
-      {id:'male_xuhan',name:'徐寒',desc:'冷峻剑客'},
-      {id:'male_baijing',name:'白衣卿相',desc:'温润公子'},
-      {id:'male_cangyao',name:'苍遥',desc:'豪放侠客'},
-      {id:'male_shanyin',name:'山隐',desc:'沉稳老者'},
-      {id:'male_xuanqing',name:'玄青',desc:'清冷仙长'},
-      {id:'female_biyun',name:'碧云',desc:'灵动少女'},
-      {id:'female_xueman',name:'雪曼',desc:'冰山美人'},
-      {id:'female_changming',name:'长鸣',desc:'温柔邻家'},
-      {id:'female_xiannv',name:'仙女',desc:'空灵仙音'},
-      {id:'child_boy',name:'男童',desc:'活泼俏皮'}
+      {id:'male_xuhan',name:'徐寒',description:'冷峻剑客'},
+      {id:'male_baijing',name:'白衣卿相',description:'温润公子'},
+      {id:'male_cangyao',name:'苍遥',description:'豪放侠客'},
+      {id:'male_shanyin',name:'山隐',description:'沉稳老者'},
+      {id:'male_xuanqing',name:'玄青',description:'清冷仙长'},
+      {id:'female_biyun',name:'碧云',description:'灵动少女'},
+      {id:'female_xueman',name:'雪曼',description:'冰山美人'},
+      {id:'female_changming',name:'长鸣',description:'温柔邻家'},
+      {id:'female_guiyuan',name:'归原',description:'沧桑女子'},
+      {id:'female_xiannv',name:'仙女',description:'空灵仙音'},
+      {id:'elder_man',name:'老者',description:'沧桑虚弱'},
+      {id:'child_girl',name:'女童',description:'稚嫩可爱'},
+      {id:'child_boy',name:'男童',description:'活泼俏皮'},
+      {id:'demon_lord',name:'魔主',description:'霸道邪魅'},
+      {id:'god_voice',name:'天神',description:'庄严慈悲'}
     ];
 
     let selectedVoice = 'male_xuhan';
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
-      initVoices();
+      initVoices(); // Use hardcoded voices directly
       checkServer();
     });
 
@@ -521,11 +592,16 @@
       const grid = document.getElementById('voice-selector');
       const list = document.getElementById('voice-list');
       
-      voices.forEach(v => {
+      const voiceList = voices;
+      
+      voiceList.forEach(v => {
+        const name = v.name || v.title || '未知';
+        const desc = v.description || v.desc || '';
         const item = `<div class="voice-item ${v.id === selectedVoice ? 'selected' : ''}" 
           onclick="selectVoice('${v.id}')" data-id="${v.id}">
-          <div class="name">${v.name}</div>
-          <div class="desc">${v.desc}</div>
+          <div class="name">${name}</div>
+          <div class="desc">${desc}</div>
+          <button class="play-btn" onclick="playSample('${v.id}',event)">▶ 试听</button>
         </div>`;
         grid.innerHTML += item;
         list.innerHTML += item;
@@ -659,6 +735,102 @@
         }
       } catch (e) {
         console.log('Load projects failed:', e);
+      }
+    }
+
+    // Play sample audio
+    async function playSample(voiceId, event) {
+      event.stopPropagation();
+      
+      const btn = event.target;
+      btn.textContent = '...';
+      btn.disabled = true;
+      
+      try {
+        const res = await fetch(APIS.tts + '/api/voices/' + voiceId + '/sample', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'}
+        });
+        
+        const data = await res.json();
+        
+        if (data.audio) {
+          const audio = new Audio('data:audio/mp3;base64,' + data.audio);
+          audio.play();
+          showToast('▶ 正在播放: ' + data.voiceName);
+          
+          audio.onended = () => {
+            btn.textContent = '▶ 试听';
+            btn.disabled = false;
+          };
+        } else {
+          showToast(data.error || '生成失败');
+          btn.textContent = '▶ 试听';
+          btn.disabled = false;
+        }
+      } catch (e) {
+        showToast('请求失败: ' + e.message);
+        btn.textContent = '▶ 试听';
+        btn.disabled = false;
+      }
+    }
+
+    // Show selected audio name
+    function showAudioName(input) {
+      if (input.files && input.files[0]) {
+        document.getElementById('audio-name').textContent = '已选择: ' + input.files[0].name;
+      }
+    }
+
+    // Clone voice
+    async function cloneVoice() {
+      const fileInput = document.getElementById('clone-audio');
+      const name = document.getElementById('clone-name').value.trim();
+      const desc = document.getElementById('clone-desc').value.trim();
+      
+      if (!fileInput.files || !fileInput.files[0]) {
+        showToast('请选择参考音频文件');
+        return;
+      }
+      
+      if (!name) {
+        showToast('请输入音色名称');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('audio', fileInput.files[0]);
+      formData.append('name', name);
+      formData.append('description', desc);
+
+      const loading = document.getElementById('clone-loading');
+      const result = document.getElementById('clone-result');
+      
+      loading.classList.add('active');
+      result.style.display = 'none';
+
+      try {
+        const res = await fetch(API_BASE + ':3000/api/clone-voice', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await res.json();
+        
+        if (data.success) {
+          document.getElementById('clone-info').innerHTML = `
+            <p>音色名称: ${data.voice?.name}</p>
+            <p>音频文件: ${data.voice?.audioFile}</p>
+          `;
+          result.style.display = 'block';
+          showToast('✅ 克隆成功！');
+        } else {
+          showToast(data.message || '克隆失败');
+        }
+      } catch (e) {
+        showToast('请求失败: ' + e.message);
+      } finally {
+        loading.classList.remove('active');
       }
     }
 
