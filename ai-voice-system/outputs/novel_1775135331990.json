@@ -1,0 +1,29 @@
+{
+  "id": "novel_1775135331990",
+  "name": "test",
+  "content": "「天下间有修行者」陆少蘅道。\n陆少蘅说道：「我不需要」",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "「天下间有修行者」陆少蘅道。\n陆少蘅说道：「我不需要」"
+    }
+  ],
+  "createdAt": "2026-04-02T13:08:51.990Z",
+  "status": "analyzed",
+  "characters": [
+    {
+      "name": "陆少蘅",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    }
+  ],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "对话",
+      "description": "第1节 - 对话场景"
+    }
+  ]
+}

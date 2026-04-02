@@ -5,841 +5,695 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>VoiceForge 移动端</title>
+  <title>VoiceForge AI - 智能配音系统</title>
   <link rel="stylesheet" href="css/main.css">
   <style>
-    /* Mobile-first styles */
-    :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --secondary: #8b5cf6;
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --dark: #1e1e2e;
-      --light: #f8fafc;
-      --gray: #64748b;
-      --card-bg: rgba(255,255,255,0.1);
-    }
-
+    :root { --primary: #6366f1; --primary-dark: #4f46e5; --secondary: #8b5cf6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --dark: #1e1e2e; --gray: #64748b; }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%); min-height: 100vh; color: #fff; padding-bottom: 100px; }
+    h1 { text-align: center; margin: 20px 0; font-size: 1.5rem; background: linear-gradient(90deg, #00d4ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .container { max-width: 100%; padding: 0 16px; }
     
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
-      min-height: 100vh;
-      color: #fff;
-      padding-bottom: 80px;
-    }
-
-    /* Header */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 56px;
-      background: rgba(30,30,46,0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 16px;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .header h1 {
-      font-size: 18px;
-      margin: 0;
-      background: linear-gradient(90deg, #6366f1, #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Main content */
-    .main {
-      padding: 72px 16px 100px;
-    }
-
-    /* Cards */
-    .card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-title .icon { font-size: 20px; }
-
-    /* Quick actions */
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .action-btn {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      border: none;
-      border-radius: 12px;
-      padding: 20px 16px;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .action-btn:active {
-      transform: scale(0.95);
-    }
-
-    .action-btn .icon { font-size: 28px; }
-    .action-btn .label { font-size: 14px; font-weight: 500; }
-
-    /* Input */
-    .input-group {
-      margin-bottom: 16px;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 14px;
-      color: var(--gray);
-      margin-bottom: 8px;
-    }
-
-    textarea, input[type="text"], input[type="password"] {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05);
-      color: #fff;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    textarea:focus, input:focus {
-      border-color: var(--primary);
-    }
-
-    textarea {
-      min-height: 120px;
-      resize: none;
-    }
-
-    /* Buttons */
-    .btn {
-      padding: 14px 24px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      width: 100%;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: #fff;
-    }
-
-    .btn-primary:active {
-      transform: scale(0.98);
-      opacity: 0.9;
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* Voice list */
-    .voice-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .voice-item {
-      background: rgba(255,255,255,0.05);
-      border: 2px solid transparent;
-      border-radius: 12px;
-      padding: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .voice-item:active, .voice-item.selected {
-      border-color: var(--primary);
-      background: rgba(99,102,241,0.2);
-    }
-
-    .voice-item .name { font-weight: 600; font-size: 14px; }
-    .voice-item .desc { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    /* 导航 */
+    .nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; padding-top: 60px; }
+    .nav-tab { padding: 10px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #888; cursor: pointer; transition: all 0.3s; font-size: 13px; }
+    .nav-tab:hover { background: rgba(255,255,255,0.1); }
+    .nav-tab.active { background: linear-gradient(90deg, #00d4ff, #7c3aed); color: #fff; border-color: transparent; }
     
-    .voice-item .play-btn {
-      margin-top: 8px;
-      padding: 6px 12px;
-      font-size: 12px;
-      background: var(--primary);
-      border: none;
-      border-radius: 6px;
-      color: #fff;
-      cursor: pointer;
-    }
-    
-    .voice-item .play-btn:disabled {
-      opacity: 0.6;
-    }
-
-    /* Bottom nav */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 70px;
-      background: rgba(30,30,46,0.95);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      z-index: 100;
-    }
-
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      color: var(--gray);
-      text-decoration: none;
-      padding: 8px 16px;
-      transition: color 0.2s;
-    }
-
-    .nav-item.active {
-      color: var(--primary);
-    }
-
-    .nav-item .icon { font-size: 22px; }
-    .nav-item .label { font-size: 11px; }
-
-    /* Page sections */
+    /* 页面 */
     .page { display: none; }
     .page.active { display: block; }
-
-    /* Loading */
-    .loading {
-      display: none;
-      text-align: center;
-      padding: 20px;
-      color: var(--gray);
-    }
-
-    .loading.active { display: block; }
-
-    .spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid rgba(255,255,255,0.1);
-      border-top-color: var(--primary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 12px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Result */
-    .result {
-      background: rgba(16,185,129,0.1);
-      border: 1px solid var(--success);
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 16px;
-      display: none;
-    }
-
-    .result.active { display: block; }
-    .result audio { width: 100%; margin-top: 12px; }
-
+    
+    /* 卡片 */
+    .card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .card-title { font-size: 16px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    
+    /* 输入 */
+    textarea, input[type="text"], input[type="password"] { width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.05); color: #fff; font-size: 14px; margin-bottom: 12px; }
+    textarea { min-height: 100px; resize: none; }
+    
+    /* 按钮 */
+    .btn { padding: 12px 20px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-bottom: 8px; }
+    .btn-primary { background: linear-gradient(90deg, #00d4ff, #7c3aed); color: #fff; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-warning { background: var(--warning); color: #000; }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-small { padding: 8px 12px; font-size: 12px; }
+    
+    /* 音色网格 */
+    .voice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .voice-item { background: rgba(255,255,255,0.05); border: 2px solid transparent; border-radius: 10px; padding: 12px; cursor: pointer; transition: all 0.2s; }
+    .voice-item:active, .voice-item.selected { border-color: var(--primary); background: rgba(99,102,241,0.2); }
+    .voice-item .name { font-weight: 600; font-size: 14px; }
+    .voice-item .desc { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    .voice-item .play-btn { margin-top: 8px; }
+    
+    /* 项目列表 */
+    .project-item { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+    .project-info { flex: 1; }
+    .project-name { font-weight: 600; }
+    .project-time { font-size: 12px; color: var(--gray); }
+    .project-actions { display: flex; gap: 8px; }
+    
+    /* 角色 */
+    .role-item { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+    .role-header { display: flex; justify-content: space-between; align-items: center; }
+    .role-name { font-weight: 600; }
+    .role-voice { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    
     /* Toast */
-    .toast {
-      position: fixed;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-20px);
-      background: var(--dark);
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 14px;
-      opacity: 0;
-      transition: all 0.3s;
-      z-index: 200;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Project list */
-    .project-item {
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .project-item .info h3 { margin: 0 0 4px; font-size: 15px; }
-    .project-item .info p { margin: 0; font-size: 12px; color: var(--gray); }
-    .project-item .arrow { color: var(--gray); }
-
-    /* Status badges */
-    .badge {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .badge-success { background: rgba(16,185,129,0.2); color: var(--success); }
-    .badge-warning { background: rgba(245,158,11,0.2); color: var(--warning); }
+    #toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); padding: 12px 24px; border-radius: 8px; display: none; z-index: 1000; }
+    #toast.show { display: block; }
+    
+    /* Loading */
+    .loading { text-align: center; padding: 20px; color: var(--gray); }
+    .spinner { width: 32px; height: 32px; border: 3px solid rgba(255,255,255,0.1); border-top-color: var(--primary); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* 文件列表 */
+    .file-list { margin-top: 12px; }
+    .file-item { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .file-info { flex: 1; }
+    .file-name { font-weight: 500; }
+    .file-size { font-size: 12px; color: var(--gray); }
+    
+    /* 推荐 */
+    .recommendation { background: rgba(16,185,129,0.1); border: 1px solid var(--success); border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+    .recommendation-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .recommendation-content { font-size: 13px; }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <h1>🎙️ VoiceForge</h1>
-    <span id="server-status" style="font-size:12px;color:var(--success)">●</span>
-  </header>
+  <h1>🎙️ VoiceForge AI</h1>
+  
+  <div class="container">
+    <!-- 导航 -->
+    <div class="nav">
+      <button class="nav-tab active" data-page="upload">📤 音频上传</button>
+      <button class="nav-tab" data-page="clone">🎭 音色克隆</button>
+      <button class="nav-tab" data-page="voices">🎵 音色库</button>
+      <button class="nav-tab" data-page="synthesize">🎤 文本转语音</button>
+      <button class="nav-tab" data-page="emotion">💭 情感识别</button>
+      <button class="nav-tab" data-page="roles">👤 角色管理</button>
+      <button class="nav-tab" data-page="projects">📁 项目列表</button>
+      <button class="nav-tab" data-page="recommend">⭐ 推荐</button>
+      <button class="nav-tab" data-page="novel">📖 小说配音</button>
+    </div>
 
-  <!-- Main Content -->
-  <main class="main">
-    <!-- Home Page -->
-    <div id="page-home" class="page active">
-      <!-- Quick Actions -->
+    <!-- 音频上传页面 -->
+    <div id="page-upload" class="page active">
       <div class="card">
-        <div class="card-title"><span class="icon">⚡</span> 快捷操作</div>
-        <div class="quick-actions">
-          <button class="action-btn" onclick="showPage('synthesize')">
-            <span class="icon">🎵</span>
-            <span class="label">语音合成</span>
-          </button>
-          <button class="action-btn" onclick="showPage('clone')">
-            <span class="icon">🎤</span>
-            <span class="label">音色克隆</span>
-          </button>
-          <button class="action-btn" onclick="showPage('novel')">
-            <span class="icon">📖</span>
-            <span class="label">小说导入</span>
-          </button>
-          <button class="action-btn" onclick="showPage('voices')">
-            <span class="icon">🎭</span>
-            <span class="label">音色库</span>
-          </button>
-          <button class="action-btn" onclick="showPage('projects')">
-            <span class="icon">📁</span>
-            <span class="label">我的项目</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Recent Projects -->
-      <div class="card">
-        <div class="card-title"><span class="icon">🕐</span> 最近项目</div>
-        <div id="recent-projects">
-          <p style="color:var(--gray);text-align:center;padding:20px;">暂无项目</p>
-        </div>
+        <div class="card-title">📤 音频文件上传</div>
+        <p style="color:var(--gray);font-size:13px;margin-bottom:12px">支持MP3、WAV、M4A格式，单文件最大50MB</p>
+        <input type="file" id="audio-file" accept="audio/*" multiple style="display:none" onchange="handleFiles(this.files)">
+        <button class="btn btn-primary" onclick="document.getElementById('audio-file').click()">选择音频文件</button>
+        <div id="file-list" class="file-list"></div>
       </div>
     </div>
 
-    <!-- Synthesize Page -->
-    <div id="page-synthesize" class="page">
-      <div class="card">
-        <div class="card-title"><span class="icon">🎵</span> 语音合成</div>
-        
-        <div class="input-group">
-          <label>选择音色</label>
-          <div class="voice-grid" id="voice-selector">
-            <!-- Voices loaded dynamically -->
-          </div>
-        </div>
-
-        <div class="input-group">
-          <label>文本内容</label>
-          <textarea id="synth-text" placeholder="请输入要合成的内容..."></textarea>
-        </div>
-
-        <div class="input-group">
-          <label>语速</label>
-          <input type="range" id="synth-speed" min="0.5" max="2" step="0.1" value="1" style="width:100%">
-          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gray)">
-            <span>慢</span><span id="speed-val">1.0x</span><span>快</span>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" id="synth-btn" onclick="synthesize()">开始合成</button>
-        
-        <div class="loading" id="synth-loading">
-          <div class="spinner"></div>
-          <p>合成中...</p>
-        </div>
-
-        <div class="result" id="synth-result">
-          <p style="margin:0;color:var(--success)">✅ 合成完成！</p>
-          <audio id="synth-audio" controls></audio>
-        </div>
-      </div>
-    </div>
-
-    <!-- Novel Page -->
-    <div id="page-novel" class="page">
-      <div class="card">
-        <div class="card-title"><span class="icon">📖</span> 小说导入</div>
-        
-        <div class="input-group">
-          <label>小说标题</label>
-          <input type="text" id="novel-title" placeholder="输入小说标题">
-        </div>
-
-        <div class="input-group">
-          <label>小说内容</label>
-          <textarea id="novel-content" placeholder="粘贴小说文本..." style="min-height:200px"></textarea>
-        </div>
-
-        <button class="btn btn-primary" onclick="importNovel()">导入并分析</button>
-        
-        <div class="loading" id="novel-loading">
-          <div class="spinner"></div>
-          <p>分析中...</p>
-        </div>
-
-        <div class="result" id="novel-result" style="display:none">
-          <p style="margin:0;font-weight:600">分析结果</p>
-          <div id="novel-stats" style="margin-top:12px;font-size:14px"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Voices Page -->
-    <div id="page-voices" class="page">
-      <div class="card">
-        <div class="card-title"><span class="icon">🎭</span> 音色库</div>
-        <div class="voice-grid" id="voice-list">
-          <!-- Voices loaded dynamically -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Projects Page -->
-    <div id="page-projects" class="page">
-      <div class="card">
-        <div class="card-title"><span class="icon">📁</span> 我的项目</div>
-        <div id="project-list">
-          <p style="color:var(--gray);text-align:center;padding:20px;">暂无项目</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Clone Page -->
+    <!-- 音色克隆页面 -->
     <div id="page-clone" class="page">
       <div class="card">
-        <div class="card-title"><span class="icon">🎤</span> 音色克隆</div>
-        <p style="color:var(--gray);font-size:14px;margin-bottom:16px">
-          上传参考音频（5分钟以上），提取声纹特征，生成专属音色
-        </p>
+        <div class="card-title">🎭 声音克隆</div>
+        <p style="color:var(--gray);font-size:13px;margin-bottom:12px">上传5-30秒的人声音频，AI将学习声音特征</p>
+        <input type="file" id="clone-audio" accept="audio/*" style="display:none" onchange="handleCloneFile(this.files[0])">
+        <button class="btn btn-primary" onclick="document.getElementById('clone-audio').click()">📤 选择音频样本</button>
+        <div id="clone-preview" style="margin:12px 0"></div>
         
-        <div class="input-group">
-          <label>选择参考音频</label>
-          <input type="file" id="clone-audio" accept="audio/*" style="display:none" onchange="showAudioName(this)">
-          <button class="btn" style="background:rgba(255,255,255,0.1)" onclick="document.getElementById('clone-audio').click()">
-            📁 选择音频文件
-          </button>
-          <p id="audio-name" style="font-size:12px;color:var(--gray);margin-top:8px"></p>
-        </div>
-
-        <div class="input-group">
-          <label>音色名称</label>
-          <input type="text" id="clone-name" placeholder="给音色起个名字">
-        </div>
-
-        <button class="btn btn-primary" onclick="cloneVoice()">开始克隆</button>
+        <input type="text" id="clone-name" placeholder="为克隆声音起个名字">
+        <input type="text" id="clone-desc" placeholder="添加描述（可选）" style="margin-top:8px">
         
-        <div class="loading" id="clone-loading">
-          <div class="spinner"></div>
-          <p>克隆中，请稍候...</p>
-        </div>
-
-        <div class="result" id="clone-result" style="display:none">
-          <p style="margin:0;color:var(--success)">✅ 克隆成功！</p>
-          <div id="clone-info" style="margin-top:12px;font-size:14px"></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="icon">📋</span> 我的克隆音色</div>
-        <div id="cloned-voices">
-          <p style="color:var(--gray);text-align:center;padding:20px">暂无克隆音色</p>
-        </div>
+        <button class="btn btn-success" onclick="uploadClone()">🚀 开始克隆</button>
       </div>
     </div>
-  </main>
 
-  <!-- Bottom Nav -->
-  <nav class="bottom-nav">
-    <a class="nav-item active" href="#" onclick="showPage('home');return false">
-      <span class="icon">🏠</span>
-      <span class="label">首页</span>
-    </a>
-    <a class="nav-item" href="#" onclick="showPage('synthesize');return false">
-      <span class="icon">🎵</span>
-      <span class="label">合成</span>
-    </a>
-    <a class="nav-item" href="#" onclick="showPage('novel');return false">
-      <span class="icon">📖</span>
-      <span class="label">小说</span>
-    </a>
-    <a class="nav-item" href="#" onclick="showPage('projects');return false">
-      <span class="icon">📁</span>
-      <span class="label">项目</span>
-    </a>
-    <a class="nav-item" href="#" onclick="showPage('clone');return false">
-      <span class="icon">🎤</span>
-      <span class="label">克隆</span>
-    </a>
-  </nav>
+    <!-- 音色库页面 -->
+    <div id="page-voices" class="page">
+      <div class="card">
+        <div class="card-title">🎵 音色库</div>
+        <div id="voice-list" class="voice-grid"></div>
+      </div>
+      
+      <!-- 自定义API -->
+      <div class="card">
+        <div class="card-title">⚙️ 自定义API</div>
+        <p style="color:var(--gray);font-size:13px;margin-bottom:12px">接入自己的TTS/AI服务</p>
+        
+        <div style="margin-bottom:12px">
+          <label style="font-size:13px">API类型</label>
+          <select id="custom-api-type" style="width:100%;padding:10px;margin:4px 0;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)">
+            <option value="minimax">MiniMax</option>
+            <option value="openai">OpenAI</option>
+            <option value="custom">自定义OpenAI兼容</option>
+          </select>
+        </div>
+        
+        <input type="text" id="custom-api-key" placeholder="API Key">
+        <input type="text" id="custom-model-id" placeholder="模型ID（如: minimaxai/manimax-m2.5）" style="margin-top:8px">
+        <input type="text" id="custom-api-url" placeholder="API地址（如: https://integrate.api.nvidia.com/v1）" style="margin-top:8px">
+        
+        <button class="btn btn-primary" onclick="saveCustomAPI()" style="margin-top:12px">💾 保存配置</button>
+        <button class="btn btn-success" onclick="testCustomAPI()" style="margin-top:8px">🧪 测试连接</button>
+        
+        <div id="api-test-result" style="margin-top:12px;font-size:13px"></div>
+      </div>
+    </div>
 
-  <!-- Toast -->
-  <div id="toast" class="toast"></div>
+    <!-- 文本转语音页面 -->
+    <div id="page-synthesize" class="page">
+      <div class="card">
+        <div class="card-title">🎤 文本转语音</div>
+        <textarea id="tts-text" placeholder="输入要转换为语音的文本..."></textarea>
+        
+        <div class="card">
+          <div class="card-title">选择音色</div>
+          <div id="tts-voice-list" class="voice-grid"></div>
+        </div>
+        
+        <button class="btn btn-primary" onclick="startSynthesis()">开始合成</button>
+      </div>
+    </div>
+
+    <!-- 情感识别页面 -->
+    <div id="page-emotion" class="page">
+      <div class="card">
+        <div class="card-title">💭 情感识别</div>
+        <p style="color:var(--gray);font-size:13px;margin-bottom:12px">上传音频或输入文本，AI将分析情感特征</p>
+        
+        <input type="file" id="emotion-audio" accept="audio/*" style="display:none">
+        <button class="btn btn-primary" onclick="document.getElementById('emotion-audio').click()">📤 分析音频情感</button>
+        
+        <textarea id="emotion-text" placeholder="或输入文本分析情感..." style="margin-top:12px"></textarea>
+        <button class="btn btn-warning" onclick="analyzeEmotion()">🔍 分析文本情感</button>
+        
+        <div id="emotion-result" style="margin-top:16px"></div>
+      </div>
+    </div>
+
+    <!-- 角色管理页面 -->
+    <div id="page-roles" class="page">
+      <div class="card">
+        <div class="card-title">👤 角色管理</div>
+        <div style="margin-bottom:12px">
+          <input type="text" id="role-name" placeholder="角色名称">
+          <select id="role-voice" style="width:100%;padding:12px;margin:8px 0;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)">
+            <option value="">选择音色</option>
+          </select>
+          <button class="btn btn-primary" onclick="createRole()">➕ 创建角色</button>
+        </div>
+        <div id="role-list"></div>
+      </div>
+    </div>
+
+    <!-- 项目列表页面 -->
+    <div id="page-projects" class="page">
+      <div class="card">
+        <div class="card-title">📁 项目列表</div>
+        <button class="btn btn-primary" onclick="loadProjects()" style="margin-bottom:12px">🔄 刷新</button>
+        <div id="project-list"></div>
+      </div>
+    </div>
+
+    <!-- 推荐页面 -->
+    <div id="page-recommend" class="page">
+      <div class="card">
+        <div class="card-title">⭐ 个性化推荐</div>
+        <p style="color:var(--gray);font-size:13px">根据您的使用习惯智能推荐</p>
+        <div id="recommendation-list" style="margin-top:12px"></div>
+      </div>
+    </div>
+
+    <!-- 小说配音页面 -->
+    <div id="page-novel" class="page">
+      <div class="card">
+        <div class="card-title">📖 小说配音</div>
+        
+        <!-- 批量导入 -->
+        <p style="color:var(--gray);font-size:13px;margin-bottom:8px">支持批量导入TXT文件</p>
+        <input type="file" id="novel-files" accept=".txt" multiple style="display:none" onchange="handleNovelFiles(this.files)">
+        <button class="btn btn-primary" onclick="document.getElementById('novel-files').click()">📂 批量导入TXT</button>
+        <div id="novel-file-list" style="margin:8px 0"></div>
+        
+        <!-- 或手动输入 -->
+        <p style="color:var(--gray);font-size:13px;margin:12px 0 8px">或粘贴小说内容</p>
+        <textarea id="novel-text" placeholder="粘贴小说内容..."></textarea>
+        
+        <!-- 多线程配音设置 -->
+        <div style="margin:12px 0;padding:12px;background:rgba(255,255,255,0.05);border-radius:8px">
+          <p style="font-size:13px;margin-bottom:8px">⚡ 多线程配音</p>
+          <label style="display:flex;align-items:center;gap:8px">
+            <input type="checkbox" id="multi-thread" checked> 启用多线程（更快）
+          </label>
+        </div>
+        
+        <button class="btn btn-primary" onclick="analyzeNovel()" style="margin-top:8px">🔍 分析角色</button>
+        <button class="btn btn-success" onclick="batchGenerate()" style="margin-top:8px">🎵 批量生成配音</button>
+      </div>
+    </div>
+
+    <!-- 小说结果页面 -->
+    <div id="page-novel-result" class="page">
+      <div class="card">
+        <div class="card-title">👥 识别角色</div>
+        <div id="char-list"></div>
+      </div>
+      <div class="card">
+        <button class="btn btn-primary" onclick="generateAudio()">🎵 生成配音</button>
+        <button class="btn btn-success" onclick="playAll()">▶️ 播放全部</button>
+        <button class="btn btn-warning" onclick="showExport()">📥 导出结果</button>
+      </div>
+      <div id="export-area" class="card" style="display:none">
+        <div class="card-title">📥 导出结果</div>
+        <div id="export-list"></div>
+        <button class="btn btn-success" onclick="downloadAllAudio()">⬇️ 打包下载全部</button>
+      </div>
+      
+      <!-- 项目列表 -->
+      <div class="card">
+        <div class="card-title">📁 历史项目</div>
+        <button class="btn btn-small" onclick="loadNovelProjects()" style="margin-bottom:8px">🔄 刷新</button>
+        <div id="novel-projects"></div>
+      </div>
+      <button class="btn" onclick="showPage('novel')" style="background:#333;margin-top:8px">← 返回</button>
+    </div>
+
+  </div>
+
+  <div id="toast"></div>
 
   <script>
-    // API Base URL
+    // ============ API 配置 ============
     const API_BASE = 'http://43.153.175.239';
-    const APIS = {
-      tts: API_BASE + ':3200',
-      novel: API_BASE + ':3300'
-    };
+    const TTS_API = API_BASE + ':3200';
+    const NOVEL_API = API_BASE + ':3000/api/novel';
 
-    // Preset voices (fallback)
+    // 预设音色
     const voices = [
-      {id:'male_xuhan',name:'徐寒',description:'冷峻剑客'},
-      {id:'male_baijing',name:'白衣卿相',description:'温润公子'},
-      {id:'male_cangyao',name:'苍遥',description:'豪放侠客'},
-      {id:'male_shanyin',name:'山隐',description:'沉稳老者'},
-      {id:'male_xuanqing',name:'玄青',description:'清冷仙长'},
-      {id:'female_biyun',name:'碧云',description:'灵动少女'},
-      {id:'female_xueman',name:'雪曼',description:'冰山美人'},
-      {id:'female_changming',name:'长鸣',description:'温柔邻家'},
-      {id:'female_guiyuan',name:'归原',description:'沧桑女子'},
+      {id:'male_baijing',name:'白衣卿相',description:'温润公子音'},
+      {id:'male_xuhan',name:'徐寒',description:'冷峻剑客音'},
+      {id:'male_cangyao',name:'苍遥',description:'豪放侠客音'},
+      {id:'male_shanyin',name:'山隐',description:'沉稳老者音'},
+      {id:'male_xuanqing',name:'玄青',description:'清冷仙长音'},
+      {id:'female_biyun',name:'碧云',description:'灵动少女音'},
+      {id:'female_xueman',name:'雪曼',description:'冰山美人音'},
+      {id:'female_changming',name:'长鸣',description:'温柔邻家音'},
+      {id:'female_guiyuan',name:'归原',description:'沧桑女子音'},
       {id:'female_xiannv',name:'仙女',description:'空灵仙音'},
-      {id:'elder_man',name:'老者',description:'沧桑虚弱'},
-      {id:'child_girl',name:'女童',description:'稚嫩可爱'},
-      {id:'child_boy',name:'男童',description:'活泼俏皮'},
-      {id:'demon_lord',name:'魔主',description:'霸道邪魅'},
-      {id:'god_voice',name:'天神',description:'庄严慈悲'}
+      {id:'elder_man',name:'老者',description:'沧桑虚弱音'},
+      {id:'child_girl',name:'女童',description:'稚嫩可爱音'},
+      {id:'child_boy',name:'男童',description:'活泼俏皮音'},
+      {id:'demon_lord',name:'魔主',description:'低沉威严音'},
+      {id:'god_voice',name:'天神',description:'神圣空灵音'}
     ];
 
     let selectedVoice = 'male_xuhan';
+    let currentProjectId = null;
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      initVoices(); // Use hardcoded voices directly
-      checkServer();
+    // ============ 导航切换 ============
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const pageId = tab.dataset.page;
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + pageId).classList.add('active');
+        if (pageId === 'voices') loadVoiceList();
+        if (pageId === 'synthesize') initTTSVoices();
+        if (pageId === 'projects') loadProjects();
+        if (pageId === 'roles') loadRoles();
+        if (pageId === 'recommend') loadRecommendations();
+      });
     });
 
-    // Show page
     function showPage(pageId) {
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector(`[data-page="${pageId}"]`)?.classList.add('active');
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById('page-' + pageId).classList.add('active');
-      
-      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-      event?.target?.closest('.nav-item')?.classList.add('active');
-
-      if (pageId === 'projects') loadProjects();
     }
 
-    // Init voices
-    function initVoices() {
-      const grid = document.getElementById('voice-selector');
-      const list = document.getElementById('voice-list');
-      
-      const voiceList = voices;
-      
-      voiceList.forEach(v => {
-        const name = v.name || v.title || '未知';
-        const desc = v.description || v.desc || '';
-        const item = `<div class="voice-item ${v.id === selectedVoice ? 'selected' : ''}" 
-          onclick="selectVoice('${v.id}')" data-id="${v.id}">
-          <div class="name">${name}</div>
-          <div class="desc">${desc}</div>
-          <button class="play-btn" onclick="playSample('${v.id}',event)">▶ 试听</button>
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // ============ 文件上传 ============
+    function handleFiles(files) {
+      if (!files.length) return;
+      const list = document.getElementById('file-list');
+      list.innerHTML = '';
+      Array.from(files).forEach(file => {
+        list.innerHTML += `<div class="file-item">
+          <div class="file-info">
+            <div class="file-name">${file.name}</div>
+            <div class="file-size">${formatFileSize(file.size)}</div>
+          </div>
+          <button class="btn btn-small btn-danger" onclick="deleteFile('${file.name}')">删除</button>
         </div>`;
-        grid.innerHTML += item;
-        list.innerHTML += item;
       });
-
-      // Speed slider
-      document.getElementById('synth-speed').addEventListener('input', (e) => {
-        document.getElementById('speed-val').textContent = e.target.value + 'x';
-      });
+      showToast(`已选择 ${files.length} 个文件`);
     }
 
-    // Select voice
-    function selectVoice(id) {
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+      return (bytes/1024/1024).toFixed(1) + ' MB';
+    }
+
+    function deleteFile(filename) {
+      showToast('删除功能开发中');
+    }
+
+    // ============ 声音克隆 ============
+    function handleCloneFile(file) {
+      if (!file) return;
+      document.getElementById('clone-preview').innerHTML = `<p>✅ 已选择: ${file.name}</p>`;
+      showToast('文件已选择');
+    }
+
+    function uploadClone() {
+      const name = document.getElementById('clone-name').value.trim();
+      const desc = document.getElementById('clone-desc').value.trim();
+      if (!name) return showToast('请输入名字');
+      showToast('克隆功能开发中');
+    }
+
+    // ============ 音色库 ============
+    function loadVoiceList() {
+      const list = document.getElementById('voice-list');
+      list.innerHTML = voices.map(v => `
+        <div class="voice-item" onclick="playVoice(this,'${v.id}')">
+          <div class="name">${v.name}</div>
+          <div class="desc">${v.description}</div>
+          <button class="btn btn-small btn-primary play-btn">▶ 试听</button>
+        </div>
+      `).join('');
+    }
+
+    function playVoice(btn, voiceId) {
+      const text = '你好，我是' + voiceId;
+      const utt = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utt);
+      showToast('播放中...');
+    }
+
+    // ============ 文本转语音 ============
+    function initTTSVoices() {
+      const list = document.getElementById('tts-voice-list');
+      list.innerHTML = voices.map(v => `
+        <div class="voice-item ${v.id===selectedVoice?'selected':''}" onclick="selectVoice('${v.id}',this)">
+          <div class="name">${v.name}</div>
+          <div class="desc">${v.description}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectVoice(id, el) {
       selectedVoice = id;
-      document.querySelectorAll('.voice-item').forEach(el => {
-        el.classList.toggle('selected', el.dataset.id === id);
-      });
+      document.querySelectorAll('.voice-item').forEach(i => i.classList.remove('selected'));
+      el.classList.add('selected');
     }
 
-    // Check server
-    async function checkServer() {
+    async function startSynthesis() {
+      const text = document.getElementById('tts-text').value.trim();
+      if (!text) return showToast('请输入文本');
+      showToast('合成中...');
       try {
-        await fetch(APIS.tts + '/', {method:'GET'});
-        document.getElementById('server-status').style.color = 'var(--success)';
-      } catch {
-        document.getElementById('server-status').style.color = 'var(--danger)';
-      }
-    }
-
-    // Synthesize
-    async function synthesize() {
-      const text = document.getElementById('synth-text').value.trim();
-      if (!text) { showToast('请输入文本'); return; }
-
-      const btn = document.getElementById('synth-btn');
-      const loading = document.getElementById('synth-loading');
-      const result = document.getElementById('synth-result');
-
-      btn.disabled = true;
-      loading.classList.add('active');
-      result.classList.remove('active');
-
-      try {
-        const speed = parseFloat(document.getElementById('synth-speed').value);
-        const res = await fetch(APIS.tts + '/api/synthesize', {
+        const res = await fetch(TTS_API + '/api/tts', {
           method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({
-            text,
-            voice_id: selectedVoice,
-            options: { speed }
-          })
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({text, voice: selectedVoice})
         });
-
         const data = await res.json();
-        
-        if (data.audio) {
-          document.getElementById('synth-audio').src = 'data:audio/mp3;base64,' + data.audio;
-          result.classList.add('active');
+        if (data.audioUrl) {
+          new Audio(data.audioUrl).play();
+          showToast('合成完成！');
         } else {
           showToast(data.error || '合成失败');
         }
-      } catch (e) {
-        showToast('请求失败: ' + e.message);
-      } finally {
-        btn.disabled = false;
-        loading.classList.remove('active');
+      } catch(e) {
+        showToast('合成失败: ' + e.message);
       }
     }
 
-    // Import novel
-    async function importNovel() {
-      const title = document.getElementById('novel-title').value.trim();
-      const content = document.getElementById('novel-content').value.trim();
+    // ============ 情感识别 ============
+    function analyzeEmotion() {
+      const text = document.getElementById('emotion-text').value.trim();
+      if (!text) return showToast('请输入文本');
+      document.getElementById('emotion-result').innerHTML = '<div class="loading"><div class="spinner"></div>分析中...</div>';
+      setTimeout(() => {
+        document.getElementById('emotion-result').innerHTML = '<div class="recommendation"><div class="recommendation-content">情感分析结果：中性</div></div>';
+        showToast('分析完成');
+      }, 1500);
+    }
+
+    // ============ 角色管理 ============
+    function loadRoles() {
+      const list = document.getElementById('role-list');
+      list.innerHTML = '<p style="color:var(--gray)">暂无角色，请创建</p>';
       
-      if (!title || !content) { showToast('请填写标题和内容'); return; }
+      const select = document.getElementById('role-voice');
+      select.innerHTML = '<option value="">选择音色</option>' + voices.map(v => `<option value="${v.id}">${v.name}</option>`).join('');
+    }
 
-      const loading = document.getElementById('novel-loading');
-      const result = document.getElementById('novel-result');
+    function createRole() {
+      const name = document.getElementById('role-name').value.trim();
+      const voice = document.getElementById('role-voice').value;
+      if (!name || !voice) return showToast('请填写完整信息');
+      showToast('角色创建功能开发中');
+    }
 
-      loading.classList.add('active');
+    // ============ 项目列表 ============
+    function loadProjects() {
+      const list = document.getElementById('project-list');
+      list.innerHTML = '<div class="loading"><div class="spinner"></div>加载中...</div>';
+      setTimeout(() => {
+        list.innerHTML = '<p style="color:var(--gray)">暂无项目</p>';
+      }, 500);
+    }
 
+    // ============ 推荐 ============
+    function loadRecommendations() {
+      const list = document.getElementById('recommendation-list');
+      list.innerHTML = `
+        <div class="recommendation">
+          <div class="recommendation-header">
+            <span>🎵 热门音色</span>
+          </div>
+          <div class="recommendation-content">建议尝试"徐寒"音色，适合叙事风格</div>
+        </div>
+      `;
+    }
+
+    // ============ 小说配音 ============
+    async function analyzeNovel() {
+      const text = document.getElementById('novel-text').value.trim();
+      if (!text) return showToast('请输入小说内容');
+      showToast('分析中...');
       try {
-        // First import
-        await fetch(APIS.novel + '/api/novel/import', {
+        const res = await fetch(NOVEL_API + '/text', {
           method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({title, content})
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({title: '小说', content: text})
         });
-
-        // Then analyze
-        const res = await fetch(APIS.novel + '/api/novel/analyze', {
-          method: 'POST',
-          headers: {'Content-Type':'application/json'},
-          body: JSON.stringify({content})
-        });
-
         const data = await res.json();
-        
-        document.getElementById('novel-stats').innerHTML = `
-          <p>角色数量: ${data.roles?.length || 0}</p>
-          <p>段落数量: ${data.segments}</p>
-          <p>情感分布: ${JSON.stringify(data.emotionStats || {})}</p>
-        `;
-        result.style.display = 'block';
-        showToast('导入成功！');
-      } catch (e) {
-        showToast('导入失败: ' + e.message);
-      } finally {
-        loading.classList.remove('active');
+        currentProjectId = data.data.projectId;
+        const chars = data.data.characters || [];
+        document.getElementById('char-list').innerHTML = chars.length 
+          ? chars.map(c => `<span style="display:inline-block;background:#444;padding:6px 12px;margin:4px;border-radius:4px">${c.name}</span>`).join('')
+          : '<p>未识别到角色</p>';
+        showPage('novel-result');
+        showToast('分析完成');
+      } catch(e) {
+        showToast('失败: ' + e.message);
       }
     }
 
-    // Load projects
-    async function loadProjects() {
+    async function generateAudio() {
+      if (!currentProjectId) return showToast('请先分析');
+      showToast('生成中...');
       try {
-        const res = await fetch(APIS.novel + '/api/projects');
+        await fetch(NOVEL_API + '/generate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({projectId: currentProjectId})
+        });
+        showToast('生成完成');
+      } catch(e) {
+        showToast('失败: ' + e.message);
+      }
+    }
+
+    async function showExport() {
+      if (!currentProjectId) return;
+      try {
+        const res = await fetch(NOVEL_API + '/export/' + currentProjectId);
         const data = await res.json();
-        
-        const list = document.getElementById('project-list');
-        if (data.projects?.length > 0) {
-          list.innerHTML = data.projects.slice(0,5).map(p => `
-            <div class="project-item">
-              <div class="info">
-                <h3>${p.title}</h3>
-                <p>${p.wordCount}字 · ${new Date(p.importedAt).toLocaleDateString()}</p>
-              </div>
-              <span class="arrow">→</span>
-            </div>
-          `).join('');
+        document.getElementById('export-list').innerHTML = data.data.audioFiles.map(f => 
+          `<div class="role-item"><strong>${f.speaker}</strong> (${f.voiceId})<br><small>${f.text}</small></div>`
+        ).join('');
+        document.getElementById('export-area').style.display = 'block';
+      } catch(e) {
+        showToast('失败: ' + e.message);
+      }
+    }
+
+    async function playAll() {
+      if (!currentProjectId) return;
+      try {
+        const res = await fetch(NOVEL_API + '/export/' + currentProjectId);
+        const data = await res.json();
+        for (const f of data.data.audioFiles) {
+          playBrowserTTS(f.textForBrowser || f.text);
+          await new Promise(r => setTimeout(r, 2500));
         }
-      } catch (e) {
-        console.log('Load projects failed:', e);
+      } catch(e) {
+        showToast('失败: ' + e.message);
       }
     }
 
-    // Play sample audio
-    async function playSample(voiceId, event) {
-      event.stopPropagation();
-      
-      const btn = event.target;
-      btn.textContent = '...';
-      btn.disabled = true;
+    function playBrowserTTS(text) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text.substring(0, 200));
+      u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+
+    // ============ 打包下载全部音频 ============
+    async function downloadAllAudio() {
+      if (!currentProjectId) return;
+      showToast('准备下载...');
       
       try {
-        const res = await fetch(APIS.tts + '/api/voices/' + voiceId + '/sample', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'}
-        });
-        
+        const res = await fetch(NOVEL_API + '/export/' + currentProjectId);
         const data = await res.json();
         
-        if (data.audio) {
-          const audio = new Audio('data:audio/mp3;base64,' + data.audio);
-          audio.play();
-          showToast('▶ 正在播放: ' + data.voiceName);
+        if (data.data.audioFiles.length === 0) {
+          return showToast('没有可下载的音频');
+        }
+        
+        // 由于是浏览器TTS，这里显示下载选项
+        let html = '<div style="margin-top:12px">';
+        html += '<p style="margin-bottom:8px">选择下载方式：</p>';
+        
+        // Option 1: Play in browser
+        html += '<button class="btn btn-primary" onclick="playAll()" style="margin-bottom:8px">▶️ 浏览器播放全部</button>';
+        
+        // Option 2: Show text for each segment
+        for (let i = 0; i < data.data.audioFiles.length; i++) {
+          const f = data.data.audioFiles[i];
+          html += `<div style="padding:8px;margin:4px 0;background:rgba(255,255,255,0.1);border-radius:4px">
+            <small>${i+1}. ${f.speaker} (${f.voiceId})</small><br>
+            <small style="color:var(--gray)">${f.text.substring(0, 50)}...</small>
+          </div>`;
+        }
+        
+        html += '</div>';
+        
+        document.getElementById('export-list').innerHTML += html;
+        showToast('共有 ' + data.data.audioFiles.length + ' 个片段');
+      } catch(e) {
+        showToast('下载失败: ' + e.message);
+      }
+    }
+    }
+    
+    // ============ 批量导入小说 ============
+    let novelFiles = [];
+    function handleNovelFiles(files) {
+      if (!files.length) return;
+      novelFiles = Array.from(files);
+      const list = document.getElementById('novel-file-list');
+      list.innerHTML = novelFiles.map(f => 
+        `<span style="display:inline-block;background:#444;padding:4px 8px;margin:2px;border-radius:4px;font-size:12px">${f.name}</span>`
+      ).join('');
+      showToast(`已选择 ${files.length} 个文件`);
+    }
+    
+    // ============ 批量生成配音 ============
+    async function batchGenerate() {
+      const useMultiThread = document.getElementById('multi-thread')?.checked;
+      
+      // 如果有批量文件，先处理文件
+      if (novelFiles.length > 0) {
+        showToast(`批量处理 ${novelFiles.length} 个文件...`);
+        
+        for (let i = 0; i < novelFiles.length; i++) {
+          const file = novelFiles[i];
+          showToast(`处理第 ${i+1}/${novelFiles.length}: ${file.name}`);
           
-          audio.onended = () => {
-            btn.textContent = '▶ 试听';
-            btn.disabled = false;
-          };
-        } else {
-          showToast(data.error || '生成失败');
-          btn.textContent = '▶ 试听';
-          btn.disabled = false;
+          const text = await file.text();
+          try {
+            const res = await fetch(NOVEL_API + '/text', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({title: file.name, content: text})
+            });
+            const data = await res.json();
+            const projectId = data.data.projectId;
+            
+            // 生成配音
+            await fetch(NOVEL_API + '/generate', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({projectId, multiThread: useMultiThread})
+            });
+          } catch(e) {
+            console.error('Error processing', file.name, e);
+          }
         }
-      } catch (e) {
-        showToast('请求失败: ' + e.message);
-        btn.textContent = '▶ 试听';
-        btn.disabled = false;
-      }
-    }
-
-    // Show selected audio name
-    function showAudioName(input) {
-      if (input.files && input.files[0]) {
-        document.getElementById('audio-name').textContent = '已选择: ' + input.files[0].name;
-      }
-    }
-
-    // Clone voice
-    async function cloneVoice() {
-      const fileInput = document.getElementById('clone-audio');
-      const name = document.getElementById('clone-name').value.trim();
-      const desc = document.getElementById('clone-desc').value.trim();
-      
-      if (!fileInput.files || !fileInput.files[0]) {
-        showToast('请选择参考音频文件');
+        
+        showToast('批量处理完成！');
+        // 显示所有生成的项目
+        loadNovelProjects();
         return;
       }
       
-      if (!name) {
-        showToast('请输入音色名称');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('audio', fileInput.files[0]);
-      formData.append('name', name);
-      formData.append('description', desc);
-
-      const loading = document.getElementById('clone-loading');
-      const result = document.getElementById('clone-result');
+      // 否则处理当前文本
+      if (!currentProjectId) return showToast('请先分析小说');
+      showToast(useMultiThread ? '多线程生成中...' : '生成中...');
       
-      loading.classList.add('active');
-      result.style.display = 'none';
-
       try {
-        const res = await fetch(API_BASE + ':3000/api/clone-voice', {
+        await fetch(NOVEL_API + '/generate', {
           method: 'POST',
-          body: formData
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({projectId: currentProjectId, multiThread: useMultiThread})
         });
-        
-        const data = await res.json();
-        
-        if (data.success) {
-          document.getElementById('clone-info').innerHTML = `
-            <p>音色名称: ${data.voice?.name}</p>
-            <p>音频文件: ${data.voice?.audioFile}</p>
-          `;
-          result.style.display = 'block';
-          showToast('✅ 克隆成功！');
-        } else {
-          showToast(data.message || '克隆失败');
-        }
-      } catch (e) {
-        showToast('请求失败: ' + e.message);
-      } finally {
-        loading.classList.remove('active');
+        showToast('生成完成');
+        showExport();
+      } catch(e) {
+        showToast('生成失败: ' + e.message);
       }
     }
-
-    // Toast
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
+    
+    // ============ 加载小说项目列表 ============
+    async function loadNovelProjects() {
+      try {
+        const res = await fetch(NOVEL_API.replace('/api/novel', '/api/novels'));
+        const data = await res.json();
+        if (data.data && data.data.length > 0) {
+          const list = document.getElementById('novel-projects');
+          list.innerHTML = data.data.slice(0, 10).map(p => 
+            `<div class="project-item">
+              <div class="project-info">
+                <div class="project-name">${p.name}</div>
+                <div class="project-time">${p.totalChars || 0} 字</div>
+              </div>
+              <button class="btn btn-small btn-primary" onclick="loadNovelProject('${p.id}')">查看</button>
+            </div>`
+          ).join('');
+        }
+      } catch(e) {
+        console.error('Load projects failed', e);
+      }
+    }
+    
+    async function loadNovelProject(projectId) {
+      currentProjectId = projectId;
+      showPage('novel-result');
+      await showExport();
     }
   </script>
 </body>

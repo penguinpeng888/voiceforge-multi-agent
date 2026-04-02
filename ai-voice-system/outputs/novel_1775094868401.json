@@ -1,0 +1,22 @@
+{
+  "id": "novel_1775094868401",
+  "name": "改进测试",
+  "content": "陆沉走在山间小路上。他说道：此去山高水长。李云说道：放心。",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆沉走在山间小路上。他说道：此去山高水长。李云说道：放心。"
+    }
+  ],
+  "createdAt": "2026-04-02T01:54:28.401Z",
+  "status": "analyzed",
+  "characters": [],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "室外",
+      "description": "第1节 - 室外场景"
+    }
+  ]
+}

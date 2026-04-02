@@ -1,0 +1,45 @@
+{
+  "id": "novel_1775101715173",
+  "name": "夜雨",
+  "content": "\"出轨？那咋了？不是因为你废物，老娘至于出轨吗？\"\n\n\"佳玉，跟这种人废什么话，你回去就离婚\"\n\n\"王晨同志，你怎么这么不懂事！\"\n\n王晨站在公交站台，心中一片茫然。",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "\"出轨？那咋了？不是因为你废物，老娘至于出轨吗？\"\n\n\"佳玉，跟这种人废什么话，你回去就离婚\""
+    },
+    {
+      "index": 2,
+      "title": "第2节",
+      "content": "\"王晨同志，你怎么这么不懂事！\"\n\n王晨站在公交站台，心中一片茫然。"
+    }
+  ],
+  "createdAt": "2026-04-02T03:48:35.173Z",
+  "status": "analyzed",
+  "characters": [
+    {
+      "name": "王晨",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    },
+    {
+      "name": "佳玉",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    }
+  ],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "叙事",
+      "description": "第1节 - 叙事场景"
+    },
+    {
+      "chapter": 2,
+      "type": "心理",
+      "description": "第2节 - 心理场景"
+    }
+  ]
+}

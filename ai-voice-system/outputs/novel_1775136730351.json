@@ -1,0 +1,29 @@
+{
+  "id": "novel_1775136730351",
+  "name": "新测试",
+  "content": "陆少蘅在城隍庙中。\n她站起身。\n陆少蘅道：「天下间有修行者」\n她心中安定下来。\n「传闻仙门宗派」陆少蘅说道。",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆少蘅在城隍庙中。\n她站起身。\n陆少蘅道：「天下间有修行者」\n她心中安定下来。\n「传闻仙门宗派」陆少蘅说道。"
+    }
+  ],
+  "createdAt": "2026-04-02T13:32:10.351Z",
+  "status": "analyzed",
+  "characters": [
+    {
+      "name": "陆少蘅",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    }
+  ],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "室外",
+      "description": "第1节 - 室外场景"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "novel_1775094796667",
+  "name": "测试角色",
+  "content": "第一章 山中少年\n\n陆沉走在山间小路上。他说道：此去山高水长，务必小心。李云说道：放心，我已突破筑基。陆沉笑道：那就好。小白喊道：等等我。陆沉道：快走！",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆沉走在山间小路上。他说道：此去山高水长，务必小心。李云说道：放心，我已突破筑基。陆沉笑道：那就好。小白喊道：等等我。陆沉道：快走！"
+    }
+  ],
+  "createdAt": "2026-04-02T01:53:16.667Z",
+  "status": "analyzed",
+  "characters": [
+    {
+      "name": "李云说",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    },
+    {
+      "name": "陆沉笑",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    },
+    {
+      "name": "陆沉",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    }
+  ],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "对话",
+      "description": "第1节 - 对话场景"
+    }
+  ]
+}

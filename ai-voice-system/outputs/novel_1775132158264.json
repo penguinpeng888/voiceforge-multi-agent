@@ -1,0 +1,33 @@
+{
+  "id": "novel_1775132158264",
+  "name": "test",
+  "content": "王晨站在公交站台，心中一片茫然。妻子背着自己出轨了。此刻，王晨浑身已经湿透。",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "王晨站在公交站台，心中一片茫然。妻子背着自己出轨了。此刻，王晨浑身已经湿透。"
+    }
+  ],
+  "createdAt": "2026-04-02T12:15:58.264Z",
+  "status": "generated",
+  "characters": [],
+  "scenes": [],
+  "audioFiles": [
+    {
+      "chapter": "第1节",
+      "segments": [
+        {
+          "index": 1,
+          "speaker": "旁白",
+          "text": "王晨站在公交站台，心中一片茫然。妻子背着自己出轨了。此刻，王晨浑身已经湿透。",
+          "voiceId": "narrator",
+          "audioUrl": null,
+          "needsBrowserTTS": true,
+          "textForBrowser": "王晨站在公交站台，心中一片茫然。妻子背着自己出轨了。此刻，王晨浑身已经湿透。",
+          "error": "MiniMax API未配置"
+        }
+      ]
+    }
+  ]
+}

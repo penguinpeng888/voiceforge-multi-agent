@@ -1,0 +1,22 @@
+{
+  "id": "novel_1775095930303",
+  "name": "测试",
+  "content": "陆沉说道：去山顶。李云说：放心。陆沉笑道：好。",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆沉说道：去山顶。李云说：放心。陆沉笑道：好。"
+    }
+  ],
+  "createdAt": "2026-04-02T02:12:10.303Z",
+  "status": "analyzed",
+  "characters": [],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "对话",
+      "description": "第1节 - 对话场景"
+    }
+  ]
+}

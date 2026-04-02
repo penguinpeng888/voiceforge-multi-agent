@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>小说配音 - VoiceForge</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    body { padding: 20px; padding-bottom: 100px; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .card { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .btn { width: 100%; padding: 14px; border: none; border-radius: 8px; font-size: 16px; margin-bottom: 10px; cursor: pointer; }
+    .btn-primary { background: #6366f1; color: #fff; }
+    .btn-success { background: #10b981; color: #fff; }
+    .btn-warning { background: #f59e0b; color: #fff; }
+    textarea { width: 100%; height: 150px; padding: 12px; border-radius: 8px; border: 1px solid #333; background: rgba(255,255,255,0.1); color: #fff; font-size: 14px; }
+    .segments { max-height: 300px; overflow-y: auto; }
+    .segment-item { background: rgba(255,255,255,0.1); padding: 10px; margin: 8px 0; border-radius: 6px; }
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #fff; padding: 12px 24px; border-radius: 8px; display: none; z-index: 1000; }
+  </style>
+</head>
+<body>
+  <h1>📖 小说配音</h1>
+  
+  <div id="page-input" class="page active">
+    <div class="card">
+      <h3>输入小说内容</h3>
+      <textarea id="novel-text" placeholder="在这里粘贴小说内容..."></textarea>
+      <button class="btn btn-primary" onclick="analyzeNovel()">🔍 分析角色</button>
+    </div>
+  </div>
+
+  <div id="page-result" class="page">
+    <div class="card">
+      <h3>👥 识别角色</h3>
+      <div id="char-list"></div>
+    </div>
+    <div class="card">
+      <button class="btn btn-primary" onclick="generateAudio()">🎵 生成配音</button>
+      <button class="btn btn-success" onclick="playAll()">▶️ 播放全部</button>
+      <button class="btn btn-warning" onclick="showExport()">📥 导出结果</button>
+    </div>
+    <div id="export-area" class="card" style="display:none">
+      <h3>📥 导出结果</h3>
+      <div id="export-list" class="segments"></div>
+    </div>
+    <button class="btn" onclick="showPage('input')" style="background:#333">← 返回</button>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const API = 'http://43.153.175.239:3000/api/novel';
+    let currentProjectId = null;
+
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + id).classList.add('active');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => t.style.display = 'none', 2500);
+    }
+
+    async function analyzeNovel() {
+      const text = document.getElementById('novel-text').value.trim();
+      if (!text) return showToast('请输入小说内容');
+      
+      showToast('分析中...');
+      try {
+        const res = await fetch(API + '/text', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({title: '小说', content: text})
+        });
+        const data = await res.json();
+        currentProjectId = data.data.projectId;
+        
+        // 显示角色
+        const chars = data.data.characters || [];
+        document.getElementById('char-list').innerHTML = chars.length 
+          ? chars.map(c => `<span style="display:inline-block;background:#444;padding:6px 12px;margin:4px;border-radius:4px">${c.name}</span>`).join('')
+          : '<p>未识别到角色</p>';
+        
+        showPage('result');
+        showToast('分析完成');
+      } catch(e) {
+        showToast('失败: ' + e.message);
+      }
+    }
+
+    async function generateAudio() {
+      if (!currentProjectId) return showToast('请先分析小说');
+      showToast('生成配音中...');
+      try {
+        await fetch(API + '/generate', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({projectId: currentProjectId})
+        });
+        showToast('生成完成');
+      } catch(e) {
+        showToast('生成失败: ' + e.message);
+      }
+    }
+
+    async function showExport() {
+      if (!currentProjectId) return;
+      try {
+        const res = await fetch(API + '/export/' + currentProjectId);
+        const data = await res.json();
+        const list = document.getElementById('export-list');
+        list.innerHTML = data.data.audioFiles.map(f => 
+          `<div class="segment-item"><strong>${f.speaker}</strong> (${f.voiceId})<br><small>${f.text}</small></div>`
+        ).join('');
+        document.getElementById('export-area').style.display = 'block';
+      } catch(e) {
+        showToast('导出失败: ' + e.message);
+      }
+    }
+
+    async function playAll() {
+      if (!currentProjectId) return;
+      try {
+        const res = await fetch(API + '/export/' + currentProjectId);
+        const data = await res.json();
+        for (const f of data.data.audioFiles) {
+          playBrowserTTS(f.textForBrowser || f.text);
+          await new Promise(r => setTimeout(r, 2500));
+        }
+      } catch(e) {
+        showToast('播放失败: ' + e.message);
+      }
+    }
+
+    function playBrowserTTS(text) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text.substring(0, 200));
+      u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }
+  </script>
+</body>
+</html>

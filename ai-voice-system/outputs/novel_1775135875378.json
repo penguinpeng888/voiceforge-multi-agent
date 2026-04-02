@@ -1,0 +1,29 @@
+{
+  "id": "novel_1775135875378",
+  "name": "test",
+  "content": "陆少蘅道：「天下间有修行者」\n陆少蘅站起身。\n「传闻仙门宗派百千」\n她心中安定下来。",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆少蘅道：「天下间有修行者」\n陆少蘅站起身。\n「传闻仙门宗派百千」\n她心中安定下来。"
+    }
+  ],
+  "createdAt": "2026-04-02T13:17:55.378Z",
+  "status": "analyzed",
+  "characters": [
+    {
+      "name": "陆少蘅",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    }
+  ],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "心理",
+      "description": "第1节 - 心理场景"
+    }
+  ]
+}

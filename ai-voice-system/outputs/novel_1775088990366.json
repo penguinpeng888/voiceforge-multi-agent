@@ -1,0 +1,47 @@
+{
+  "id": "novel_1775088990366",
+  "name": "测试",
+  "content": "陆沉说道：\"我要去山顶。\"李云说：\"我也要去。\"小白喊道：\"等等我！\"陆沉道：\"快走！\"",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆沉说道：\"我要去山顶。\"李云说：\"我也要去。\"小白喊道：\"等等我！\"陆沉道：\"快走！\""
+    }
+  ],
+  "createdAt": "2026-04-02T00:16:30.366Z",
+  "status": "analyzed",
+  "characters": [
+    {
+      "name": "陆沉说",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    },
+    {
+      "name": "李云",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    },
+    {
+      "name": "小白喊",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    },
+    {
+      "name": "陆沉",
+      "description": "从小说对话中识别的角色",
+      "gender": "unknown",
+      "voiceId": null
+    }
+  ],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "对话",
+      "description": "第1节 - 对话场景"
+    }
+  ]
+}

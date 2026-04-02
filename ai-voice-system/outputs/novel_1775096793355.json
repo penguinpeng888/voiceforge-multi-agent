@@ -1,0 +1,22 @@
+{
+  "id": "novel_1775096793355",
+  "name": "测试",
+  "content": "陆沉说道：去山顶",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "陆沉说道：去山顶"
+    }
+  ],
+  "createdAt": "2026-04-02T02:26:33.355Z",
+  "status": "analyzed",
+  "characters": [],
+  "scenes": [
+    {
+      "chapter": 1,
+      "type": "室外",
+      "description": "第1节 - 室外场景"
+    }
+  ]
+}

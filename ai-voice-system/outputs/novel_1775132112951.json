@@ -1,0 +1,22 @@
+{
+  "id": "novel_1775132112951",
+  "name": "test",
+  "content": "测试内容",
+  "chapters": [
+    {
+      "index": 1,
+      "title": "第1节",
+      "content": "测试内容"
+    }
+  ],
+  "createdAt": "2026-04-02T12:15:12.951Z",
+  "status": "generated",
+  "characters": [],
+  "scenes": [],
+  "audioFiles": [
+    {
+      "chapter": "第1节",
+      "segments": []
+    }
+  ]
+}
