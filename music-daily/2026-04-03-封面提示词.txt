@@ -1,0 +1,29 @@
+# 2026-04-03 封面/MV提示词
+
+## 封面提示词 (用于AI生图)
+
+**画面描述：**
+一个温馨的深夜便利店内部，温暖的黄色灯光从窗外和店内溢出。玻璃橱窗上带有雨滴效果，雨水从窗外滑落。店内收银台后面站着一个温柔的店员，正在微笑着看向镜头。货架上摆满了整齐的商品，泡面、零食、饮料。店外是凌晨两点的城市街道，霓虹灯在雨水中反射出朦胧的光。
+
+**风格提示词：**
+电影感画面，暖色调，治愈系，都市夜景，港式霓虹风格，泪目感，怀旧氛围，24小时便利店，夜晚城市，温馨时刻
+
+**英文提示词：**
+A cozy late-night convenience store interior, warm yellow lighting, rain drops on glass windows, a friendly clerk behind the counter smiling gently, shelves filled with instant noodles and snacks, wet city streets outside with neon reflections, cinematic shot, nostalgic atmosphere, comforting urban scene, Hong Kong neon style, film grain, emotional tone
+
+## MV分镜提示词
+
+### 分镜1：开场
+雨夜的街道，霓虹灯闪烁，一个疲惫的身影走进便利店
+
+### 分镜2：店内
+温暖的灯光，店员递来一杯热咖啡
+
+### 分镜3：特写
+泡面在热水里翻滚，蒸汽上升
+
+### 分镜4：窗外
+雨水打在玻璃上，城市的灯光模糊成光斑
+
+### 分镜5：结尾
+店员微笑 目送离开，温暖延续

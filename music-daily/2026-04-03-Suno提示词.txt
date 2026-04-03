@@ -1,0 +1,37 @@
+# 2026-04-03 Suno音乐提示词
+
+## 音乐风格
+中文流行抒情，温暖治愈，都市情感，民谣风格
+
+## 情绪
+温暖、治愈、略带感伤、深情
+
+## 乐器
+木吉他为主，轻柔钢琴，弦乐点缀，鼓点舒缓
+
+## 节奏
+中慢速，65-75 BPM
+
+## 结构建议
+- 前奏：木吉他轻柔开场，营造深夜宁静氛围
+- 主歌：叙事感旋律，像在讲述一个城市深夜的故事
+- 副歌：情感升华，温暖而治愈
+- 间奏：轻柔弦乐过渡
+- 重复副歌：情感更深
+- 尾奏：延续温暖氛围，淡出
+
+## Suno提示词 (英文)
+
+**Prompt:**
+Chinese pop ballad, warm and healing, emotional ballad about a late-night convenience store, gentle acoustic guitar and soft piano, strings arrangement, medium tempo 70 BPM, nostalgic atmosphere, urban nighttime mood, emotional and touching, sincere vocals, heartfelt melody, verses tell stories of late-night workers and city dwellers, chorus brings warmth and comfort, cinematic production, modern Mandarin pop style
+
+**歌词方向：**
+中文歌词，关于深夜便利店的温暖故事，都市人的疲惫与慰藉，24小时不打烊的陪伴
+
+## 备选风格
+
+### 风格2：电子抒情
+Chill electronic, ambient, dreamy synth pads, soft beat, nighttime vibes, emotional
+
+### 风格3：民谣叙事
+Folk storytelling, acoustic guitar driven, warm vocals, narrative lyrics, sincere and authentic
