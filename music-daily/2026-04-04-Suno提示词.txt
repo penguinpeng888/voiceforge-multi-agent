@@ -1,0 +1,37 @@
+# 2026-04-04 Suno音乐提示词
+
+## 音乐风格
+中文流行抒情，都市情感，治愈温暖，励志成长
+
+## 情绪
+温暖、治愈、略带感伤、充满希望
+
+## 乐器
+钢琴为主，弦乐点缀，鼓点温和，电吉他轻柔
+
+## 节奏
+中速，70-80 BPM
+
+## 结构建议
+- 前奏：钢琴轻柔开场，引入夜晚氛围
+- 主歌：叙事感旋律，描述深夜地铁的场景
+- 副歌：情感升华，充满希望和力量
+- 间奏：弦乐过渡，情感加深
+- 重复副歌：情感更强
+- 尾奏：延续希望氛围，淡出
+
+## Suno提示词 (英文)
+
+**Prompt:**
+Chinese pop ballad, emotional and healing, inspiring song about late-night subway and dream chasing, soft piano and strings, gentle drums, medium tempo 75 BPM, warm and hopeful mood, cinematic production, modern Mandarin pop style, verses describe city life and perseverance, chorus brings determination and hope
+
+**歌词方向：**
+关于深夜最后一班地铁，都市人的疲惫与坚持，为了梦想继续前行
+
+## 备选风格
+
+### 风格2：电子流行
+Electronic pop, synth pads, emotional beat, urban night vibe, hopeful
+
+### 风格3：民谣摇滚
+Acoustic folk rock, electric guitar driven, emotional vocals, road trip feeling
