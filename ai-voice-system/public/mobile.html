@@ -134,7 +134,10 @@
         <div id="voice-list" class="voice-grid"></div>
       </div>
       
-      <!-- 自定义API -->
+      <!-- LLM配置 --> <div class="card"> <div class="card-title">🤖 LLM 模型配置</div> <p style="color:var(--gray);font-size:13px;margin-bottom:12px">配置文本分析和语音处理的LLM模型</p> 
+ <!-- 文本LLM --> <div style="margin-bottom:16px"> <div style="font-size:14px;font-weight:600;margin-bottom:8px">📝 文本LLM（分析/情感）</div> <select id="text-llm-provider" style="width:100%;padding:10px;margin:4px 0;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)"> <option value="minimax">MiniMax</option> <option value="nvidia">NVIDIA</option> <option value="openai">OpenAI</option> <option value="custom">自定义</option> </select> <input type="text" id="text-llm-api-key" placeholder="API Key"> <input type="text" id="text-llm-model" placeholder="模型ID（如: abab6.5s-chat）" style="margin-top:8px"> <input type="text" id="text-llm-url" placeholder="API地址（如: https://api.minimax.chat/v1）" style="margin-top:8px"> <input type="text" id="text-llm-group-id" placeholder="Group ID（MiniMax必填）" style="margin-top:8px"> </div> 
+ <!-- 语音LLM --> <div style="margin-bottom:16px"> <div style="font-size:14px;font-weight:600;margin-bottom:8px">🎤 语音LLM（TTS）</div> <select id="voice-llm-provider" style="width:100%;padding:10px;margin:4px 0;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)"> <option value="nvidia">NVIDIA</option> <option value="minimax">MiniMax</option> <option value="openai">OpenAI</option> <option value="custom">自定义</option> </select> <input type="text" id="voice-llm-api-key" placeholder="API Key"> <input type="text" id="voice-llm-model" placeholder="模型ID（如: meta/llama-3.1-70b-instruct）" style="margin-top:8px"> <input type="text" id="voice-llm-url" placeholder="API地址（如: https://integrate.api.nvidia.com/v1）" style="margin-top:8px"> </div> 
+ <!-- 自定义LLM列表 --> <div id="custom-llm-list" style="margin:12px 0"></div> <button class="btn btn-primary" onclick="saveLLMConfig()" style="margin-top:8px">💾 保存配置</button> <button class="btn btn-success" onclick="testTextLLM()" style="margin-top:8px">🧪 测试文本LLM</button> <button class="btn btn-warning" onclick="testVoiceLLM()" style="margin-top:8px">🧪 测试语音LLM</button> <div id="llm-test-result" style="margin-top:12px;font-size:13px"></div> </div> <!-- 自定义API -->
       <div class="card">
         <div class="card-title">⚙️ 自定义API</div>
         <p style="color:var(--gray);font-size:13px;margin-bottom:12px">接入自己的TTS/AI服务</p>
@@ -695,6 +698,49 @@
       showPage('novel-result');
       await showExport();
     }
-  </script>
+  
+// ============ LLM Config ============
+async function loadLLMConfig(){
+  try{
+    const r=await fetch(API_BASE+':3000/api/llm-config');
+    const d=await r.json();
+    if(d.success){
+      const t=d.data.textLLM,v=d.data.voiceLLM;
+      document.getElementById('text-llm-provider').value=t.provider||'minimax';
+      document.getElementById('text-llm-api-key').value=t.api_key||'';
+      document.getElementById('text-llm-model').value=t.model?.id||'';
+      document.getElementById('text-llm-url').value=t.base_url||'';
+      document.getElementById('text-llm-group-id').value=t.group_id||'';
+      document.getElementById('voice-llm-provider').value=v.provider||'nvidia';
+      document.getElementById('voice-llm-api-key').value=v.api_key||'';
+      document.getElementById('voice-llm-model').value=v.model?.id||'';
+      document.getElementById('voice-llm-url').value=v.base_url||'';
+    }
+  }catch(e){console.error(e)}
+}
+async function saveLLMConfig(){
+  const tl={provider:document.getElementById('text-llm-provider').value,base_url:document.getElementById('text-llm-url').value,api_key:document.getElementById('text-llm-api-key').value,model:{id:document.getElementById('text-llm-model').value},group_id:document.getElementById('text-llm-group-id').value};
+  const vl={provider:document.getElementById('voice-llm-provider').value,base_url:document.getElementById('voice-llm-url').value,api_key:document.getElementById('voice-llm-api-key').value,model:{id:document.getElementById('voice-llm-model').value}};
+  try{
+    const r=await fetch(API_BASE+':3000/api/llm-config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({textLLM:tl,voiceLLM:vl})});
+    const d=await r.json();
+    showToast(d.success?'✅ 已保存':'❌ '+d.message);
+  }catch(e){showToast('❌ '+e.message)}
+}
+async function testLLM(t){
+  const div=document.getElementById('llm-test-result');
+  div.innerHTML='<span class=spinner></span> 测试中...';
+  const is=t==='text';
+  const c={provider:document.getElementById(is?'text-llm-provider':'voice-llm-provider').value,base_url:document.getElementById(is?'text-llm-url':'voice-llm-url').value,api_key:document.getElementById(is?'text-llm-api-key':'voice-llm-api-key').value,model:{id:document.getElementById(is?'text-llm-model':'voice-llm-model').value},group_id:document.getElementById('text-llm-group-id').value};
+  try{
+    const r=await fetch(API_BASE+':3000/api/test-llm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(c)});
+    const d=await r.json();
+    div.innerHTML=d.success?'<span style=color:var(--success)>✅ '+d.message+'</span>':'<span style=color:var(--danger)>❌ '+d.message+'</span>';
+  }catch(e){div.innerHTML='<span style=color:var(--danger)>❌ '+e.message+'</span>'}
+}
+function testTextLLM(){testLLM('text')}
+function testVoiceLLM(){testLLM('voice')}
+document.querySelector('[data-page="voices"]').addEventListener('click',loadLLMConfig);
+</script>
 </body>
 </html>

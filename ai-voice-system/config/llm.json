@@ -1,0 +1,22 @@
+{
+  "textLLM": {
+    "provider": "minimax",
+    "base_url": "https://api.minimax.chat/v1",
+    "api_key": "",
+    "model": {
+      "id": "abab6.5s-chat",
+      "name": "MiniMax 文本模型"
+    },
+    "group_id": ""
+  },
+  "voiceLLM": {
+    "provider": "nvidia",
+    "base_url": "https://integrate.api.nvidia.com/v1",
+    "api_key": "",
+    "model": {
+      "id": "meta/llama-3.1-70b-instruct",
+      "name": "NVIDIA 语音模型"
+    }
+  },
+  "customLLMs": []
+}

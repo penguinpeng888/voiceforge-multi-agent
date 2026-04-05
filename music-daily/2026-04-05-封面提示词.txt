@@ -1,0 +1,35 @@
+# 2026-04-05 封面/MV提示词
+
+## 封面提示词
+
+**画面描述：**
+一个凌晨三点的城市夜景，街道空旷，霓虹灯闪烁。一盏昏黄的路灯下，一个男人独自坐在台阶上，手里拿着手机，屏幕亮着。远处是高楼大厦的剪影，天空是深蓝色的，带着几颗星星。
+
+**风格提示词：**
+电影感画面，深蓝色调，都市夜景，孤独感，治愈系，暖黄路灯，凌晨氛围，情感治愈，温馨时刻，港式夜景风格
+
+**英文提示词：**
+A lonely man sitting on steps under a street lamp at 3am, city skyline in background, dark blue night sky with stars, warm yellow light, cinematic shot, urban loneliness, emotional healing, Hong Kong night scene vibe, film grain, touching atmosphere
+
+## MV分镜提示词
+
+### 分镜1：开场
+凌晨三点城市空镜，霓虹灯闪烁
+
+### 分镜2：特写
+手机屏幕亮起，电话铃声响起
+
+### 分镜3：男人接电话
+坐在路灯下，表情从疲惫到放松
+
+### 分镜4：回忆
+闪回当年兄弟们一起喝酒的画面
+
+### 分镜5：倾听
+男人认真听着电话那头的声音
+
+### 分镜6：安慰
+男人对着电话说"我在"
+
+### 分镜7：结尾
+清晨第一缕阳光照进城市

@@ -1,0 +1,37 @@
+# 2026-04-05 Suno音乐提示词
+
+## 音乐风格
+中文流行抒情，情感治愈，深夜治愈，温暖民谣
+
+## 情绪
+温暖、治愈、深情、深夜感、励志
+
+## 乐器
+木吉他为主，钢琴，弦乐，鼓点舒缓
+
+## 节奏
+中慢速，60-70 BPM
+
+## 结构建议
+- 前奏：轻柔钢琴+弦乐，营造深夜宁静氛围
+- 主歌：叙事感旋律，像在讲述一个深夜电话的故事
+- 副歌：情感升华，温暖而治愈
+- 间奏：吉他solo过渡
+- 重复副歌：情感更深
+- 尾奏：延续温暖氛围，吉他轻弹结束
+
+## Suno提示词 (英文)
+
+**Prompt:**
+Chinese emotional pop ballad, warm and healing, late night phone call story, acoustic guitar and soft piano, string arrangement, medium tempo 65 BPM, emotional and touching, sincere vocals, heartfelt melody, verses tell story of receiving a late night call from a friend in trouble, chorus brings warmth and hope, cinematic production, Mandarin pop style, inspirational
+
+**歌词方向：**
+中文歌词，关于凌晨三点老友的电话，成年人深夜的情感释放，互相倾听和陪伴，深夜治愈
+
+## 备选风格
+
+### 风格2：电子抒情
+Chill electronic, ambient, dreamy synth pads, soft beat, nighttime vibes, emotional
+
+### 风格3：流行摇滚
+Upbeat pop rock, electric guitar, drums, emotional build-up, inspiring

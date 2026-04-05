@@ -1072,6 +1072,97 @@ app.get('/api/preset-voices', (req, res) => {
   }
 });
 
+// ============ LLM 配置 API ============
+const llmConfigFile = path.join(__dirname, 'config', 'llm.json');
+
+// 读取LLM配置
+function getLLMConfig() {
+  if (!fs.existsSync(llmConfigFile)) {
+    const defaultConfig = {
+      textLLM: { provider: 'minimax', base_url: 'https://api.minimax.chat/v1', api_key: '', model: { id: 'abab6.5s-chat', name: 'MiniMax 文本模型' }, group_id: '' },
+      voiceLLM: { provider: 'nvidia', base_url: 'https://integrate.api.nvidia.com/v1', api_key: '', model: { id: 'meta/llama-3.1-70b-instruct', name: 'NVIDIA 语音模型' } },
+      customLLMs: []
+    };
+    fs.mkdirSync(path.dirname(llmConfigFile), { recursive: true });
+    fs.writeFileSync(llmConfigFile, JSON.stringify(defaultConfig, null, 2));
+    return defaultConfig;
+  }
+  return JSON.parse(fs.readFileSync(llmConfigFile, 'utf-8'));
+}
+
+// 获取LLM配置
+app.get('/api/llm-config', (req, res) => {
+  try {
+    const config = getLLMConfig();
+    // 隐藏API Key
+    const safeConfig = JSON.parse(JSON.stringify(config));
+    if (safeConfig.textLLM.api_key) safeConfig.textLLM.api_key = '****' + safeConfig.textLLM.api_key.slice(-4);
+    if (safeConfig.voiceLLM.api_key) safeConfig.voiceLLM.api_key = '****' + safeConfig.voiceLLM.api_key.slice(-4);
+    safeConfig.customLLMs = safeConfig.customLLMs.map(llm => ({
+      ...llm, api_key: llm.api_key ? '****' + llm.api_key.slice(-4) : ''
+    }));
+    res.json({ success: true, data: safeConfig });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// 保存LLM配置
+app.post('/api/llm-config', (req, res) => {
+  try {
+    const { textLLM, voiceLLM, customLLMs } = req.body;
+    const config = getLLMConfig();
+    if (textLLM) config.textLLM = textLLM;
+    if (voiceLLM) config.voiceLLM = voiceLLM;
+    if (customLLMs) config.customLLMs = customLLMs;
+    fs.writeFileSync(llmConfigFile, JSON.stringify(config, null, 2));
+    res.json({ success: true, message: 'LLM配置已保存' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// 测试LLM连接
+app.post('/api/test-llm', async (req, res) => {
+  try {
+    const { provider, base_url, api_key, model, group_id } = req.body;
+    if (!api_key) {
+      return res.json({ success: false, message: '请提供API Key' });
+    }
+    // 构建测试请求
+    let testUrl, testBody, headers = { 'Content-Type': 'application/json', 'Authorization': `Bearer ${api_key}` };
+    if (provider === 'minimax') {
+      testUrl = `${base_url}/text/chatcompletion_v2?GroupId=${group_id}`;
+      testBody = { model: model.id, messages: [{ role: 'user', content: 'Hi' }], max_tokens: 10 };
+    } else {
+      // OpenAI兼容API
+      testUrl = `${base_url}/chat/completions`;
+      testBody = { model: model.id, messages: [{ role: 'user', content: 'Hi' }], max_tokens: 10 };
+    }
+    const response = await fetch(testUrl, { method: 'POST', headers, body: JSON.stringify(testBody) });
+    const data = await response.json();
+    if (response.ok && !data.error) {
+      res.json({ success: true, message: `连接成功！模型: ${model.name || model.id}` });
+    } else {
+      res.json({ success: false, message: data.error?.message || '连接失败' });
+    }
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+});
+
+// 获取当前使用的LLM（文本或语音）
+app.get('/api/llm/:type', (req, res) => {
+  try {
+    const { type } = req.params; // 'text' or 'voice'
+    const config = getLLMConfig();
+    const llm = type === 'voice' ? config.voiceLLM : config.textLLM;
+    res.json({ success: true, data: llm });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // 错误处理中间件
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {
