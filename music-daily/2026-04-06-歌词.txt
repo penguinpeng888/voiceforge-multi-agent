@@ -1,0 +1,13 @@
+# 2026-04-06 每日歌曲
+
+## 歌词
+凌晨三点的街灯
+影子独自拉长
+霓虹闪烁如你眼角的泪光
+我在等风，也在等你
+
+## 图片提示词
+A lonely figure walking on empty neon street at 3am, cyberpunk city, rain, dramatic lighting, cinematic, high detail, --ar 16:9 --v 6
+
+## Suno提示词
+sad pop, minor key, dreamy synth, 80BPM, emotional piano melody, synth bass, echo, about waiting and hope, Chinese female vocals

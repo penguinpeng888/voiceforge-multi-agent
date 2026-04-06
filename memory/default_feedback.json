@@ -1,0 +1,34 @@
+{
+  "fb_1775429958660_4refq059c": {
+    "type": "correction",
+    "original": "使用 var 而不是 let",
+    "corrected": "使用 let 或 const",
+    "context": "JavaScript 变量声明",
+    "confirmed": false,
+    "createdAt": 1775429958660
+  },
+  "fb_1775430291558_fdjkkfndk": {
+    "type": "correction",
+    "original": "使用 var 而不是 let",
+    "corrected": "使用 let 或 const",
+    "context": "JavaScript 变量声明",
+    "confirmed": false,
+    "createdAt": 1775430291558
+  },
+  "fb_1775431788149_xjbm9ix8m": {
+    "type": "correction",
+    "original": "test error",
+    "corrected": "fixed",
+    "context": "testing",
+    "confirmed": false,
+    "createdAt": 1775431788149
+  },
+  "fb_1775431820730_6mgfm6gbx": {
+    "type": "correction",
+    "original": "使用 var 而不是 let",
+    "corrected": "使用 let 或 const",
+    "context": "JavaScript 变量声明",
+    "confirmed": false,
+    "createdAt": 1775431820730
+  }
+}

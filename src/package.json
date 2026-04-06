@@ -1,0 +1,37 @@
+{
+  "name": "@openclaw/core",
+  "version": "2.0.0",
+  "description": "OpenClaw Core - Claude Code 核心功能复刻",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./openclaw": "./OpenClaw.js",
+    "./query-engine": "./core/QueryEngine.js",
+    "./memory": "./memory/PersistentMemory.js",
+    "./permissions": "./permissions/PermissionSystem.js",
+    "./coordinator": "./agent/Coordinator.js",
+    "./hooks": "./hooks/HookSystem.js",
+    "./config": "./config/ConfigSystem.js",
+    "./mcp": "./mcp/MCPClient.js",
+    "./kairos": "./daemon/KairosDaemon.js",
+    "./buddy": "./buddy/BuddySystem.js",
+    "./ultraplan": "./planner/Ultraplanner.js"
+  },
+  "scripts": {
+    "test": "node index.js",
+    "demo": "node OpenClaw.js",
+    "health": "node -e \"const {createOpenClaw}=require('./OpenClaw.js');const oc=createOpenClaw({workspaceDir:'/tmp'});oc.init().then(()=>console.log(oc.getHealth()))\""
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "claude",
+    "openclaw",
+    "coding-assistant"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.14.0",
+    "node-telegram-bot-api": "^0.67.0"
+  }
+}

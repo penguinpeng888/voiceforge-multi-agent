@@ -1,0 +1,30 @@
+{
+  "ref_1775429958661": {
+    "type": "linear",
+    "name": "Sprint Board",
+    "url": "https://linear.app/team/issue",
+    "description": "当前迭代任务",
+    "createdAt": 1775429958662
+  },
+  "ref_1775429958662": {
+    "type": "slack",
+    "name": "Dev Channel",
+    "url": "https://slack.com/archives/dev",
+    "description": "开发讨论",
+    "createdAt": 1775429958662
+  },
+  "ref_1775430291560": {
+    "type": "slack",
+    "name": "Dev Channel",
+    "url": "https://slack.com/archives/dev",
+    "description": "开发讨论",
+    "createdAt": 1775430291560
+  },
+  "ref_1775431820731": {
+    "type": "slack",
+    "name": "Dev Channel",
+    "url": "https://slack.com/archives/dev",
+    "description": "开发讨论",
+    "createdAt": 1775431820731
+  }
+}

@@ -1,0 +1,32 @@
+# 2026-04-06 封面/MV提示词
+
+## 封面提示词
+
+**画面描述：**
+凌晨三点的城市街道，空荡但灯火通明。霓虹灯在湿润的地面上反射出多彩的光晕。远处写字楼零星亮着灯，便利店24小时营业的标志格外醒目。一个疲惫的加班族走在街头，身影被路灯拉长。
+
+**风格提示词：**
+电影感画面，赛博朋克风格，都市夜景，霓虹灯闪烁，雨夜湿润地面，孤独却温暖，凌晨三点城市，治愈系，写字楼灯光，24小时便利店
+
+**英文提示词：**
+Late night city street at 3am, neon lights reflecting on wet pavement, warm yellow street lamps, dim lights in office buildings, 24-hour convenience store sign glowing, a tired salaryman walking alone, cinematic shot, cyberpunk aesthetic, solitary but comforting atmosphere, urban nighttime mood, film grain
+
+## MV分镜提示词
+
+### 分镜1：开场
+城市天际线，霓虹灯闪烁，凌晨三点的空镜
+
+### 分镜2：便利店
+24小时便利店内部，温暖的灯光，店员疲惫但微笑着
+
+### 分镜3：街头
+加班族走出写字楼，伸懒腰，深吸一口气
+
+### 分镜4：代驾/出租车
+代驾小哥骑车经过，出租车司机打着哈欠
+
+### 分镜5：特写
+霓虹灯在雨水中反射，城市的脉动
+
+### 分镜6：结尾
+东方渐白，新的一天开始

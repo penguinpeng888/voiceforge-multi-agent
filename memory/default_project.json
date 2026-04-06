@@ -1,0 +1,17 @@
+{
+  "deadline": {
+    "value": "2026-04-15",
+    "createdAt": 1775431820730,
+    "updatedAt": 1775431820730
+  },
+  "feature": {
+    "value": "用户认证系统",
+    "createdAt": 1775431820730,
+    "updatedAt": 1775431820730
+  },
+  "task": {
+    "value": "Build AI",
+    "createdAt": 1775431788150,
+    "updatedAt": 1775431788150
+  }
+}

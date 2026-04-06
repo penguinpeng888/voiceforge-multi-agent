@@ -1,0 +1,70 @@
+{
+  "user_123": {
+    "userId": "user_123",
+    "species": "mushroom",
+    "rarity": "Common",
+    "isShiny": false,
+    "attributes": {
+      "DEBUGGING": 55,
+      "PATIENCE": 70,
+      "CHAOS": 56,
+      "WISDOM": 70,
+      "SNARK": 81
+    },
+    "createdAt": 1775431228256,
+    "interactionCount": 1,
+    "mood": "neutral",
+    "lastInteraction": 1775431228257
+  },
+  "default": {
+    "userId": "default",
+    "species": "capybara",
+    "rarity": "Common",
+    "isShiny": false,
+    "attributes": {
+      "DEBUGGING": 81,
+      "PATIENCE": 73,
+      "CHAOS": 53,
+      "WISDOM": 43,
+      "SNARK": 33
+    },
+    "createdAt": 1775459412391,
+    "interactionCount": 0,
+    "mood": "neutral",
+    "lastInteraction": null
+  },
+  "peng": {
+    "userId": "peng",
+    "species": "penguin",
+    "rarity": "Common",
+    "isShiny": false,
+    "attributes": {
+      "DEBUGGING": 49,
+      "PATIENCE": 65,
+      "CHAOS": 57,
+      "WISDOM": 61,
+      "SNARK": 61
+    },
+    "createdAt": 1775459917258,
+    "interactionCount": 0,
+    "mood": "neutral",
+    "lastInteraction": null
+  },
+  "5826931720": {
+    "userId": "5826931720",
+    "species": "tiger",
+    "rarity": "Common",
+    "isShiny": false,
+    "attributes": {
+      "DEBUGGING": 55,
+      "PATIENCE": 74,
+      "CHAOS": 63,
+      "WISDOM": 73,
+      "SNARK": 72
+    },
+    "createdAt": 1775470519237,
+    "interactionCount": 0,
+    "mood": "neutral",
+    "lastInteraction": null
+  }
+}
