@@ -1,34 +1,16 @@
 # 2026-04-06 Suno音乐提示词
 
-## 音乐风格
-中文流行抒情，电子氛围，深夜都市情感
+## 风格
+中文流行抒情，治愈系，民谣风格
 
 ## 情绪
-温暖、治愈、略带感伤、深情、深夜独白感
+温暖、治愈、略带感伤、深情
 
 ## 乐器
- synthesizer电子琴， ambient氛围音， 轻柔鼓点， 弦乐点缀
+木吉他、钢琴、弦乐点缀
 
 ## 节奏
-中慢速，70-80 BPM
+中慢速，70 BPM
 
-## 结构建议
-- 前奏： synthesizer ambient开场，营造深夜城市氛围
-- 主歌： 电子氛围旋律，像在讲述深夜城市故事
-- 副歌： 情感升华，温暖而治愈
-- 间奏： 弦乐过渡
-- 重复副歌： 情感更深
-- 尾奏： 延续温暖氛围，淡出
-
-## Suno提示词 (英文)
-
-**Prompt:**
-Chinese pop ballad with electronic ambient elements, emotional ballad about late night city at 3am, synthesizer and soft piano, ambient atmosphere, medium tempo 75 BPM, nostalgic and healing mood, urban nighttime atmosphere, sincere vocals, heartfelt melody, verses tell stories of night workers and overtime salarymen, chorus brings warmth and comfort, modern Mandarin electronic pop style
-
-## 备选风格
-
-### 风格2：都市民谣
-Acoustic guitar driven, soft piano, warm and emotional, storytelling lyrics
-
-### 风格3：电子氛围
-Electronic ambient, synth pads, dreamy atmosphere, chillout vibes, emotional
+## Prompt
+Chinese pop ballad, emotional acoustic guitar, soft piano, strings arrangement, medium tempo 70 BPM, nostalgic atmosphere, late night subway mood, emotional and touching, heartfelt melody, verses tell stories of late-night workers, chorus brings warmth and hope, cinematic production

@@ -17,6 +17,6 @@ git add -A
 git commit -m "Backup $(date '+%Y-%m-%d %H:%M')"
 
 # 推送到GitHub
-git push origin main
+git push origin master:main
 
 echo "Backup completed: $(date)"

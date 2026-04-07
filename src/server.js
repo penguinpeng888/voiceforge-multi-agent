@@ -145,33 +145,16 @@ class OpenClawAPI {
         });
         return;
       }
-      // ============ New Endpoints ============
-      else if (path === '/buddy' && method === 'GET') {
-        const url = new URL(req.url, 'http://localhost');
-        const userId = url.searchParams.get('userId') || 'default';
-        const buddy = this.oc.buddy?.getOrCreateBuddy?.(userId);
-        this.json(res, buddy || { error: 'No buddy found', userId });
-      }
-      else if (path === '/buddy/all-species' && method === 'GET') {
-        const species = this.oc.buddy?.getSpeciesList?.() || [];
-        this.json(res, species);
-      }
+      // ============ Kairos & Coordinator (宠物和Telegram已禁用) ============
       else if (path === '/kairos/status' && method === 'GET') {
         const status = this.oc.kairos?.getStatus?.() || { error: 'Not initialized' };
         this.json(res, status);
       }
-      else if (path === '/telegram/start' && method === 'POST') {
-      try {
-        const result = await this.oc.telegram.start();
-        this.json(res, { success: result, message: result ? 'Telegram bot started' : 'Failed to start' });
-      } catch (e) {
-        this.json(res, { error: e.message }, 500);
-      }
-      return;
-    } else if (path === '/coordinator/status' && method === 'GET') {
+      else if (path === '/coordinator/status' && method === 'GET') {
         const status = this.oc.coordinator?.getStats?.() || {};
         this.json(res, status);
       }
+      // 宠物和Telegram功能已禁用
       else {
         this.json(res, { error: 'Not found' }, 404);
       }

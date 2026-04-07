@@ -1,0 +1,45 @@
+{
+  "notes": [
+    {
+      "title": "白炭黑橡胶研究",
+      "filename": "silica-rubber-research.md",
+      "tags": [
+        "rubber",
+        "silica"
+      ]
+    },
+    {
+      "title": "Obsidian AI 知识库搭建",
+      "filename": "obsidian-ai-kb.md",
+      "tags": [
+        "obsidian",
+        "ai",
+        "kb"
+      ]
+    },
+    {
+      "title": "Natural-Language Agent Harnesses",
+      "filename": "nlah-paper.md",
+      "tags": [
+        "agent",
+        "harness",
+        "research"
+      ]
+    },
+    {
+      "title": "NLAH 精髓分析 - Harness Engineer 实践指南",
+      "filename": "nlah-analysis.md",
+      "tags": [
+        "harness",
+        "engineering",
+        "self-improvement"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "nlah-agent-harness",
+      "source": "arXiv 2603.25723"
+    }
+  ]
+}
