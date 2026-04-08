@@ -1,59 +1,55 @@
+# DuckDuckGo Web Search
+
+使用 DuckDuckGo 进行网页搜索，无需 API Key。
+
+## 触发条件
+- 需要搜索网页内容
+- 没有其他搜索 API 可用
+- 需要快速获取信息
+
 ---
-name: ddg-search
-description: Web search without an API key using DuckDuckGo Lite via web_fetch. Use as a fallback when web_search fails with missing_brave_api_key error, or whenever you need to search the web and no search API is configured. Provides titles, URLs, and snippets for research queries. Zero dependencies — works with just the built-in web_fetch tool.
+
+## Contracts
+
+### Input
+- 搜索关键词
+- 结果数量（默认 10）
+
+### Output
+- 搜索结果列表（标题、URL、摘要）
+
+### Stop Conditions
+- 搜索结果为空
+- 网络错误
+
 ---
 
-# DuckDuckGo Search via web_fetch
-
-Search the web using DuckDuckGo Lite's HTML interface, parsed via `web_fetch`. No API key or package install required.
-
-## How to Search
+## Stage Structure
 
 ```
-web_fetch(url="https://lite.duckduckgo.com/lite/?q=QUERY", extractMode="text", maxChars=8000)
+QUERY → SEARCH → FORMAT → OUTPUT
 ```
 
-- URL-encode the query — use `+` for spaces
-- Use `extractMode="text"` (not markdown) for clean results
-- Increase `maxChars` for more results
+---
 
-## Region Filtering
+## Failure Taxonomy
 
-Append `&kl=REGION` for regional results:
+| 故障 | 恢复策略 |
+|------|----------|
+| network_error | 重试 |
+| no_results | 尝试其他关键词 |
 
-- `au-en` — Australia
-- `us-en` — United States
-- `uk-en` — United Kingdom
-- `de-de` — Germany
-- `fr-fr` — France
+---
 
-Full list: https://duckduckgo.com/params
+## 使用示例
 
-### Example — Australian search
-
-```
-web_fetch(url="https://lite.duckduckgo.com/lite/?q=best+coffee+melbourne&kl=au-en", extractMode="text", maxChars=8000)
+```python
+web_search(query="OpenClaw AI agent", count=10)
 ```
 
-## Reading Results
-
-Results appear as numbered items with title, snippet, and URL. Skip entries marked "Sponsored link" (ads) — organic results follow.
-
-## Search-then-Fetch Pattern
-
-1. **Search** — query DDG Lite for a list of results
-2. **Pick** — identify the most relevant URLs
-3. **Fetch** — use `web_fetch` on those URLs to read full content
-
-## Tips
-
-- First 1-2 results may be ads — skip to organic results
-- For exact phrases, wrap in quotes: `q=%22exact+phrase%22`
-- Add specific terms to narrow results (site name, year, location)
-
-## Limitations
-
-- No time/date filtering (DDG Lite doesn't support `&df=` reliably via fetch)
-- Text results only — no images or videos
-- Results sourced from Bing (may differ from Google)
-- Google search does NOT work via web_fetch (captcha blocked)
+返回：
+```json
+[
+  {"title": "...", "url": "...", "snippet": "..."}
+]
+```

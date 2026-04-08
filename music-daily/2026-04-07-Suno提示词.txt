@@ -1,4 +1,3 @@
-[Verse]
-城市边缘的咖啡馆，温暖的午后阳光
----
-Style: Soft Chinese pop ballad, 4:30
+# 2026-04-07 Suno提示词
+
+Chinese pop ballad, emotional acoustic guitar, soft piano, strings arrangement, medium tempo 70 BPM, nostalgic rainy day atmosphere, bittersweet romance, heartfelt melody, cinematic production, warm and healing mood

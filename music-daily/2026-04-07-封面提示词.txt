@@ -1,0 +1,7 @@
+# 2026-04-07 封面/MV提示词
+
+## 封面提示词
+雨天咖啡店内部，温暖复古色调，落地窗上雨滴滑落，一个人坐在角落手持咖啡，窗外行人撑伞走过，治愈系电影感画面
+
+## Suno提示词
+Chinese pop ballad, emotional acoustic guitar, soft piano, strings, medium tempo, nostalgic rainy day mood, bittersweet romance, cinematic production

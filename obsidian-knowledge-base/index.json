@@ -34,6 +34,43 @@
         "engineering",
         "self-improvement"
       ]
+    },
+    {
+      "title": "Anthropic Harness 设计精髓 - GAN 风格多 Agent 架构",
+      "filename": "anthropic-harness-design.md",
+      "tags": [
+        "harness",
+        "multi-agent",
+        "architecture"
+      ]
+    },
+    {
+      "title": "Anthropic Harness 设计精髓 - GAN 风格多 Agent 架构",
+      "filename": "anthropic-harness-design.md",
+      "tags": [
+        "harness",
+        "multi-agent",
+        "anthropic",
+        "gan"
+      ]
+    },
+    {
+      "title": "VoltAgent awesome-design-md - AI 设计系统集合",
+      "filename": "voltagent-awesome-design-md.md",
+      "tags": [
+        "design",
+        "ai",
+        "ui"
+      ]
+    },
+    {
+      "title": "Hermes Agent 可借鉴功能分析",
+      "filename": "hermes-analysis.md",
+      "tags": [
+        "agent",
+        "openclaw",
+        "improvement"
+      ]
     }
   ],
   "skills": [

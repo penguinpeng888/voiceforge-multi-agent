@@ -1,0 +1,4 @@
+file '/root/.openclaw/workspace/voiceforge-multi-agent/temp-tts/segment_0.mp3'
+file '/root/.openclaw/workspace/voiceforge-multi-agent/temp-tts/segment_1.mp3'
+file '/root/.openclaw/workspace/voiceforge-multi-agent/temp-tts/segment_2.mp3'
+file '/root/.openclaw/workspace/voiceforge-multi-agent/temp-tts/segment_3.mp3'

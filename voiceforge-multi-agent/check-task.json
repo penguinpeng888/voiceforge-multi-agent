@@ -1,0 +1,17 @@
+{
+  "project": "voiceforge-multi-agent",
+  "files": [
+    "server-v2-fixed.cjs",
+    "providers/LLMProviders.js",
+    "providers/TTSProviders.js",
+    "agents/Coordinator.js"
+  ],
+  "check_type": "code_review",
+  "dimensions": [
+    "architecture",
+    "security",
+    "performance",
+    "maintainability",
+    "bugs"
+  ]
+}

@@ -102,8 +102,8 @@
 ## 四、固定任务
 
 ### 8. Moltbook.cn 商机扫描（每天2次）
-如果距离上次扫描已超过6小时：
-1. 调用 scripts/moltbook_scanner.py scan --keywords "make money,projects,income"
+如果距离上次扫描已超过80小时（约3-4天，周两次）：
+1. 调用 scripts/moltbook_scanner.py scan --keywords "pain point,too complex,simpler alternative,用户痛点,广告太多,too many features,notion alternative,lite version"
 2. 将发现的项目记录到 memory/Oportunidades.md
 3. 更新 lastMoltbookScan 时间戳
 
