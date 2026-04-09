@@ -1,53 +1,13 @@
-[verse]
-Soft piano and gentle strings begin
-Building slowly with emotional depth
-Melancholic yet hopeful melody
-Setting the tone for the journey
+# 2026-04-08 Suno提示词
 
-[pre-chorus]
-Drums enter gradually
-Energy building
-Bass kicks in
-Anticipation grows
+## 风格
+中文流行抒情，治愈系，民谣
 
-[chorus]
-Powerful pop anthem with soaring vocals
-Intense electronic drop
-Anthemic chorus
-Explosive and emotional
-High notes sustained
-Repeat the powerful hook
+## 情绪
+温暖、回忆、感伤、平静
 
-[verse 2]
-Strings and synth layers
-Story continues
-More energy
-Vocal runs and belting
+## 乐器
+木吉他、钢琴、弦乐
 
-[pre-chorus]
-Building again
-Rising intensity
-Leading to climax
-
-[chorus]
-Full power chorus again
-Maximum energy
-All instruments hitting hard
-
-[bridge]
-Stripped back
-Just vocals and piano
-Emotional peak
-Then building again
-
-[final chorus]
-Ultimate release
-All elements combined
-Soaring high notes
-Extended Outro
-
-[outro]
-Fading with hope
-Piano and strings
-Emotional resolution
-4 minutes long, radio edit quality
+## Prompt
+Chinese pop ballad, emotional acoustic guitar and soft piano, strings arrangement, medium tempo 70 BPM, rainy day café atmosphere, nostalgic mood, emotional and touching, heartfelt melody, verses tell stories of memories and reflection, chorus brings warmth and peace, cinematic production

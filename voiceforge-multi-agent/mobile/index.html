@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" style="color-scheme: dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a1a2e">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>VoiceForge 移动端</title>
@@ -110,6 +111,8 @@
     }
 
     .action-btn .icon { font-size: 28px; }
+.action-btn:hover { opacity: 0.9; }
+.action-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
     .action-btn .label { font-size: 14px; font-weight: 500; }
 
     /* Input */
@@ -153,7 +156,7 @@
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: transform 0.2s, opacity 0.2s;
       width: 100%;
     }
 
@@ -185,10 +188,11 @@
       border-radius: 12px;
       padding: 12px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: transform 0.2s, opacity 0.2s;
     }
 
-    .voice-item:active, .voice-item.selected {
+    .voice-item:active, .voice-item:hover { opacity: 0.8; }
+.voice-item.selected {
       border-color: var(--primary);
       background: rgba(99,102,241,0.2);
     }
@@ -283,7 +287,7 @@
       border-radius: 8px;
       font-size: 14px;
       opacity: 0;
-      transition: all 0.3s;
+      transition: opacity 0.3s, transform 0.3s;
       z-index: 200;
     }
 
@@ -473,7 +477,7 @@
   </nav>
 
   <!-- Toast -->
-  <div id="toast" class="toast"></div>
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
   <script>
     // API Base URL

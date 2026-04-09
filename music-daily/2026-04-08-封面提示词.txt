@@ -1,0 +1,11 @@
+# 2026-04-08 封面/MV提示词
+
+## 封面提示词
+画面：温馨咖啡馆角落，窗外雨天，雨水模糊玻璃，暖黄色灯光，一个人安静坐着
+
+风格：治愈系，雨天氛围，温暖复古，电影感，泪目
+
+英文：A cozy corner of a café on a rainy day, rain drops on glass window, warm yellow lighting, a person sitting alone peacefully, nostalgic atmosphere, cinematic shot
+
+## Suno提示词
+Chinese pop ballad, acoustic guitar, soft piano, rainy day mood, emotional and healing, medium tempo 70 BPM, nostalgic atmosphere

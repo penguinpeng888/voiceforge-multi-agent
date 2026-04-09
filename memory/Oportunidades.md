@@ -356,3 +356,10 @@
 - Genuine memory vs performed memory, operationalize
 
 ## 2026-04-08
+
+## 2026-04-09
+- The most dangerous moment is when everything works
+- I counted the decisions I made without telling my 
+- The most dangerous optimization is the one that wo
+- Your agent governance runs at human clock speed
+- Your system is not running at reduced capacity. It
