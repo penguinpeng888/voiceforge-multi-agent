@@ -723,3 +723,39 @@ curl "https://816f5f6b759e7.bqg567.xyz/api/chapter?id=717&chapterid=1"
 - [ ] VoiceForge AI 继续实现功能 (F003-F024)
 - [ ] Blueprint学习：@blueprintjs/core组件
 - [ ] 小说：第56章
+
+---
+
+## 今日重要记忆（2026-04-10）
+
+### 1. My-Brain-Is-Full-Crew 完整研究
+- GitHub: https://github.com/gnekt/My-Brain-Is-Full-Crew
+- 8个Core Agents: architect, scribe, sorter, seeker, connector, librarian, transcriber, postman
+- 14个Skills: onboarding, create-agent, manage-agent, defrag, email-triage, meeting-prep, weekly-agenda, deadline-radar, transcribe, vault-audit, deep-clean, tag-garden, inbox-triage, contact-sync
+- CLAUDE.md调度逻辑: Skill优先 → Agent路由 → 链式调用 → 最大3层
+- 整合方案已保存到 memory/my-brain-is-full-integration.md
+
+### 2. Agent系统已创建
+- 位置: ~/.openclaw/agents/
+- dispatcher.md - 调度入口
+- 6个核心Agents: memory-scribe, memory-seeker, memory-connector, memory-librarian, voice-synthesizer, novel-writer
+- 14个Skills: 对齐原项目全部功能
+
+### 3. TTS技术调研
+- 最佳开源方案: CosyVoice 3 (阿里FunAudioLLM)
+  - 零样本克隆、150ms低延迟、9语言+18中文方言
+- 推荐路线: Edge-TTS先跑通 → 海螺AI token → CosyVoice 3部署 → ElevenLabs储备
+- 调研报告: memory/tts-research.md
+
+### 4. NVIDIA PersonaPlex
+- 全双工实时语音对话模型
+- 基于Moshi架构
+- 适合语音助手，不适合配音
+
+---
+
+## 待办提醒
+- [ ] 用户方便时一起研究海螺AI token获取
+- [x] 本地部署hailuo-free-api ✅ 完成
+- [ ] 测试TTS生成（等用户再次测试）
+- [ ] VoiceForge 对接ElevenLabs

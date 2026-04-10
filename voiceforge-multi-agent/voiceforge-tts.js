@@ -6,6 +6,7 @@
  * 2. 海螺AI API（需要token）
  * 3. Fish Speech（本地开源）
  * 4. Edge-TTS（微软云API）
+ * 5. VoxCPM2（开源免费，2B参数，48kHz）
  * 
  * 支持多Agent并行处理
  */
@@ -21,7 +22,7 @@ class VoiceForgeTTS {
   constructor(options = {}) {
     this.numAgents = options.numAgents || 2;
     this.tempDir = options.tempDir || './temp-tts';
-    this.engine = options.engine || 'hailuo-web';  // 默认用海螺AI网页
+	this.engine = options.engine || 'edge-tts'; // 默认用Edge-TTS（免费无需显卡）
     
     // 各引擎配置
     this.config = {
@@ -248,6 +249,55 @@ asyncio.run(main())
       python.on('error', (e) => resolve({ success: false, error: e.message }));
     });
   }
+    /**
+     * 引擎5: VoxCPM2 开源TTS
+     * 需要先安装: pip install voxcpm soundfile numpy
+     */
+    async voxcpm2(text, outputPath, options = {}) {
+        console.log(`[VoxCPM2] 生成: ${text.substring(0, 30)}...`);
+        
+        return new Promise((resolve) => {
+            // 清理文本中的特殊字符
+            const cleanText = text.replace(/"/g, '\"').replace(/\n/g, ' ');
+            const cleanPath = outputPath.replace(/\\/g, '\\\\').replace(/\/g, '\\');
+            
+            const script = `
+import sys
+try:
+    from voxcpm import VoxCPM
+    import soundfile as sf
+    import numpy as np
+    
+    model = VoxCPM.from_pretrained("openbmb/VoxCPM2", load_denoiser=False)
+    wav = model.generate(
+        text="${cleanText}",
+        cfg_value=2.0,
+        inference_timesteps=10
+    )
+    # 转换为16位整数并保存为WAV
+    wav_int = (wav * 32767).astype(np.int16)
+    sf.write("${cleanPath}", wav_int, model.tts_model.sample_rate)
+    print("SUCCESS")
+except Exception as e:
+    print(f"ERROR: {e}")
+    import traceback
+    traceback.print_exc()
+    sys.exit(1)
+`;
+            const python = spawn('python3', ['-c', script]);
+            
+            python.on('close', (code) => {
+                if (code === 0) {
+                    resolve({ success: true, outputPath });
+                } else {
+                    resolve({ success: false, error: 'VoxCPM2 生成失败' });
+                }
+            });
+            
+            python.on('error', (e) => resolve({ success: false, error: e.message }));
+        });
+    }
+
 
   /**
    * 下载文件
@@ -281,6 +331,7 @@ asyncio.run(main())
         return this.fishSpeech(text, outputPath, options);
       case 'edge-tts':
         return this.edgeTTS(text, outputPath, options);
+	case 'voxcpm2': return this.voxcpm2(text, outputPath, options);
       default:
         return { success: false, error: `未知引擎: ${engine}` };
     }
@@ -395,7 +446,7 @@ module.exports = { VoiceForgeTTS };
 // 测试
 if (require.main === module) {
   const tts = new VoiceForgeTTS({
-    engine: 'edge-tts',  // 默认用 edge-tts 测试
+    engine: 'voxcpm2',  // 默认用 edge-tts 测试
     numAgents: 2
   });
   
