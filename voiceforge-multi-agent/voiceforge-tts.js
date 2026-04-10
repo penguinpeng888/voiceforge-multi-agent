@@ -259,6 +259,7 @@ asyncio.run(main())
         return new Promise((resolve) => {
             // 清理文本中的特殊字符
             const cleanText = text.replace(/"/g, '\"').replace(/\n/g, ' ');
+        const cleanPath = outputPath.replace(/\\\\/g, '\\\\\\\\').replace(/\//g, '\\\\\\\\');
             
             const script = `
 import sys
